@@ -3,3 +3,7 @@
     background: aquamarine;
     width: fit-content;
 }
+
+#rainfall:hover {
+    cursor: alias;
+}

@@ -8,9 +8,10 @@ export const TaskRender = ({ task }) => {
   return <div>{task.text} </div>;
 };
 
+
+
 export const TaskList = () => {
   const tasks = useTracker(() => TasksCollection.find({}).fetch());
-
   return (
     <div>
       <h1>Salam</h1>
