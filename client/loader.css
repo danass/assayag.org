@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/**
+ *
+ * three-dots.css v0.1.0
+ *
+ * https://nzbin.github.io/three-dots/
+ *
+ * Copyright (c) 2018 nzbin
+ *
+ * Released under the MIT license
+ *
+ */
+/**
+ * ==============================================
+ * Dot Elastic
+ * ==============================================
+ */
+/**
+ * ==============================================
+ * Dot Spin
+ * ==============================================
+ */
+
+ :root {
+    --dotsize: 12px;
+    --color1: #9215c714;
+    --color2: #4e56b00d;
+    --val1: -18px;
+    --val2: -2px; 
+    --val3: 11.72984px; /* almost 4 pi */
+    --val3neg: calc(-1*var(--val3));
+    --val3pos: var(--val3);
+    --val1pos: calc(-1*var(--val1));
+}
+
+.loading-snippet {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.loading-text {
+    padding: 25px;
+    font-size: 0.7em;
+    color: #baadcb;
+}
+.dot-spin {
+  position: relative;
+  width: var(--dotsize);
+  height:  var(--dotsize);
+  border-radius: 10px;
+  background-color: #00000000;
+  color: transparent;
+  box-shadow: 0 var(--val1) 0 0 var(--color1), var(--val3pos) var(--val3neg) 0 0 var(--color1), var(--val1pos) 0 0 0 var(--color1), var(--val3pos) var(--val3pos) 0 0 var(--color2), 0 var(--val1pos) 0 0 var(--color2), var(--val3neg) var(--val3pos) 0 0 var(--color2), var(--val1) 0 0 0 var(--color2), var(--val3neg) var(--val3neg) 0 0 var(--color2);
+  animation: dotSpin 0.7s infinite linear;
+  
+}
+
+@keyframes dotSpin {
+  0%,
+  100% {
+    box-shadow: 0 var(--val1) 0 0 var(--color1), var(--val3pos) var(--val3neg) 0 0 var(--color1), var(--val1pos) 0 0 0 var(--color1), var(--val3pos) var(--val3pos) 0 var(--val2) var(--color2), 0 var(--val1pos) 0 var(--val2) var(--color2), var(--val3neg) var(--val3pos) 0 var(--val2) var(--color2), var(--val1) 0 0 var(--val2) var(--color2), var(--val3neg) var(--val3neg) 0 var(--val2) var(--color2);
+  }
+  12.5% {
+    box-shadow: 0 var(--val1) 0 var(--val2) var(--color2), var(--val3pos) var(--val3neg) 0 0 var(--color1), var(--val1pos) 0 0 0 var(--color1), var(--val3pos) var(--val3pos) 0 0 var(--color1), 0 var(--val1pos) 0 var(--val2) var(--color2), var(--val3neg) var(--val3pos) 0 var(--val2) var(--color2), var(--val1) 0 0 var(--val2) var(--color2), var(--val3neg) var(--val3neg) 0 var(--val2) var(--color2);
+  }
+  25% {
+    box-shadow: 0 var(--val1) 0 var(--val2) var(--color2), var(--val3pos) var(--val3neg) 0 var(--val2) var(--color2), var(--val1pos) 0 0 0 var(--color1), var(--val3pos) var(--val3pos) 0 0 var(--color1), 0 var(--val1pos) 0 0 var(--color1), var(--val3neg) var(--val3pos) 0 var(--val2) var(--color2), var(--val1) 0 0 var(--val2) var(--color2), var(--val3neg) var(--val3neg) 0 var(--val2) var(--color2);
+  }
+  37.5% {
+    box-shadow: 0 var(--val1) 0 var(--val2) var(--color2), var(--val3pos) var(--val3neg) 0 var(--val2) var(--color2), var(--val1pos) 0 0 var(--val2) var(--color2), var(--val3pos) var(--val3pos) 0 0 var(--color1), 0 var(--val1pos) 0 0 var(--color1), var(--val3neg) var(--val3pos) 0 0 var(--color1), var(--val1) 0 0 var(--val2) var(--color2), var(--val3neg) var(--val3neg) 0 var(--val2) var(--color2);
+  }
+  50% {
+    box-shadow: 0 var(--val1) 0 var(--val2) var(--color2), var(--val3pos) var(--val3neg) 0 var(--val2) var(--color2), var(--val1pos) 0 0 var(--val2) var(--color2), var(--val3pos) var(--val3pos) 0 var(--val2) var(--color2), 0 var(--val1pos) 0 0 var(--color1), var(--val3neg) var(--val3pos) 0 0 var(--color1), var(--val1) 0 0 0 var(--color1), var(--val3neg) var(--val3neg) 0 var(--val2) var(--color2);
+  }
+  62.5% {
+    box-shadow: 0 var(--val1) 0 var(--val2) var(--color2), var(--val3pos) var(--val3neg) 0 var(--val2) var(--color2), var(--val1pos) 0 0 var(--val2) var(--color2), var(--val3pos) var(--val3pos) 0 var(--val2) var(--color2), 0 var(--val1pos) 0 var(--val2) var(--color2), var(--val3neg) var(--val3pos) 0 0 var(--color1), var(--val1) 0 0 0 var(--color1), var(--val3neg) var(--val3neg) 0 0 var(--color1);
+  }
+  75% {
+    box-shadow: 0 var(--val1) 0 0 var(--color1), var(--val3pos) var(--val3neg) 0 var(--val2) var(--color2), var(--val1pos) 0 0 var(--val2) var(--color2), var(--val3pos) var(--val3pos) 0 var(--val2) var(--color2), 0 var(--val1pos) 0 var(--val2) var(--color2), var(--val3neg) var(--val3pos) 0 var(--val2) var(--color2), var(--val1) 0 0 0 var(--color1), var(--val3neg) var(--val3neg) 0 0 var(--color1);
+  }
+  87.5% {
+    box-shadow: 0 var(--val1) 0 0 var(--color1), var(--val3pos) var(--val3neg) 0 0 var(--color1), var(--val1pos) 0 0 var(--val2) var(--color2), var(--val3pos) var(--val3pos) 0 var(--val2) var(--color2), 0 var(--val1pos) 0 var(--val2) var(--color2), var(--val3neg) var(--val3pos) 0 var(--val2) var(--color2), var(--val1) 0 0 var(--val2) var(--color2), var(--val3neg) var(--val3neg) 0 0 var(--color1);
+  }
+}

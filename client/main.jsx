@@ -10,6 +10,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+
 import { Maritime } from '../imports/ui/Maritime';
 
 rootElement = document.getElementById('react-target');

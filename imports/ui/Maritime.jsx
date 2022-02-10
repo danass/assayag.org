@@ -18,7 +18,12 @@ if(maritime.maritime) {
 }
 if(maritime.date == undefined) {
 
-  return <div>Loading</div> 
+  return (
+    <div className="loading-snippet">
+            <div className="loading-text">Loading...</div>
+           <div className="dot-spin"></div>
+      </div>
+ )
 }
 
     return (
