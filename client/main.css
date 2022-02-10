@@ -1,0 +1,17 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.task-form {
+  margin-top: 1rem;
+
+}
+
+.background-no {
+  background: orangered;
+}
+
+.menu div {
+  padding: 3px;
+}
