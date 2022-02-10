@@ -5,7 +5,7 @@ import { TasksCollection } from '../api/Collection.js';
 
 
 export const TaskRender = ({ task }) => {
-  return <li>{task.text} </li>;
+  return <div>{task.text} </div>;
 };
 
 export const TaskList = () => {

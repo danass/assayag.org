@@ -15,7 +15,7 @@ canvas.height = document.body.children[1].clientHeight
 const tempImg = document.createElement('img')
 tempImg.addEventListener('load', onTempImageLoad)
 setDiv(document.body.children[1])
-tempImg.src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + document.body.children[0].clientWidth +  '" height="'+ document.body.children[1].clientHeight+'"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml">' + currentDiv.innerHTML + ' </div></foreignObject></svg>')
+tempImg.src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + document.body.children[0].clientWidth +  '" height="'+ document.body.children[1].clientHeight+'">  <style>#rainfall { padding: 30px; background: aquamarine; width: fit-content;} </style><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml">' + currentDiv.innerHTML + ' </div></foreignObject></svg>')
 const targetImg = document.createElement('img') 
 body.appendChild(targetImg)
 
@@ -36,7 +36,6 @@ function onTempImageLoad(e){
         <button type="submit">generate image</button>
         </form>
             <TaskForm />
-
         </div>
     )
     

@@ -24,12 +24,13 @@ export const TaskForm = () => {
         <form onSubmit={handleSubmit} className="task-form">
         <input 
             type="text" 
-            placeholder="Ajouter une tâche" 
+            placeholder="Make it rain" 
             value={text}
             onChange={ e => 
                 { 
                     pluie.push({_id: Uuid(), text: e.target.value})
-                    render(pluie.map((plic) =>  <TaskRender key={plic._id} task={plic} />) , document.getElementById('react-realtime'))    
+                    rain = pluie.map((drop) =>  <TaskRender key={drop._id} task={drop} />)
+                    render(<div id="rainfall">{rain}</div> , document.getElementById('react-realtime'))    
                     setText(e.target.value) 
                 }
             }
