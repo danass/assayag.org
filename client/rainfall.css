@@ -1,4 +1,4 @@
-#rainfall {
+.rainfall, #rainfall {
     padding: 30px;
     background: aquamarine;
     width: fit-content;
@@ -6,4 +6,8 @@
 
 #rainfall:hover {
     cursor: alias;
+}
+
+.rain-img {
+    padding: 10px 6px 6px 0px;
 }

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
+    "html2canvas": "^1.4.1",
     "meteor-node-stubs": "^1.1.0",
     "mocha": "^9.2.0",
     "puppeteer": "^13.2.0",
