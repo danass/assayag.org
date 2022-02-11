@@ -3,7 +3,6 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { TasksCollection } from '../api/Collection.js';
 
 
-
 export const TaskRender = ({ task }) => {
   return <div>{task.text} </div>;
 };

@@ -13,6 +13,9 @@ export const Menu = () => {
                 <a href="/fronteras">Fronteras</a>
             </div>
             <div>
+                <a href="/tiktok">TikTok</a>
+            </div>
+            <div>
                 <a href="/tasks">Tasks</a>
             </div>
         </div>

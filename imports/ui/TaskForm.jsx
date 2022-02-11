@@ -10,25 +10,28 @@ pluie = []
 export const TaskForm = () => {
 
     function tooltip(e) {
-        if (document.querySelectorAll('.rain-tooltip')) {
-            document.querySelectorAll('.rain-tooltip').forEach(function (el) {
-                el.remove();
-            });
-        }
-
+       if (!document.getElementsByClassName("rain-tooltip")[0]) {
         let tooltipBox = document.createElement("div")
         tooltipBox.classList.add("rain-tooltip")
         tooltipBox.innerHTML = "Create image click!"
+        tooltipBox.style.top = e.clientY + "px"
+        tooltipBox.style.left = e.clientX + "px"
         document.querySelector("#rainfall").parentElement.insertBefore(tooltipBox, document.querySelector("#rainfall"))
     }
-
+    tooltipBox = document.getElementsByClassName("rain-tooltip")[0]
+    tooltipBox.style.top = e.clientY + "px"
+    tooltipBox.style.left = e.clientX + "px"
+}
     function goodbye(e) {
+        if (document.getElementsByClassName("rain-tooltip")[0]) {
         if (document.querySelectorAll('.rain-tooltip')) {
             document.querySelectorAll('.rain-tooltip').forEach(function (el) {
                 el.remove();
             });
+
         }
     }
+}
 
     const [text, setText] = useState('');
     
@@ -69,7 +72,7 @@ export const TaskForm = () => {
                     pluie.push({_id: Uuid(), text: e.target.value})
                     rain = pluie.map((drop) =>  <TaskRender key={drop._id} task={drop} />)
                     render(
-                    <div id="rainfall" onMouseOut={goodbye} onMouseOver={tooltip} onClick={formula}>{rain}</div>
+                    <div id="rainfall" onMouseOut={goodbye} onMouseEnter={tooltip} onClick={formula}>{rain}</div>
               
                , document.getElementById('react-realtime'))    
                     setText(e.target.value)

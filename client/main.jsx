@@ -5,6 +5,7 @@ import { App } from '/imports/ui/App';
 import { Menu } from '/imports/ui/Menu';
 import { Rain } from '/imports/ui/Rain';
 import { TaskList } from '../imports/ui/TaskRender';
+import { Tiktok } from '../imports/ui/Modules';
 import {
   BrowserRouter,
   Routes,
@@ -26,6 +27,7 @@ Meteor.startup(() => {
       <Route path="/fronteras" element={<Maritime />} />
       <Route path="/" element={<App />} />
       <Route path="/tasks" element={<TaskList />} />
+      <Route path="/tiktok" element={<Tiktok />} />
     </Routes>
     </BrowserRouter>
     </div>, 

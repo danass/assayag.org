@@ -1,3 +1,4 @@
+
 Meteor.methods({
   async maritime() {
     const puppeteer = require('puppeteer');
@@ -24,7 +25,7 @@ Meteor.methods({
         });
       await browser.close();
       return data;
-  },
+  }
 })
 
 
