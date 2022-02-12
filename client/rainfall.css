@@ -37,4 +37,18 @@
     justify-content: center;
     align-items: center;
     font-size: 9vh;
+    cursor: help;
+}
+
+div#mail-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: flex-start;
+}
+
+#mail-form textarea {
+    min-width: 20vw;
+    min-height: 40vh;
 }
