@@ -1,0 +1,39 @@
+
+.container-for-div-with-tooltip {
+    position: relative;
+    width: fit-content;
+  }
+  
+  .container-div {
+  min-width: fit-content;
+  }
+  
+  .container-div img {
+  }
+  
+  .container-tooltip {
+    position: absolute;
+    top: 0;
+    right:0;
+    min-height: 50px;
+    min-width: 50px;
+    opacity: 0;
+    transition: .2s ease;
+    background-color: #00000047;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60%;
+    margin: 5px;
+    border-radius: 4px;
+  }
+  
+  .container-for-div-with-tooltip:hover .container-tooltip {
+    opacity: 1;
+  }
+  
+  .tooltip-label {
+    color: white;
+    position: absolute;
+  }
+  

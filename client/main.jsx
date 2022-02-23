@@ -17,18 +17,18 @@ import { Maritime } from '../imports/ui/Maritime';
 rootElement = document.getElementById('react-target');
 
 Meteor.startup(() => {
-
+  
   render(
     <div>
 
     <BrowserRouter>
     <Routes>
-      <Route path="/rain" element={<Rain />} />
-      <Route path="/fronteras" element={<Maritime />} />
-      <Route path="/" element={<App />} />
-      <Route path="/tasks" element={<TaskList />} />
-      <Route path="/tiktok" element={<Tiktok />} />
-      <Route path="/mail" element={<Mail />} />
+      <Route path="/" element={<div><Menu /><App /></div>} />
+      <Route path="/rain" element={<div><Menu /><Rain /></div>} />
+      <Route path="/fronteras" element={<div><Menu /><Maritime /></div>} />
+      <Route path="/tasks" element={<div><Menu /><TaskList /></div>} />
+      <Route path="/tiktok" element={<div><Menu /><Tiktok /></div>} />
+      <Route path="/mail" element={<div><Menu /><Mail /></div>} />
     </Routes>
     </BrowserRouter>
     </div>, 
@@ -36,9 +36,6 @@ Meteor.startup(() => {
   
   ) 
 
-  render(
-    <Menu />,
-    document.getElementById('react-menu')
-  )
+  
 });
 

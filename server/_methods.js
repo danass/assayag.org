@@ -9,6 +9,7 @@ Meteor.methods({
       "https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/maroc/"
     );
     const data = await page.evaluate((e) => {
+
       function getMaritime() {
         let data = [];
         document
@@ -21,10 +22,25 @@ Meteor.methods({
           return d.innerHTML.includes("maritimes") == true;
         })[0].parentNode.innerText;
       }
+
+      function getTerrestre() {
+        let data = [];
+        document
+          .getElementById("derniere_nopush")
+          .querySelectorAll("strong")
+          .forEach((s) => {
+            data.push(s);
+          });
+        return data.filter((d) => {
+          return d.innerHTML.includes("frontières terrestres") == true;
+        })[0].parentNode.innerText;
+      }
+
       return {
         date: document.getElementsByClassName("date_derniere_minute")[0]
           .children[0].children[0].innerHTML,
         maritime: getMaritime(),
+        terrestre: getTerrestre(),
       };
     });
     await browser.close();

@@ -12,7 +12,7 @@ export const Tiktok = () => {
        }
        let randomtok = data[randomNb].Comment
 
-       const formula = (e) => {
+       const saveAs = (e) => {
         html2canvas(document.querySelector("h2"), {}).then(canvas => {
             canvas.className = "tiktok-img"
             document.body.appendChild(canvas)
@@ -23,7 +23,7 @@ export const Tiktok = () => {
             <div>
                 <h1>Tiktok Mirror {randomNb}</h1>
                 <h2 className="tiktok-comment" onClick={shuffle}>{randomtok}</h2>
-                <button id="tiktok-save" onClick={formula}>save</button>
+                <button id="tiktok-save" onClick={saveAs}>save</button>
             </div>
         )
 }

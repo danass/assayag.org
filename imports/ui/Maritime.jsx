@@ -15,6 +15,7 @@ if(maritime.maritime) {
     if(maritime.maritime.includes('suspendues')) {
     document.body.classList.add('background-no')
 }
+
 }
 if(maritime.date == undefined) {
 
@@ -30,6 +31,9 @@ if(maritime.date == undefined) {
         <div style={{padding: "2vw"}}>
     <div>Information en date du {maritime.date}</div>
     <h1 style={{ fontSize: "2vw" }}>{maritime.maritime}</h1>
+    <h1 style={{ fontSize: "2vw" }}>{maritime.terrestre}</h1>
+        
+
     </div>
     )
 

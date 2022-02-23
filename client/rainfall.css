@@ -4,10 +4,6 @@
     width: fit-content;
 }
 
-#rainfall:hover {
-    cursor: alias;
-}
-
 .rain-img {
     padding: 10px 6px 6px 0px;
 }
@@ -17,6 +13,9 @@
     height: 37px;
 }
 
+.rain-input {
+    margin: 10px 0px;
+}
 .rain-tooltip {
     background: #e5e5e585;
     width: fit-content;
@@ -25,9 +24,15 @@
 
 }
 
-#rainfall div {
-    z-index: -1;
+#rain-library {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: 0 auto;
 }
+
 
 .tiktok-comment {
     padding: 15px 30px;

@@ -1,22 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 export const Menu = () => {
+    document.body.classList.remove('background-no')
     return (
         <div className="menu" style= {{ display: "flex"}}>
             <div>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
             </div>
             <div>
-                <a href="/rain">Rain</a>
+                 <Link to="/rain">Rain</Link>
             </div>
             <div>
-                <a href="/fronteras">Fronteras</a>
+                <Link to="/fronteras">Fronteras</Link>
             </div>
             <div>
-                <a href="/tiktok">TikTok</a>
+                <Link to="/tiktok">TikTok</Link>
             </div>
             <div>
-                <a href="/tasks">Tasks</a>
+                <Link to="/tasks">Tasks</Link>
             </div>
         </div>
     )
