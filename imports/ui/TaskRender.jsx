@@ -4,8 +4,14 @@ import { TasksCollection } from '../api/Collection.js';
 
 
 export const TaskRender = ({ task }) => {
-  return <div>{task.text} </div>;
+  return <div>{task.text}</div>;
 };
+
+export const RainRender = (props) => {
+  console.log(props, "props") 
+  return <div>salutss</div>;
+};
+
 
 
 

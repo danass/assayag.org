@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-export const ColorPicker = (e) => {
-
-    const [color, setColor] = useState(["#7fffd4", "#000000"]);
+export const ColorPicker = (props) => {
+    const [color, setColor] = useState([props.values[0], props.values[1] ]);
 
   return (
     <div className="rain-pickers">

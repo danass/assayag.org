@@ -5,17 +5,24 @@ import { Uuid } from "./Uuid";
 
 import { TaskRender } from "./TaskRender";
 
-let allcanvas = [];
 
 export const Tooltip = (props) => {
+
+  const [allcanvas, setallCanvas] = useState([ {
+    _id: Uuid(),
+    text: <Html2Canvas tooltip={props} />,
+  }]);
+
   function handleClick() {
+
     if (props.action == "createimg") {
       try {
-        allcanvas.push({
+        setallCanvas([{
           _id: Uuid(),
           text: <Html2Canvas tooltip={props} />,
-        });
-        all = allcanvas.map((drop) => (
+        }, ...allcanvas]);
+
+        let all = allcanvas.map((drop) => (
           <TaskRender key={drop._id} task={drop} />
         ));
         render(all, document.getElementById(props.atselector));
@@ -23,21 +30,27 @@ export const Tooltip = (props) => {
         console.error("errore", e);
       }
     }
+    else {
+
+      if(props.clickforsave) {
+        let tooltipsave = document.getElementById(props.uuid)
+        var link = document.createElement("a");
+        document.body.appendChild(link); // for Firefox
+        link.setAttribute("href", tooltipsave.children[0].src);
+        link.setAttribute("download",  'rain-' + props.uuid + '.png');
+        link.click();
+      }
+     
+    }
   }
   console.log(props)
 
-  // let tooltipsave = document.getElementById(uuid)
-  // tooltipsave.onclick = function () {
-  //     var image = canvas
-  //         .toDataURL("image/png")
-  //         .replace("image/png", "image/octet-stream");
-  //     window.location.href = image;
-  //     }        
+
 
 
   return (
     <div
-      className="container-for-div-with-tooltip"
+      className="container-for-div-with-tooltip" 
     >
       <div className="container-div">
         {props.children}
