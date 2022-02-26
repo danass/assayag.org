@@ -23,7 +23,7 @@ export const Tiktok = () => {
             <div>
                 <h1>Tiktok Mirror {randomNb}</h1>
                 <h2 className="tiktok-comment" onClick={shuffle}>{randomtok}</h2>
-                <button id="tiktok-save" onClick={saveAs}>save</button>
+                {/* <button id="tiktok-save" onClick={saveAs}>save</button> */}
             </div>
         )
 }

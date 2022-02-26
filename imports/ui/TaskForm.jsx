@@ -4,17 +4,21 @@ import { Uuid } from "./Uuid";
 import { Tooltip } from "./Tooltip";
 import { ColorPicker } from "./ColorPicker";
 
-pluie = [];
 
 export const TaskForm = () => {
-  const [text, setText] = useState("");
   const [Tdiv, setTdiv] = useState(<div>Make it rain</div>);
   const [colors, setColors] = useState([getRandomColor(), getRandomColor() ])
+  const [pluie, setPluie] = useState([]);
 
 const updateRain = (e) => {
-pluie.push({ _id: Uuid(), text: e.target.value });
-rain = pluie.map((drop) => <TaskRender key={drop._id} task={drop} />);
-setTdiv(rain)
+
+setPluie(pluie => {
+  let pluieArray = pluie
+  pluieArray.push({ _id: Uuid(), text: e.target.value });
+  let rain = pluie.map((drop) => <TaskRender key={drop._id} task={drop} />);
+  setTdiv(rain)
+  return pluieArray;
+})
 
 }
 
@@ -51,9 +55,7 @@ setTdiv(rain)
       />
       
       <button className="rain-button" onClick={() => {
-        setText("");
-        pluie = [];
-        rain = [];
+        setPluie([])
         setTdiv(<div>Make it rain</div>);
       }}>x</button>
 
