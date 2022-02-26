@@ -4,18 +4,26 @@ import { Uuid } from "./Uuid";
 import { Tooltip } from "./Tooltip";
 import { ColorPicker } from "./ColorPicker";
 
+reverse = false
 
 export const TaskForm = () => {
   const [Tdiv, setTdiv] = useState(<div>Make it rain</div>);
   const [colors, setColors] = useState([getRandomColor(), getRandomColor() ])
   const [pluie, setPluie] = useState([]);
+  // const [latrue, setLatrue] = useState(false);
 
-const updateRain = (e) => {
+const updateRain = (e, setreverse) => {
+if(setreverse) {
+  reverse = !reverse;
+}
 
 setPluie(pluie => {
   let pluieArray = pluie
   pluieArray.push({ _id: Uuid(), text: e.target.value });
   let rain = pluie.map((drop) => <TaskRender key={drop._id} task={drop} />);
+  if (reverse) {
+    rain = rain.reverse();
+  }
   setTdiv(rain)
   return pluieArray;
 })
@@ -30,8 +38,6 @@ setPluie(pluie => {
     }
     return color;
   }
-
-
   
   return (
     <div>
@@ -51,13 +57,13 @@ setPluie(pluie => {
         type="text"
         placeholder="Make it rain"
         onChange={updateRain}
-
       />
       
       <button className="rain-button" onClick={() => {
         setPluie([])
         setTdiv(<div>Make it rain</div>);
       }}>x</button>
+      <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
 
 
       

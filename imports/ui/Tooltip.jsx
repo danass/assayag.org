@@ -43,7 +43,7 @@ export const Tooltip = (props) => {
      
     }
   }
-  console.log(props)
+
 
 
 
