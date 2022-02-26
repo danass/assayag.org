@@ -15,7 +15,7 @@
 
 .rain-pickers {
     display: flex;
-  }
+}
 
 .rain-input {
     margin: 10px 0px;
@@ -35,6 +35,10 @@
     flex-wrap: wrap;
     width: 70%;
     margin: 0 auto;
+}
+
+#rain-library div {
+
 }
 
 

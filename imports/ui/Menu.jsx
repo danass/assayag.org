@@ -12,15 +12,15 @@ export const Menu = () => {
             <div>
                  <Link to="/rain">Rain</Link>
             </div>
-            <div>
+            {/* <div>
                 <Link to="/fronteras">Fronteras</Link>
-            </div>
+            </div> */}
             <div>
                 <Link to="/tiktok">TikTok</Link>
             </div>
-            <div>
+            {/* <div>
                 <Link to="/tasks">Tasks</Link>
-            </div>
+            </div> */}
         </div>
     )
 }

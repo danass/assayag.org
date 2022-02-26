@@ -8,7 +8,7 @@ export const Html2Canvas = (props) => {
     if(props.tooltip.action == "createimg" || props.tooltip.clickforsave != true){
   html2canvas(
     document.getElementById(props.tooltip.children.props.id),
-    {}
+    {scale: 1}
   ).then((canvas) => {
     setCanvas(canvas.toDataURL("image/png"));
   });

@@ -5,12 +5,11 @@ import { Tooltip } from "./Tooltip";
 import { ColorPicker } from "./ColorPicker";
 
 reverse = false
-
 export const TaskForm = () => {
   const [Tdiv, setTdiv] = useState(<div>Make it rain</div>);
   const [colors, setColors] = useState([getRandomColor(), getRandomColor() ])
   const [pluie, setPluie] = useState([]);
-  // const [latrue, setLatrue] = useState(false);
+
 
 const updateRain = (e, setreverse) => {
 if(setreverse) {
