@@ -1,26 +1,8 @@
 import React, { useState } from 'react';
 // import * as tiktokdata from './../data/user_data.json';
-import tiktokdata from './../data/user_data.json'
+import {tiktokdata} from '../data/tiktokdata.js'
 
 import { Tooltip } from './Tooltip';
-// let tiktokdata = {
-
-//     "Comment": {
-//         "Comments": {
-//           "CommentsList": [
-//             {
-//               "Date": "2022-02-01 21:15:42",
-//               "Comment": "Merci"
-//             },
-//             {
-//               "Date": "2022-01-24 16:54:45",
-//               "Comment": "« Ah non jvais voyager » oui. à la nage"
-//             },
-//         ]
-//         }
-//     }
-    
-// };
 
 export const Tiktok = () => {
     let data = tiktokdata.Comment.Comments.CommentsList;
