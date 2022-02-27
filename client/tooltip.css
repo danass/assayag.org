@@ -55,6 +55,10 @@
   min-height: 140px;
 }
 
+.container-rain-mobile {
+  margin-top: 200px;
+}
+
 #tiktok-comment-container {
   background: #e8e8e8;
   width: 1024px;

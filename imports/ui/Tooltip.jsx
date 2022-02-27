@@ -4,7 +4,7 @@ import { Html2Canvas } from "./Html2Canvas";
 import { Uuid } from "./Uuid";
 import html2canvas from "html2canvas";
 import { TaskRender } from "./TaskRender";
-
+import { isMobile } from "./Menu"
 
 export const Tooltip = (props) => {
 
@@ -70,12 +70,12 @@ export const Tooltip = (props) => {
 
   }
 
-
+console.log(isMobile())
 
   return (
     
     <div
-      className="container-for-div-with-tooltip">
+      className={"container-for-div-with-tooltip" + (isMobile()? ' container-rain-mobile': '')}>
         
       <div className={"container-div"}>
         {props.children}

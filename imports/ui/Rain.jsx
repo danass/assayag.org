@@ -3,6 +3,7 @@ import { TaskRender } from "./TaskRender";
 import { Uuid } from "./Uuid";
 import { Tooltip } from "./Tooltip";
 import { ColorPicker } from "./ColorPicker";
+import { isMobile } from "./Menu";
 
 reverse = false
 export const Rain = () => {
@@ -16,10 +17,7 @@ if(setreverse) {
   reverse = !reverse;
 }
 
-let testval = document.getElementsByClassName('html2save')[0] ? document.getElementsByClassName('html2save')[0].parentNode.classList.remove('container-div'): []  // if(document.getElementsByClassName('html2save')[0].parentNode) {
-  //   document.getElementsByClassName('html2save')[0].parentNode.classList.remove('container-div')
-  // }
-  console.log(testval)
+
 
 setPluie(pluie => {
   let pluieArray = pluie
@@ -56,8 +54,8 @@ setPluie(pluie => {
           {Tdiv}
         </div>
       </Tooltip>
-      
-      <div id="rain-controls">
+      {console.log(isMobile())}
+      <div id="rain-controls" style={(isMobile()? ({ margin: '0px' }): {}) }>
       <ColorPicker values={colors} />
       <input className="rain-input"
         type="text"
