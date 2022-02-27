@@ -34,7 +34,6 @@ export const Html2Canvas = (props) => {
     }
 
     else {
-        console.log("wala")
     return null;
     }
   

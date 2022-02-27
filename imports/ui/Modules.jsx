@@ -43,8 +43,8 @@ export const Tiktok = () => {
         return (
             <div>
                 <h1>Tiktok Mirror {randomNb}</h1>
-                <Tooltip uuid="tiktok-comment" caption="Save" directCreation={true} clickforsave={true} >
-                    <div  id="tiktok-comment">
+                <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >
+                    <div  id="tiktok-comment-container">
                 <h2 className="tiktok-comment" onClick={shuffle}>{randomtok.Comment}</h2>
                 </div>
               </Tooltip>

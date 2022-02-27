@@ -42,18 +42,29 @@
 }
 
 
-.tiktok-comment {
-    padding: 2vw;
-    min-width: 90%;
-    height: 51.2vh;
+#tiktok-comment-container {
+    background: #e8e8e8;
+    width: 1024px;
+    height: 512px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 9vmin;
-    cursor: help;
-    margin: 0px auto;
-    max-width: 1024px;
-    max-height: 512px;
+    font-size: 2em;
+    padding: 0.5em 1.5em;
+}
+
+@media (max-width: 1024px) {
+    #tiktok-comment-container {
+        width: 76vw;  
+        height: 100%;     
+    }
+}
+
+@media (max-height: 512px) {
+    #tiktok-comment-container {
+        height: 100%;
+
+    }
 }
 
 div#mail-form {

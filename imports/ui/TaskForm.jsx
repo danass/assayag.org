@@ -16,6 +16,8 @@ if(setreverse) {
   reverse = !reverse;
 }
 
+window.scrollTo(0,document.getElementById('rainfall').scrollHeight - 150) ;
+
 setPluie(pluie => {
   let pluieArray = pluie
   pluieArray.push({ _id: Uuid(), text: e.target.value });
@@ -40,7 +42,7 @@ setPluie(pluie => {
   
   return (
     <div>
-      <ColorPicker values={colors} />
+     
       <Tooltip
         action="createimg"
         clickforsave={true}
@@ -51,7 +53,8 @@ setPluie(pluie => {
           {Tdiv}
         </div>
       </Tooltip>
-
+      <div id="rain-controls">
+      <ColorPicker values={colors} />
       <input className="rain-input"
         type="text"
         placeholder="Make it rain"
@@ -63,7 +66,7 @@ setPluie(pluie => {
         setTdiv(<div>Make it rain</div>);
       }}>x</button>
       <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
-
+      </div>
 
       
       <div id="rain-library"></div>

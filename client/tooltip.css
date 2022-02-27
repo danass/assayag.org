@@ -2,6 +2,7 @@
 .container-for-div-with-tooltip {
     position: relative;
     width: fit-content;
+    margin: 2em auto;
   }
   
   .container-div {
@@ -19,13 +20,15 @@
     min-width: 50px;
     opacity: 0;
     transition: .2s ease;
-    background-color: #00000047;
+    background-color: #00000047!important;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 60%;
     margin: 5px;
     border-radius: 4px;
+    width: 50px !important;
+    height: 50px !important;
   }
   
   .container-for-div-with-tooltip:hover .container-tooltip {
