@@ -9,11 +9,9 @@ export const Menu = () => {
             <div>
                 <Link to="/">Home</Link>
             </div>
-            {isMobile() ? null :
             <div>
                  <Link to="/rain">Rain</Link>
             </div>
-            }
             {/* <div>
                 <Link to="/fronteras">Fronteras</Link>
             </div> */}
