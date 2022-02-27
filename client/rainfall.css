@@ -2,11 +2,7 @@
     padding: 30px;
     width: fit-content;
     margin: 0 auto;
-    border: solid #e8e8e8 31px;
-}
-.container-for-div-with-tooltip:hover ~ #rain-controls {
-    opacity: 0.25;
-    transition: .4s ease;
+
 }
 
 .rain-img {
@@ -21,6 +17,10 @@
 .rain-pickers {
     display: flex;
 }
+
+.rain-button {
+    display: table;
+  }
 
 .rain-input {
     margin: 10px 0px;

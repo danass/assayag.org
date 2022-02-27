@@ -36,6 +36,11 @@
   .container-for-div-with-tooltip:hover .container-tooltip {
     opacity: 1;
   }
+
+  .container-for-div-with-tooltip:hover ~ #rain-controls {
+    opacity: 0.25;
+    transition: .4s ease;
+}
   
   .tooltip-label {
     color: white;
@@ -46,6 +51,8 @@
 .container-div {
   background: #e8e8e8;
   margin: 0 auto;
+  padding: 23px 0px;
+  min-height: 140px;
 }
 
 #tiktok-comment-container {

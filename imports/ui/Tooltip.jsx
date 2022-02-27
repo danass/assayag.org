@@ -15,8 +15,11 @@ export const Tooltip = (props) => {
 
   function handleClick() {
 
+    
     if (props.action == "createimg") {
+     
       try {
+        
         setallCanvas([{
           _id: Uuid(),
           text: <Html2Canvas tooltip={props} />,
@@ -25,14 +28,18 @@ export const Tooltip = (props) => {
         let all = allcanvas.map((drop) => (
           <TaskRender key={drop._id} task={drop} />
         ));
+
         render(all, document.getElementById(props.atselector));
+
       } catch (e) {
         console.error("errore", e);
       }
     }
     else {
+      
 
       if(props.clickforsave) {
+        
 
         if(props.directCreation) {
           html2canvas(
@@ -46,29 +53,31 @@ export const Tooltip = (props) => {
             link.click();
 
           });
-
           return
         }
+
+
         let tooltipsave = document.getElementById(props.uuid)
         var link = document.createElement("a");
         document.body.appendChild(link); // for Firefox
         link.setAttribute("href", tooltipsave.children[0].src);
         link.setAttribute("download",  'rain-' + props.uuid + '.png');
         link.click();
+        
       }
      
     }
+
   }
 
 
 
-
-
   return (
+    
     <div
-      className="container-for-div-with-tooltip" 
-    >
-      <div className="container-div">
+      className="container-for-div-with-tooltip">
+        
+      <div className={"container-div"}>
         {props.children}
       </div>
       <div className="container-tooltip" onClick={handleClick} id={props.clickforsave? props.uuid: null}>

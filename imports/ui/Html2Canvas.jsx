@@ -5,17 +5,19 @@ import { Uuid } from "./Uuid";
 
 export const Html2Canvas = (props) => {
   const [canvas, setCanvas] = useState(null);
+
     if(props.tooltip.action == "createimg" || props.tooltip.clickforsave != true){
   html2canvas(
     document.getElementById(props.tooltip.children.props.id),
     {scale: 1}
   ).then((canvas) => {
     setCanvas(canvas.toDataURL("image/png"));
+    let testval = document.getElementsByClassName('html2save')[0] ? document.getElementsByClassName('html2save')[0].parentNode.classList.remove('container-div'): []  
+
   });
 }
     let uuid = Uuid()
   if (props.tooltip.clickforsave == true) {
-
 
     return (
         <Tooltip
@@ -34,6 +36,7 @@ export const Html2Canvas = (props) => {
     }
 
     else {
+      
     return null;
     }
   

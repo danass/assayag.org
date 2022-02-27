@@ -16,6 +16,11 @@ if(setreverse) {
   reverse = !reverse;
 }
 
+let testval = document.getElementsByClassName('html2save')[0] ? document.getElementsByClassName('html2save')[0].parentNode.classList.remove('container-div'): []  // if(document.getElementsByClassName('html2save')[0].parentNode) {
+  //   document.getElementsByClassName('html2save')[0].parentNode.classList.remove('container-div')
+  // }
+  console.log(testval)
+
 setPluie(pluie => {
   let pluieArray = pluie
   pluieArray.push({ _id: Uuid(), text: e.target.value });
@@ -37,7 +42,7 @@ setPluie(pluie => {
     }
     return color;
   }
-  
+ 
   return (
     <div>
      
@@ -51,6 +56,7 @@ setPluie(pluie => {
           {Tdiv}
         </div>
       </Tooltip>
+      
       <div id="rain-controls">
       <ColorPicker values={colors} />
       <input className="rain-input"
