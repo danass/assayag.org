@@ -43,14 +43,17 @@
 
 
 .tiktok-comment {
-    padding: 15px 30px;
-    width: 1024px;
-    height: 512px;
+    padding: 2vw;
+    min-width: 90%;
+    height: 51.2vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 9vh;
+    font-size: 9vmin;
     cursor: help;
+    margin: 0px auto;
+    max-width: 1024px;
+    max-height: 512px;
 }
 
 div#mail-form {

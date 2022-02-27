@@ -16,6 +16,7 @@ export const Html2Canvas = (props) => {
     let uuid = Uuid()
   if (props.tooltip.clickforsave == true) {
 
+
     return (
         <Tooltip
         action="saveimg"
@@ -33,7 +34,7 @@ export const Html2Canvas = (props) => {
     }
 
     else {
-
+        console.log("wala")
     return null;
     }
   

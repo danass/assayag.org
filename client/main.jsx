@@ -19,8 +19,6 @@ rootElement = document.getElementById('react-target');
 Meteor.startup(() => {
   
   render(
-
-
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<div><Menu /><App /></div>} />

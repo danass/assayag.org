@@ -2,15 +2,36 @@ import React, { useState } from 'react';
 import * as tiktokdata from './../data/user_data.json';
 import html2canvas from 'html2canvas';
 import { ThreeDotText } from './Animations';
+import { Tooltip } from './Tooltip';
 
 export const Tiktok = () => {
     let data = tiktokdata.Comment.Comments.CommentsList;
-    const [randomNb, setRandomNb] = useState(Math.floor(Math.random() * data.length));
-   
+    const [randomNb, setRandomNb] = useState(Math.floor(Math.random() * data.length -1));
+
+    // create a random number between 0 and data.length -1
+    let randNb = Math.floor(Math.random() * data.length -1);
+    let ActivityList = tiktokdata.Activity['Video Browsing History'].VideoList
+    
        const shuffle = () => {
        setRandomNb(Math.floor(Math.random() * data.length))
        }
-       let randomtok = data[randomNb].Comment
+       
+       let randomtok = data[randomNb]
+       function findUrl() {
+       let dateOfComment = new Date(randomtok.Date) 
+       
+            let closestDate = ActivityList.reduce((prev, curr) => {
+                return (Math.abs(new Date(curr.Date) - dateOfComment) < Math.abs(new Date(prev.Date) - dateOfComment) ? curr : prev)
+            })
+
+            let closestDateIndex = ActivityList.indexOf(closestDate)
+            
+            const video = closestDateIndex == ActivityList.length -1? { VideoLink: 'No video'} : closestDate
+            const videoUrlprefix = "https://www.tiktok.com/@assayag/video/"            
+            const id = video? video.VideoLink.split("/")[5]: closestDate.VideoLink.split("/")[5]
+            const url = video? videoUrlprefix + id + '/': videoUrlprefix + id + '/'
+            return url
+        }
 
        const saveAs = (e) => {
         html2canvas(document.querySelector("h2"), {}).then(canvas => {
@@ -22,8 +43,17 @@ export const Tiktok = () => {
         return (
             <div>
                 <h1>Tiktok Mirror {randomNb}</h1>
-                <h2 className="tiktok-comment" onClick={shuffle}>{randomtok}</h2>
+                <Tooltip uuid="tiktok-comment" caption="Save" directCreation={true} clickforsave={true} >
+                    <div  id="tiktok-comment">
+                <h2 className="tiktok-comment" onClick={shuffle}>{randomtok.Comment}</h2>
+                </div>
+              </Tooltip>
+                {/* <h2 className="tiktok-comment" onClick={shuffle}>{randomtok.Comment}</h2> */}
                 {/* <button id="tiktok-save" onClick={saveAs}>save</button> */}
+                {/* <a href={findUrl()} target="_blank" rel="noopener noreferrer">open on tiktok</a> */}
+
+
+              
             </div>
         )
 }

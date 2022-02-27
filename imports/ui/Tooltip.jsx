@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { render } from "react-dom";
 import { Html2Canvas } from "./Html2Canvas";
 import { Uuid } from "./Uuid";
-
+import html2canvas from "html2canvas";
 import { TaskRender } from "./TaskRender";
 
 
@@ -33,6 +33,22 @@ export const Tooltip = (props) => {
     else {
 
       if(props.clickforsave) {
+
+        if(props.directCreation) {
+          html2canvas(
+            document.getElementById(props.uuid),
+            {scale: 1}
+          ).then((canvas) => {
+            var link = document.createElement("a");
+            document.body.appendChild(link); // for Firefox
+            link.setAttribute("href", canvas.toDataURL("image/png"));
+            link.setAttribute("download",  'rain-' + props.uuid + '.png');
+            link.click();
+
+          });
+
+          return
+        }
         let tooltipsave = document.getElementById(props.uuid)
         var link = document.createElement("a");
         document.body.appendChild(link); // for Firefox
