@@ -57,8 +57,9 @@
 
 @media (max-width: 1024px) {
     #tiktok-comment-container {
-        width: 76vw;  
-        height: 100%;     
+        width: 90%;
+        height: 100%;
+        max-width: fit-content;
     }
 }
 

@@ -6,7 +6,7 @@ return (
   <div>
 
     <h3>assayag.org</h3>
-    {/* <div><Link to="/mail">contact</Link></div> */}
+    <div><Link to="/mail">e-mail@</Link></div>
   </div>
 )
 }
