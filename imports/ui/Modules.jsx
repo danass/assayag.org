@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as tiktokdata from './../data/user_data.json';
 import html2canvas from 'html2canvas';
-// import { ThreeDotText } from './Animations';
 import { Tooltip } from './Tooltip';
 
 export const Tiktok = () => {
