@@ -1,30 +1,13 @@
 import React, { useState } from 'react';
-// import * as tiktokdata from './../data/user_data.json';
+import * as tiktokdata from './../data/user_data.json';
 
 import { Tooltip } from './Tooltip';
-let tiktokdata = {
 
-    "Comment": {
-        "Comments": {
-          "CommentsList": [
-            {
-              "Date": "2022-02-01 21:15:42",
-              "Comment": "Merci"
-            },
-            {
-              "Date": "2022-01-24 16:54:45",
-              "Comment": "« Ah non jvais voyager » oui. à la nage"
-            },
-        ]
-        }
-    }
-    
-};
 
 export const Tiktok = () => {
     let data = tiktokdata.Comment.Comments.CommentsList;
     const [randomNb, setRandomNb] = useState(Math.floor(Math.random() * data.length - 1));
-
+    const [currentTok, setCurrentTok] = useState(data[randomNb]);
     // create a random number between 0 and data.length -1
     let randNb = Math.floor(Math.random() * data.length - 1);
 
@@ -33,11 +16,11 @@ export const Tiktok = () => {
         setRandomNb(Math.floor(Math.random() * data.length))
     }
 
-    let randomtok = data[randomNb]
+    
     
     function findUrl() {
         let ActivityList = tiktokdata.Activity['Video Browsing History'].VideoList
-        let dateOfComment = new Date(randomtok.Date)
+        let dateOfComment = new Date(currentTok.Date)
 
         let closestDate = ActivityList.reduce((prev, curr) => {
             return (Math.abs(new Date(curr.Date) - dateOfComment) < Math.abs(new Date(prev.Date) - dateOfComment) ? curr : prev)
@@ -58,7 +41,7 @@ export const Tiktok = () => {
             <h1>Tiktok Mirror {randomNb}</h1>
             <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >
                 <div id="tiktok-comment-container" onClick={shuffle}>
-                    <h2 className="tiktok-comment">{randomtok.Comment}</h2>
+                    <h2 className="tiktok-comment">{currentTok.Comment}</h2>
                 </div>
             </Tooltip>
             {/* <h2 className="tiktok-comment" onClick={shuffle}>{randomtok.Comment}</h2> */}
