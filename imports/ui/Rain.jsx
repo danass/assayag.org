@@ -16,7 +16,7 @@ if(setreverse) {
   reverse = !reverse;
 }
 
-window.scrollTo(0,document.getElementById('rainfall').scrollHeight - 150) ;
+// window.scrollTo(0,document.getElementById('rainfall').scrollHeight - 150) ;
 
 setPluie(pluie => {
   let pluieArray = pluie

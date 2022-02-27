@@ -4,7 +4,7 @@ import  {render} from 'react-dom';
 import { App } from '/imports/ui/App';
 import { Menu } from '/imports/ui/Menu';
 import { Rain }  from '/imports/ui/Rain';
-import { Tiktok } from '../imports/ui/Modules';
+import { Tiktok } from '../imports/ui/Tiktok';
 import {
   BrowserRouter,
   Routes,
