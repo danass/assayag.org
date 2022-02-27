@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import * as tiktokdata from './../data/user_data.json';
+// import * as tiktokdata from './../data/user_data.json';
+import tiktokdata from './../data/user_data.json'
 
 import { Tooltip } from './Tooltip';
 // let tiktokdata = {
