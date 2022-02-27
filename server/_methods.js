@@ -46,28 +46,28 @@ Meteor.methods({
   //   await browser.close();
   //   return data;
   // },
-  // async mail(from, msg, accuse) {
-  //   "use strict";
-  //   const nodemailer = require("nodemailer");
+  async mail(from, msg, accuse) {
+    "use strict";
+    const nodemailer = require("nodemailer");
 
-  //   let transporter = nodemailer.createTransport({
-  //     host: mailconf.thehost,
-  //     port: 465,
-  //     secure: true, // true for 465, false for other ports
-  //     auth: {
-  //       user: mailconf.theuser,
-  //       pass: mailconf.thepass,
-  //     },
-  //   });
+    let transporter = nodemailer.createTransport({
+      host: mailconf.thehost,
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: mailconf.theuser,
+        pass: mailconf.thepass,
+      },
+    });
 
-  //   let info = await transporter.sendMail({
-  //     from: from,
-  //     to: [mailconf.theuser, accuse? from: null].filter(Boolean), // list of receivers
-  //     subject: "assayag.org: " + from, // Subject line
-  //     text: msg, 
-  //     html: msg, 
-  //   });
+    let info = await transporter.sendMail({
+      from: from,
+      to: [mailconf.theuser, accuse? from: null].filter(Boolean), // list of receivers
+      subject: "assayag.org: " + from, // Subject line
+      text: msg, 
+      html: msg, 
+    });
 
-  //   console.log("Contact assayag.org: %s", info.messageId);
-  // },
+    console.log("Contact assayag.org: %s", info.messageId);
+  },
 });

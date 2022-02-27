@@ -37,9 +37,11 @@
     margin: 0 auto;
 }
 
-#rain-library div {
-
-}
+#rain-controls {
+    position: fixed;
+    top: 50%;
+    z-index: 1;
+  }
 
 
 #tiktok-comment-container {
