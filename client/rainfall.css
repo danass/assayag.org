@@ -4,6 +4,10 @@
     margin: 0 auto;
     border: solid #e8e8e8 31px;
 }
+.container-for-div-with-tooltip:hover ~ #rain-controls {
+    opacity: 0.25;
+    transition: .4s ease;
+}
 
 .rain-img {
     padding: 10px 6px 6px 0px;
@@ -42,8 +46,9 @@
 }
 
 #rain-controls {
+    transition: .3s ease;
     position: fixed;
-    top: 11%;
+    top: 70px;
     z-index: 1;
     background: #b0b0b036;
     padding: 13px;

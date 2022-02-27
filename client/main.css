@@ -23,3 +23,42 @@ body {
   align-self: center;
   padding-right: 4px;
 }
+
+a {
+  color: darkmagenta;
+  text-decoration: none;
+}
+.menu a {
+  color: #a30077;
+  text-transform: uppercase;
+  text-decoration: overline;
+  border: 62px dotted #670093;
+  border-top-color: darkmagenta;
+  padding-right: 14px;
+  margin-right: -11px;
+  top: 4px;
+  z-index: 2;
+  border-top-style: none;
+  border-left: thick;
+  border-right: thick;
+  border-bottom: thick;
+  position: relative;
+  text-decoration-color: #a30077;
+}
+
+ a:hover {
+  color: #1316d9;
+  padding-right: 18px;
+  font-weight: bold;
+}
+
+a:active {
+  font-weight: bold;
+  text-decoration-thickness: 4px;
+}
+
+.menu a:focus {
+  text-decoration-thickness: 4px;
+  font-weight: bold;
+  color: #a30077;
+}
