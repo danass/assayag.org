@@ -64,6 +64,7 @@ setPluie(pluie => {
       <button className="rain-button" onClick={() => {
         setPluie([])
         setTdiv(<div>Make it rain</div>);
+        window.scrollTo(0,0);
       }}>x</button>
       <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
       </div>
