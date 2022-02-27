@@ -3,10 +3,10 @@ export const App = () => {
 import { Link } from 'react-router-dom';
 
 return (
-  <div>
+  <div id="home">
 
-    <h3>assayag.org</h3>
-    <div><Link to="/mail">e-mail@</Link></div>
+  <div><h3>assayag.org</h3></div> <div> <Link to="/mail">contact</Link></div>
+    
   </div>
 )
 }

@@ -43,8 +43,12 @@
 
 #rain-controls {
     position: fixed;
-    top: 50%;
+    top: 11%;
     z-index: 1;
+    background: #b0b0b036;
+    padding: 13px;
+    border-radius: 6px;
+    margin: 18px;
   }
 
 div#mail-form {
