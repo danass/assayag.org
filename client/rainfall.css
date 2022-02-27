@@ -1,7 +1,8 @@
 .rainfall, #rainfall {
     padding: 30px;
-    background: #7fffd4;
     width: fit-content;
+    margin: 0 auto;
+    border: solid #e8e8e8 31px;
 }
 
 .rain-img {
@@ -25,7 +26,10 @@
     width: fit-content;
     position: absolute;
     padding: 10px;
+}
 
+.noborder {
+    border: none;
 }
 
 #rain-library {

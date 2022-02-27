@@ -9,9 +9,11 @@ export const Menu = () => {
             <div>
                 <Link to="/">Home</Link>
             </div>
+            {isMobile() ? null :
             <div>
                  <Link to="/rain">Rain</Link>
             </div>
+            }
             {/* <div>
                 <Link to="/fronteras">Fronteras</Link>
             </div> */}
@@ -24,3 +26,10 @@ export const Menu = () => {
         </div>
     )
 }
+
+export const isMobile = () => {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        return true
+       }
+       return false
+    }
