@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import * as tiktokdata from './../data/user_data.json';
 
 import {tiktokdata} from '../data/tiktokdata.js'
@@ -15,8 +15,13 @@ export const Tiktok = () => {
 
     const shuffle = () => {
         setRandomNb(Math.floor(Math.random() * data.length))
+          
         setCurrentTok(data[randomNb]);
     }
+    useEffect(() => { 
+        
+        setCurrentTok(data[randomNb]);
+        console.log("ferme la") })  
     
     
     function findUrl() {
