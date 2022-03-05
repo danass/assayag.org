@@ -18,9 +18,9 @@ export const Menu = () => {
             <div>
                 <Link to="/tiktok">TikTok</Link>
             </div>
-            {/* <div>
-                <Link to="/tasks">Tasks</Link>
-            </div> */}
+            <div>
+                <Link to="/twitter">Twitter</Link>
+            </div>
         </div>
     )
 }

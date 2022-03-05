@@ -1,5 +1,5 @@
 import { mailconf } from './conf.js';
-
+import {TwitterCollection } from '../imports/api/Collection.js';
 Meteor.methods({
   // async maritime() {
   //   const puppeteer = require("puppeteer");
@@ -70,4 +70,50 @@ Meteor.methods({
 
     console.log("Contact assayag.org: %s", info.messageId);
   },
+
+  async getRandomTweet(useroptions, viewedIds) {
+     let currentOptions = [ { $sample: { size: 1 } } ]
+     currentOptions.unshift({ $match: { "id": { $nin: viewedIds }}})
+
+    if (!useroptions.twitter) { 
+      currentOptions.unshift({ $match: { "source": { $nin: [ "https://dev.twitter.com/docs/tfw", "http://twitter.com/download/android", "http://twitter.com", "http://twitter.com/download/iphone", "https://mobile.twitter.com"  ] }}})
+
+    } 
+    if (!useroptions.tumblr) { 
+      currentOptions.unshift({ $match: { "source": { $ne :  "https://www.tumblr.com/"  }}}) 
+    } 
+     
+    if(!useroptions.assayag) {
+      currentOptions.unshift({ $match: { "source": { $ne :  "https://www.assayag.org"  }}}) 
+    }
+
+    if(!useroptions.google) {0
+      currentOptions.unshift({ $match: { "source": { $ne :  "https://www.google.com/"  }}}) 
+    }
+    if(!useroptions.instagram) {
+      currentOptions.unshift({ $match: { "source": { $ne :  "http://instagram.com"  }}})
+    }
+    
+     try {
+        let Data = await TwitterCollection.rawCollection().aggregate(currentOptions).toArray()
+        let stats = await TwitterCollection.rawCollection().stats()
+        // console.log(stats.count, Data.length )
+        return Data
+      } catch (e) {
+        console.log(e)
+        return [{text: "no data", id: {high: 2, low: 3}, source:"walou"}]
+      }
+  }
 });
+
+  //  currentOptions.push({ "$match": { "media": { "$exists": true } } })
+        // { $match: { "source": "https://www.assayag.org"  }}, 
+        // { $match: {'media': { $exists: true }}},
+        // { "$match": { "media": { "$exists": true } } },
+        
+        // { $match: { "source": { $ne : "https://mobile.twitter.com"  }}}, 
+        
+        
+        // $match: {
+        //   source: "https://www.assayag.org"
+        // }, 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 // import * as tiktokdata from './../data/user_data.json';
-
 import {tiktokdata} from '../data/tiktokdata.js'
 
 import { Tooltip } from './Tooltip';
@@ -15,13 +14,12 @@ export const Tiktok = () => {
 
     const shuffle = () => {
         setRandomNb(Math.floor(Math.random() * data.length))
-          
         setCurrentTok(data[randomNb]);
     }
+    
     useEffect(() => { 
-        
         setCurrentTok(data[randomNb]);
-        console.log("ferme la") })  
+    })  
     
     
     function findUrl() {
@@ -44,7 +42,7 @@ export const Tiktok = () => {
 
     return (
         <div>
-            <h1>Tiktok Mirror {randomNb}</h1>
+            <h1>Asocial Networks: Tiktok Mirror {randomNb}</h1>
             <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >
                 <div id="tiktok-comment-container" onClick={shuffle}>
                     <h2 className="tiktok-comment">{currentTok.Comment}</h2>

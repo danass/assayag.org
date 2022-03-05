@@ -1,13 +1,18 @@
 import { Meteor } from 'meteor/meteor';
-import { TasksCollection } from '../imports/api/Collection.js';
+import { TasksCollection, TwitterCollection} from '../imports/api/Collection.js';
 import  './_methods.js';
 
 
-const insertTask = (taskText) => {
-  TasksCollection.insert({ text: taskText, createdAt: new Date() });
+const insertTask = (Collection, taskText) => {
+  Collection.insert({ text: taskText, createdAt: new Date() });
 }
 
-Meteor.startup(() => {
+
+
+Meteor.startup(async () => {
+
+TwitterCollection.createIndex( { name: -1 } )
+
   if(TasksCollection.find().count() === 0) {
    ['Laver les chiottes',
     'Faire les courses',
@@ -24,8 +29,10 @@ Meteor.startup(() => {
     'Balayer les plantes',
     'Oculter les chats',
     "Faire l'examen",
-    "Faire l'amour"
-].forEach(insertTask)
+    "Faire l'amour",
+    "Faire la vie",
+].forEach(insertTask.bind(null, TasksCollection))
   }
-  console.log("salam", TasksCollection.find().count());
+
 });
+

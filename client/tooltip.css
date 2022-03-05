@@ -4,6 +4,8 @@
     /* width: fit-content; */
     margin: 2em auto;
     width: 100%;
+    background: #e8e8e8;
+    overflow: overlay;
   }
   
   .container-div {
@@ -31,10 +33,12 @@
     border-radius: 4px;
     width: 50px !important;
     height: 50px !important;
+    
   }
   
   .container-for-div-with-tooltip:hover .container-tooltip {
     opacity: 1;
+    
   }
 
   .container-for-div-with-tooltip:hover ~ #rain-controls {
@@ -46,8 +50,19 @@
     color: white;
     position: absolute;
   }
-  
 
+  .tiktok-comment img {
+    width: 50%;
+    height: 50%;
+    padding: 10px;
+  }
+  .tiktok-comment {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+  
 .container-div {
   background: #e8e8e8;
   margin: 0 auto;
@@ -55,9 +70,6 @@
   min-height: 140px;
 }
 
-.container-rain-mobile {
-  margin-top: 200px;
-}
 
 #tiktok-comment-container {
   background: #e8e8e8;
@@ -66,10 +78,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.4em;
+  font-size: 2em;
   padding: 0.5em 1.5em;
-  margin: 0 auto;
-  
+  margin: 0 auto;  
+}
+
+.twitter-usernames {
+  color: rgb(29, 155, 240);
+  font-size: 0.4em;
+}
+
+.twitter-source {
+  font-size: 0.4em;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #adadad;
 }
 
 @media (max-width: 1024px) {

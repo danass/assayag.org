@@ -4,6 +4,8 @@ import { Uuid } from "./Uuid";
 import { Tooltip } from "./Tooltip";
 import { ColorPicker } from "./ColorPicker";
 import { isMobile } from "./Menu";
+import { Fonts } from "./Modules"
+
 
 reverse = false
 export const Rain = () => {
@@ -42,7 +44,7 @@ setPluie(pluie => {
   }
  
   return (
-    <div>
+    <div className="rain">
      
       <Tooltip
         action="createimg"
@@ -50,11 +52,12 @@ setPluie(pluie => {
         caption="Screenshot"
         atselector="rain-library"
       >
-        <div id="rainfall" className="rainfall" style={{backgroundColor:  colors[0],  color: colors[1]}}>
+        <div id="rainfall" className="rainfall" style={{backgroundColor:  colors[0],  color: colors[1] } 
+        }>
           {Tdiv}
         </div>
       </Tooltip>
-      {console.log(isMobile())}
+      {console.log(document.getElementById('font-selector')? document.getElementById('font-selector').value: "walou")}
       <div id="rain-controls" style={(isMobile()? ({ margin: '0px' }): {}) }>
       <ColorPicker values={colors} />
       <input className="rain-input"
@@ -66,9 +69,17 @@ setPluie(pluie => {
       <button className="rain-button" onClick={() => {
         setPluie([])
         setTdiv(<div>Make it rain</div>);
-        window.scrollTo(0,0);
+
       }}>x</button>
       <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
+      <div><Fonts /></div>
+      
+
+
+
+
+
+      
       </div>
 
       

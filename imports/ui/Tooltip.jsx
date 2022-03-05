@@ -39,8 +39,6 @@ export const Tooltip = (props) => {
       
 
       if(props.clickforsave) {
-        
-
         if(props.directCreation) {
           html2canvas(
             document.getElementById(props.uuid),
@@ -69,9 +67,7 @@ export const Tooltip = (props) => {
     }
 
   }
-
-console.log(isMobile())
-
+  
   return (
     
     <div
