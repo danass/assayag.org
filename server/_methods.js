@@ -1,5 +1,9 @@
 import { mailconf } from './conf.js';
 import {TwitterCollection } from '../imports/api/Collection.js';
+import { useTracker } from 'meteor/react-meteor-data';
+import React, {useState, useEffect} from 'react';
+var Long = require("mongodb").Long;
+
 Meteor.methods({
   // async maritime() {
   //   const puppeteer = require("puppeteer");
@@ -71,41 +75,72 @@ Meteor.methods({
     console.log("Contact assayag.org: %s", info.messageId);
   },
 
-  async getRandomTweet(useroptions, viewedIds) {
-     let currentOptions = [ { $sample: { size: 1 } } ]
-     currentOptions.unshift({ $match: { "id": { $nin: viewedIds }}})
+  async getRandomTweet(useroptions, viewedIds, randomIndex, maxRand) {
+    randomIndex = parseInt(randomIndex)
+    useroptions['insta'].maxRand = 0
+    // let count = await TwitterCollection.rawCollection().stats().count
+    // let viewedIdsAll =  [...new Set(viewedIds.map(aid=> {
+    //   return aid.id  }))]
+      
+    //  let currentOptions = [ { $sample: { size: 1 } } ]
+     let currentOptions = []
 
-    if (!useroptions.twitter) { 
-      currentOptions.unshift({ $match: { "source": { $nin: [ "https://dev.twitter.com/docs/tfw", "http://twitter.com/download/android", "http://twitter.com", "http://twitter.com/download/iphone", "https://mobile.twitter.com"  ] }}})
+    currentOptions.unshift(
+      {    "$group": {
+      "_id": "$id",
+      "doc": {
+        "$first": "$$ROOT"
+      }
+    }}, { "$replaceRoot": { "newRoot": "$doc" } }
+    )
+    let option = {}
+    // get raw collection stats count
 
-    } 
-    if (!useroptions.tumblr) { 
-      currentOptions.unshift({ $match: { "source": { $ne :  "https://www.tumblr.com/"  }}}) 
-    } 
-     
-    if(!useroptions.assayag) {
-      currentOptions.unshift({ $match: { "source": { $ne :  "https://www.assayag.org"  }}}) 
+
+    for (const [key, value] of Object.entries(useroptions)) {
+      getSize =  await TwitterCollection.rawCollection().aggregate([ { $match: { "source": { $in: useroptions[key].sources }}}]).toArray()
+        useroptions[key].size = getSize.length        
+      if (!useroptions[key].clicked) { 
+        option = { $match: { "source": { $nin: useroptions[key].sources }}}
+        currentOptions.unshift(option)
+      }
+      if (useroptions[key].clicked) {
+        useroptions['insta'].maxRand += useroptions[key].size 
+      }
     }
 
-    if(!useroptions.google) {0
-      currentOptions.unshift({ $match: { "source": { $ne :  "https://www.google.com/"  }}}) 
-    }
-    if(!useroptions.instagram) {
-      currentOptions.unshift({ $match: { "source": { $ne :  "http://instagram.com"  }}})
-    }
+    // currentOptions.push({ $match: {  "_id": { $nin: viewedIdsAll.map(aid => Long(aid.toString())) }}})
+    currentOptions.push(  { $skip: randomIndex } )
+    // currentOptions.push(   { $sample: { size: 1 } } )
+    currentOptions.push(  { $limit: 1 } )
     
      try {
         let Data = await TwitterCollection.rawCollection().aggregate(currentOptions).toArray()
-        let stats = await TwitterCollection.rawCollection().stats()
-        // console.log(stats.count, Data.length )
-        return Data
+        // Data[0]._id = new Mongo.ObjectID(Data[0]._id.toString())
+        return [[Data[0]], useroptions['insta'].maxRand, useroptions]
+        
       } catch (e) {
         console.log(e)
         return [{text: "no data", id: {high: 2, low: 3}, source:"walou"}]
       }
-  }
-});
+  },
 
+  
+  //   const https = require('https');
+  // console.log("fetching data from ", url)
+  //   // make a https reques, story response body so fetchData(url) returns the body
+  //   const response = await new Promise((resolve, reject) => {
+  //     https.get(url, (res) => {
+  //       let body = '';
+  //       res.on('data', (chunk) => {
+  //         body += chunk; });
+  //       res.on('end', () => { resolve(body); });
+  //     });
+  //   })
+  //   return response
+  // }
+
+})
   //  currentOptions.push({ "$match": { "media": { "$exists": true } } })
         // { $match: { "source": "https://www.assayag.org"  }}, 
         // { $match: {'media': { $exists: true }}},

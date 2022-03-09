@@ -1,7 +1,6 @@
 import { TwitterApi } from 'twitter-api-v2';
 import { twitterconf } from '../conf.js';
 import fs from 'fs'
-
 // Module to access the Twitter API4
 // :> method: createJsonTweetDatabase <: create a json from all tweets
 // :> method: tweet <: tweet a message with an image
@@ -36,7 +35,7 @@ async function createJsonTweetDatabase(nbOfPages) {
                 return
             }
 
-            allTweets.push({ id: tweet.id, text: tweet.full_text, date: tweet.created_at, media: tweet.extended_entities ? tweet.extended_entities.media : null, source: tweet.source })
+            allTweets.push({ twid: tweet.id, text: tweet.full_text, date: tweet.created_at, media: tweet.extended_entities ? tweet.extended_entities.media : null, source: tweet.source })
             // iterate over allTweets and remove allTweets.media field if value is null
             allTweets.map((tweet, i) => {
                 if (tweet.media === null) {
