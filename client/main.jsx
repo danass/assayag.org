@@ -20,6 +20,7 @@ rootElement = document.getElementById('react-target');
 
 Meteor.startup(() => {
 
+  
 
   render(
     <BrowserRouter>
@@ -32,10 +33,12 @@ Meteor.startup(() => {
       <Route path="/mail" element={<div><Menu /><Mail /></div>} />
     </Routes>
     </BrowserRouter>
+    
 , 
     rootElement
-  
   ) 
+
+  
 
   
 });
