@@ -2,7 +2,8 @@ import { TwitterApi } from 'twitter-api-v2';
 import { twitterconf } from '../conf.js';
 import { TwitterCollection } from '../../imports/api/Collection.js';
 import fs from 'fs'
-import { tiktokdata } from '../../imports/data/tiktokdata.js'
+
+// import { tiktokdata } from '../data/tiktokdata.js';
 
 // Module to access the Twitter API4
 // :> method: createJsonTweetDatabase <: create a json from all tweets

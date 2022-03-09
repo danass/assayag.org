@@ -28,7 +28,6 @@ Meteor.startup(() => {
       <Route path="/" element={<div><Menu /><App /></div>} />
       <Route path="/rain" element={<div><Menu /><Rain /></div>} />
       <Route path="/tasks" element={<div><Menu /><TaskList /></div>} />
-      {/* <Route path="/tiktok" element={<div><Menu /><Tiktok /></div>} /> */}
       <Route path="/asocial" element={<div><Menu /><Twitter /></div>} />
       <Route path="/mail" element={<div><Menu /><Mail /></div>} />
     </Routes>

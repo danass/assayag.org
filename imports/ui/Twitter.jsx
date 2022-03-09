@@ -50,10 +50,11 @@ export const Twitter = () => {
       setrandomIndex(v ? v : randomIndex)
       // setviewedIds([...viewedIds, { id: r[0][0]?.id.high * 2 ** 32 + r[0][0]?.id.low }]);
       if(tweet[0] == null) {
-        console.log("error", document.querySelector("#twitter-comment-container h1 input").value  )
-        // document.querySelector("#twitter-comment-container h1 input").value = 0
+        console.log("error", document.querySelector("#twitter-comment-container input").value  )
+        document.querySelector("#twitter-comment-container input").value = 0
+        tweet = [{ text: "(no data more..) Select a source just below!" , id: 'no-data-id' }]
         setrandomIndex(0)
-        return 
+        
       }
       let usernames = tweet[0].text.match(/@[a-zA-Z0-9_]+/g);
       tweet[0].usernames = usernames ? usernames : [];
@@ -103,7 +104,7 @@ export const Twitter = () => {
   return (
     <div id="twitter-comment-container" onKeyDown={handleKey}>
       <h1>Asocial Networks Mirror</h1>
-         Browse here <input type="number" value={randomIndex} onChange={(e) => handleChange(e)}></input> 
+         Browse here <input type="number"  min="0" value={randomIndex} onChange={(e) => handleChange(e)}></input> 
          <p>or click on grey box for random comment.</p>
       <div onClick={(e) => handleClick(e)}>
         <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >

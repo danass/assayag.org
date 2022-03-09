@@ -1,17 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { TasksCollection, TwitterCollection} from '../imports/api/Collection.js';
 import  './_methods.js';
-import './pre/twitter.js';
 
 const insertTask = (Collection, taskText) => {
   Collection.insert({ text: taskText, createdAt: new Date() });
 }
 
-
-
 Meteor.startup(async () => {
-
-TwitterCollection.createIndex( { name: -1 } )
 
   if(TasksCollection.find().count() === 0) {
    ['Laver les chiottes',
