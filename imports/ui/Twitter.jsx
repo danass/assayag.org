@@ -21,7 +21,8 @@ export const Twitter = () => {
     twitter: { clicked: true, size: 0, sources: ["https://dev.twitter.com/docs/tfw", "http://twitter.com/download/android", "http://twitter.com", "http://twitter.com/download/iphone", "https://mobile.twitter.com"]}, 
     google: { clicked: false, size: 0, sources: ["https://www.google.com/"] },
     tumblr: { clicked: false, size: 0, sources: ["https://www.tumblr.com/"]},
-    assayag: { clicked: false, size: 0, sources: ["https://www.assayag.org"] }
+    assayag: { clicked: false, size: 0, sources: ["https://www.assayag.org"] },
+    tiktok: { clicked: false, size: 0, sources: ["https://www.tiktok.com/"] }
 });
   const [viewedIds, setviewedIds] = useState([]);
   const [maxRand, setmaxRand] = useState(1);
@@ -101,7 +102,9 @@ export const Twitter = () => {
 
   return (
     <div id="twitter-comment-container" onKeyDown={handleKey}>
-      <h1>Asocial Networks: Twitter Mirror <input type="number" value={randomIndex} onChange={(e) => handleChange(e)}></input></h1>
+      <h1>Asocial Networks Mirror</h1>
+         Browse here <input type="number" value={randomIndex} onChange={(e) => handleChange(e)}></input> 
+         <p>or click on grey box for random comment.</p>
       <div onClick={(e) => handleClick(e)}>
         <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >
           <div id="tiktok-comment-container" >

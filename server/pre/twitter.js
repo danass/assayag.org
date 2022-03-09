@@ -1,6 +1,9 @@
 import { TwitterApi } from 'twitter-api-v2';
 import { twitterconf } from '../conf.js';
+import { TwitterCollection } from '../../imports/api/Collection.js';
 import fs from 'fs'
+import { tiktokdata } from '../../imports/data/tiktokdata.js'
+
 // Module to access the Twitter API4
 // :> method: createJsonTweetDatabase <: create a json from all tweets
 // :> method: tweet <: tweet a message with an image
@@ -15,9 +18,7 @@ export async function tweet(imgpath, text) {
     const image = await twitterClient.v1.uploadMedia(imgpath);
     const newTweet = await twitterClient.v1.tweet(text + '#TheAsocialNetworks', { media_ids: image });
 }
-
 async function createJsonTweetDatabase(nbOfPages) {
-
     let allTweets = []
     const userTimeline = await twitterClient.v1.userTimeline('@danielassayag', { include_entities: true });
     let tweetPages = await userTimeline.fetchNext()
@@ -64,6 +65,42 @@ async function createJsonTweetDatabase(nbOfPages) {
     })
 
 }
+function updateData() {
 
+function convertDate(date) {
+let dayname = new Date(date).toLocaleDateString('en-US', { weekday: 'short' }); 
+let daynumber = new Date(date).getDate();
+let month = new Date(date).toLocaleDateString('en-US', { month: 'short' });  
+let time = new Date(date).toLocaleTimeString('en-US', { hour12: false });
+let year = new Date(date).getFullYear();
+let converted_date = dayname + " " + daynumber + " " + month + " " + time + " +0000 " + year;
+return converted_date
+}
 
+uid = 0
+
+tiktokdata.Comment.Comments.CommentsList.map(entry=> {
+
+    // TwitterCollection.insert({
+    //     id: uid,
+    //     text: entry.Comment,
+    //     date: entry.Date,
+    //     source: "https://www.tiktok.com/",
+
+    // })
+
+        let data_schema = { 
+        id: uid,
+        text: entry.Comment,
+        date: convertDate(entry.Date),
+        source: "https://www.tiktok.com/",
+    }
+    TwitterCollection.insert(data_schema)
+    uid += 1
+    console.log(data_schema)
+})
+}
+
+ updateData()
 // createJsonTweetDatabase(60)
+

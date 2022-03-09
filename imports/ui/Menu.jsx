@@ -16,10 +16,7 @@ export const Menu = () => {
                 <Link to="/fronteras">Fronteras</Link>
             </div> */}
             <div>
-                <Link to="/tiktok">TikTok</Link>
-            </div>
-            <div>
-                <Link to="/twitter">Twitter</Link>
+                <Link to="/asocial">Asocial</Link>
             </div>
         </div>
     )
