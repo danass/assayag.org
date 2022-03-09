@@ -99,8 +99,8 @@ tiktokdata.Comment.Comments.CommentsList.map(entry=> {
     uid += 1
     console.log(data_schema)
 })
-}
+} 
 
- updateData()
+//  updateData()
 // createJsonTweetDatabase(60)
 
