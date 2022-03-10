@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Uuid } from "./Uuid";
 import { Tooltip } from "./Tooltip";
 import { isMobile } from "./Menu";
 import { Fonts, ColorPicker } from "./Modules"
+import { Global, Uuid } from './Modules'
 
 export const RaindropsRender = ({ drop }) => {
   return <div>{drop.text}</div>;
@@ -10,6 +10,9 @@ export const RaindropsRender = ({ drop }) => {
 
 reverse = true
 export const Rain = () => {
+
+  let globalState = Global({pageName: "Rain Text!"})
+
   const [Tdiv, setTdiv] = useState(<div>Make it rain</div>);
   const [colors, setColors] = useState([getRandomColor(), getRandomColor() ])
   const [pluie, setPluie] = useState([]);
@@ -66,6 +69,7 @@ setPluie(pluie => {
  
   return (
     <div className="rain">
+      <h1>{globalState.title}</h1>
      
       <Tooltip
         action="createimg"

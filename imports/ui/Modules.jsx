@@ -1,6 +1,29 @@
 import React, { useState, useEffect } from 'react';
 
+export function Global (currentState) {
+  console.log( "allo")
+  let localState = {
+    pageName: currentState.pageName,
+    year: new Date().getFullYear(),
+  }
+  document.title =  localState.pageName + " - assayag.org - artist, creator. " + localState.year
+   return (
+    {title: document.title}
+  )
+} 
+
+export const Uuid = () => {
+  return 'xxxx-yxxx-xxxxx'.replace(/[xy]/g, function(c) {
+   return (c === 'x' ? (Math.random() * 16 | 0) : ('r&0x3' | '0x8')).toString(16);            
+  })
+}
+
+
 export const Mail = () => {
+
+  useEffect(() => {
+    Global({pageName: "Contact me"})
+   }, []);
 
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from "react";
 import { Tooltip } from './Tooltip';
+import { Global } from './Modules'
 
 export const TweetRender = ({ tweet }) => {
 
@@ -28,6 +29,11 @@ export const TweetRender = ({ tweet }) => {
 };
 
 export const Asocial = () => {
+ 
+
+  useEffect(() => {
+   Global({pageName: "Asocial Networks"})
+  }, []);
 
   const [userOptions, setuserOptions] = useState({ 
     insta: { clicked: false, size: 0, maxRand: 1, sources: ["http://instagram.com"]}, 

@@ -4,7 +4,6 @@ import  {render} from 'react-dom';
 import { App } from '/imports/ui/App';
 import { Menu } from '/imports/ui/Menu';
 import { Rain }  from '/imports/ui/Rain';
-// import { Tiktok } from '../imports/ui/Tiktok';
 import { Asocial } from '../imports/ui/Asocial';
 import { Mail } from '../imports/ui/Modules';
 import { TaskList } from '../imports/ui/TaskRender';

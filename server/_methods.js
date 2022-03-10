@@ -1,6 +1,6 @@
 import { mailconf } from './conf.js';
 import {TwitterCollection } from '../imports/api/Collection.js';
-var Long = require("mongodb").Long;
+// var Long = require("mongodb").Long;
 
 Meteor.methods({
   // async maritime() {
