@@ -3,11 +3,26 @@ import React, { useState, useEffect } from "react";
 import { Tooltip } from './Tooltip';
 
 export const TweetRender = ({ tweet }) => {
+
+  const getUrl = (url) => {
+    const [result, setResult] = useState("");
+    useEffect(() => {
+    Meteor.call('wget', url, (err, res) => {
+    if (err) {
+      console.log("bug", err);
+    } else {
+      setResult(res)
+    }
+  });
+  }, [url]);
+
+  }
   return <div>
     <div key={tweet.id}>{tweet.text} </div>
     {tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}
     <div className="twitter-usernames">{tweet.usernames ? tweet.usernames.map((u, i) => { return <div key={i}>{u}</div> }) : ""}</div>
     <div className="twitter-source">{tweet.source}</div>
+    <div className="twitter-url">{tweet.url? getUrl(tweet.url[0]):[]}</div>
 
   </div>;
 };
@@ -48,11 +63,13 @@ export const Asocial = () => {
         document.querySelector("#twitter-comment-container input").value = 0
         tweet = [{ text: "(no data more..) Select a source just below!" , id: 'no-data-id' }]
         setrandomIndex(0)
-        
       }
+
       let usernames = tweet[0].text.match(/@[a-zA-Z0-9_]+/g);
       tweet[0].usernames = usernames ? usernames : [];
       tweet[0].text = tweet[0].text.replace(/@[a-zA-Z0-9_]+/g, '');
+      let url = tweet[0].text.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g);
+      tweet[0].url = url ? url : [];
       setTweet(tweet)
 
     });

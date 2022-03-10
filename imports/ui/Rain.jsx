@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Uuid } from "./Uuid";
 import { Tooltip } from "./Tooltip";
-import { ColorPicker } from "./ColorPicker";
 import { isMobile } from "./Menu";
-import { Fonts } from "./Modules"
+import { Fonts, ColorPicker } from "./Modules"
 
 export const RaindropsRender = ({ drop }) => {
   return <div>{drop.text}</div>;
@@ -96,7 +95,7 @@ setPluie(pluie => {
       <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
       <div><Fonts /></div>
       </div>
-      
+
       <div id="rain-library"></div>
       
     </div>

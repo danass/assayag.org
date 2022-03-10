@@ -48,6 +48,9 @@ Meteor.methods({
   //   await browser.close();
   //   return data;
   // },
+
+
+
   async mail(from, msg, accuse) {
     "use strict";
     const nodemailer = require("nodemailer");
@@ -72,6 +75,8 @@ Meteor.methods({
 
     console.log("Contact assayag.org: %s", info.messageId);
   },
+
+
 
   async getRandomTweet(useroptions, viewedIds, randomIndex, maxRand) {
     randomIndex = parseInt(randomIndex)
@@ -119,22 +124,45 @@ Meteor.methods({
       }
   },
 
-  
-  //   const https = require('https');
-  // console.log("fetching data from ", url)
-  //   // make a https reques, story response body so fetchData(url) returns the body
-  //   const response = await new Promise((resolve, reject) => {
-  //     https.get(url, (res) => {
-  //       let body = '';
-  //       res.on('data', (chunk) => {
-  //         body += chunk; });
-  //       res.on('end', () => { resolve(body); });
-  //     });
-  //   })
-  //   return response
-  // }
 
+ async wget(url) {
+
+ if(!url) {
+  return "no url"
+ }
+  // test if url is a valid url
+  let pass = false
+  if (url.includes("|") || url.includes(";")) {
+    return "motherfucker"
+  }
+  if (url.match(/^(http|https):\/\/[^ "]+$/)) {
+    pass = true
+  }
+  if (url.match(/[^a-zA-Z0-9-_./?=&]/)) {
+    pass = true
+  }
+  else { pass = false }
+  // check if url doesnt contain forbidden characters
+  
+
+    if(pass){
+    const exec = require("child_process").exec;
+    return new Promise((resolve, reject) => {
+      let request = "wget --server-response " + url + " 2>&1 | awk '/^ HTTP/{print $2}'"
+      exec(request, (err, stdout, stderr) => {
+        if (err) {
+          reject(err);
+          return "no webssite"
+        }
+        // console.log(stderr)
+        resolve(stdout);
+
+      });
+    })
+}
+}
 })
+
   //  currentOptions.push({ "$match": { "media": { "$exists": true } } })
         // { $match: { "source": "https://www.assayag.org"  }}, 
         // { $match: {'media': { $exists: true }}},
