@@ -15,9 +15,8 @@ export const Tooltip = (props) => {
 
   function handleClick() {
 
-    
+
     if (props.action == "createimg") {
-     
       try {
         
         setallCanvas([{
@@ -35,9 +34,8 @@ export const Tooltip = (props) => {
         console.error("errore", e);
       }
     }
+    
     else {
-      
-
       if(props.clickforsave) {
         if(props.directCreation) {
           html2canvas(
@@ -49,11 +47,9 @@ export const Tooltip = (props) => {
             link.setAttribute("href", canvas.toDataURL("image/png"));
             link.setAttribute("download",  'rain-' + props.uuid + '.png');
             link.click();
-
           });
           return
         }
-
 
         let tooltipsave = document.getElementById(props.uuid)
         var link = document.createElement("a");
@@ -61,7 +57,6 @@ export const Tooltip = (props) => {
         link.setAttribute("href", tooltipsave.children[0].src);
         link.setAttribute("download",  'rain-' + props.uuid + '.png');
         link.click();
-        
       }
      
     }

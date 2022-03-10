@@ -1,11 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from "react";
 import { Tooltip } from './Tooltip';
-import { Loading } from './Animations';
 
 export const TweetRender = ({ tweet }) => {
-  const [tcourl, settcourl] = useState('');
-  const [fetchedData, setfetchedData] = useState("<html>Hello</html>");
   return <div>
     <div key={tweet.id}>{tweet.text} </div>
     {tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}
@@ -15,7 +12,7 @@ export const TweetRender = ({ tweet }) => {
   </div>;
 };
 
-export const Twitter = () => {
+export const Asocial = () => {
 
   const [userOptions, setuserOptions] = useState({ 
     insta: { clicked: false, size: 0, maxRand: 1, sources: ["http://instagram.com"]}, 

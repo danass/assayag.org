@@ -7,11 +7,7 @@
     background: #e8e8e8;
     overflow: overlay;
   }
-  
-  .container-div {
-  min-width: fit-content;
-  width: 100%;
-  }
+
   
   .container-div img {
   }
@@ -67,9 +63,11 @@
   background: #e8e8e8;
   margin: 0 auto;
   padding: 23px 0px;
-  min-height: 140px;
+  min-height: 183px;
+  min-width: fit-content;
+  width: 100%;
 }
-
+  
 
 #tiktok-comment-container {
   background: #e8e8e8;

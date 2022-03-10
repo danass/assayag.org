@@ -9,8 +9,6 @@ export const RaindropsRender = ({ drop }) => {
   return <div>{drop.text}</div>;
 };
 
-
-
 reverse = true
 export const Rain = () => {
   const [Tdiv, setTdiv] = useState(<div>Make it rain</div>);
@@ -97,15 +95,7 @@ setPluie(pluie => {
       }}>x</button>
       <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
       <div><Fonts /></div>
-      
-
-
-
-
-
-      
       </div>
-
       
       <div id="rain-library"></div>
       

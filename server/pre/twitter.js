@@ -15,6 +15,7 @@ const twitterClient = new TwitterApi({
     accessToken: twitterconf.ACCESS_TOKEN_KEY,
     accessSecret: twitterconf.ACCESS_TOKEN_SECRET
 });
+
 export async function tweet(imgpath, text) {
     const image = await twitterClient.v1.uploadMedia(imgpath);
     const newTweet = await twitterClient.v1.tweet(text + '#TheAsocialNetworks', { media_ids: image });

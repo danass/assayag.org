@@ -2,7 +2,6 @@
     padding: 30px;
     width: fit-content;
     margin: 0 auto;
-
 }
 
 .rain-img {
@@ -60,15 +59,44 @@
     margin: 18px;
   }
 
-div#mail-form {
+  div#mail-form {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-items: stretch;
-    align-content: flex-start;
+    align-content: center;
+    align-items: flex-end;
+    padding: 50px;
+    background: #f1f1f1;
 }
 
 #mail-form textarea {
-    min-width: 20vw;
+    min-width: 35vw;
     min-height: 40vh;
+    max-width: 100%;
+    font-family: arial;
+    padding: 7px;
+}
+
+input[type="email"] {
+    font-family: Arial;
+    padding: 7px;
+    margin: 10px 0px 10px 0px;
+}
+
+div#mail-accuse {
+    padding: 7px 0px 7px 0px;
+}
+
+button#mail-button {
+    padding: 7px;
+}
+
+@media screen and (orientation:portrait) {
+    input[type="email"] {
+    width: 100%;
+    }
+    #mail-form textarea {
+        width: 100%;
+    }
+
 }

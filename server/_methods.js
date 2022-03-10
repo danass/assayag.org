@@ -1,7 +1,5 @@
 import { mailconf } from './conf.js';
 import {TwitterCollection } from '../imports/api/Collection.js';
-import { useTracker } from 'meteor/react-meteor-data';
-import React, {useState, useEffect} from 'react';
 var Long = require("mongodb").Long;
 
 Meteor.methods({

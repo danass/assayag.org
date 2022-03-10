@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { render } from 'react-dom';
 
 export const Mail = () => {
 
@@ -29,7 +28,7 @@ export const Mail = () => {
             <input type="email" placeholder="Your email" value={email} onChange={e => setEmail(e.target.value)} />
             <textarea placeholder="Message.." value={message} onChange={e => setMessage(e.target.value)} />
             <div id="mail-accuse"> 
-            <label htmlFor="accuse">Send a copy to your email</ label> <input type="checkbox" id="accuse" onChange={e => setAccuse(e.target.checked)} /> </div>
+            <label htmlFor="accuse">Send yourself a copy</ label> <input type="checkbox" id="accuse" onChange={e => setAccuse(e.target.checked)} /> </div>
             <button id="mail-button" onClick={sendmail}>Send</button>
             </div>
         </div>
@@ -38,7 +37,7 @@ export const Mail = () => {
 }
 
 
-export const Fonts =   () => {
+export const Fonts = () => {
     const [fonts, setFonts] = useState([]);
 
     const fontCheck = new Set([
@@ -51,16 +50,22 @@ export const Fonts =   () => {
 
       (async() => {
         await document.fonts.ready;
-      
         const fontAvailable = new Set();
-      
+        let alltrue = [...fontCheck].map(font => { return document.fonts.check(`12px "${font}"`) })
+        let obfuscated = !new Set(alltrue).has(false)
+        
+        if(!obfuscated) {
         for (const font of fontCheck.values()) {
-
           if (document.fonts.check(`12px "${font}"`)) {
             fontAvailable.add(font);
           }
         }
-      
+      }
+      else {
+        ['Arial', 'you', 'are', 'using', 'a font obfuscating', 'plugin', 'we cannot provide', 'a font selection'].map(font => {
+        fontAvailable.add(font);
+        })
+      }
        setFonts([...fontAvailable.values()])
       })();
     }, [])
@@ -77,26 +82,13 @@ export const Fonts =   () => {
                 </select>
                 </div>
                 <div id="font-size-form">
-                <input type="number" id="font-size-input" defaultValue={14} onChange={
+                <input type="number" id="font-size-input" defaultValue={16} onChange={
             (e) => {
             document.getElementById('rainfall').style.fontSize = document.getElementById('font-size-input')? document.getElementById('font-size-input').value +'px': "12px"
             } } />
 
-            </div> 
-
-                    
-            </div>
-
-
-        {/* <p id="font-selector">This is a sample text</p>
-
-
-        <p style={{fontFamily: document.getElementById("font-selector").value}}>This is a sample text</p> */}
-
-        
-
-
-        
+            </div>                     
+           </div>
         </div>
 
 
