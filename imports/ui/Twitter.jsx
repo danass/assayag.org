@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from "react";
 import { Tooltip } from './Tooltip';
+import { Loading } from './Animations';
 
 export const TweetRender = ({ tweet }) => {
   const [tcourl, settcourl] = useState('');
@@ -27,10 +28,6 @@ export const Twitter = () => {
   const [viewedIds, setviewedIds] = useState([]);
   const [maxRand, setmaxRand] = useState(1);
   const [randomIndex, setrandomIndex] = useState(1)
-
-  useEffect(() => {
-    console.log(randomIndex, 'initialized')
-  }, [])
 
   const fetchData = async (userOptions, type, v, maxrandv) => {
     // if (v == undefined && randomIndex != undefined) {
@@ -86,27 +83,22 @@ export const Twitter = () => {
     fetchData(userOptions, 'click',  Math.floor(Math.random() * maxRand) + 1)
   }
 
-  const handleKey = (event) => {
-    if (event.key === 'Enter' || event.key === 'ArrowLeft') {
-      fetchData(userOptions)
-    }
-  }
-
   const handleChange = async (e) => {
+    // set e.target.value (input value) as currentIndex
     await fetchData(userOptions, 'change', e.target.value)
   }
 
-  const [tweet, setTweet] = useState([{ text: "data is coming..", id: { high: 'a' } }])
+  const [tweet, setTweet] = useState([{ text:  "data is coming..", id: 666 }])
   useEffect(() => {
     fetchData(userOptions)
   }, [])
 
   return (
-    <div id="twitter-comment-container" onKeyDown={handleKey}>
+    <div id="twitter-comment-container">
       <h1>Asocial Networks Mirror</h1>
          Browse here <input type="number"  min="0" value={randomIndex} onChange={(e) => handleChange(e)}></input> 
          <p>or click on grey box for random comment.</p>
-      <div onClick={(e) => handleClick(e)}>
+      <div tabIndex={0} onClick={(e) => handleClick(e)}>
         <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >
           <div id="tiktok-comment-container" >
             <h2 className="tiktok-comment">

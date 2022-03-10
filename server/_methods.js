@@ -78,11 +78,8 @@ Meteor.methods({
   async getRandomTweet(useroptions, viewedIds, randomIndex, maxRand) {
     randomIndex = parseInt(randomIndex)
     useroptions['insta'].maxRand = 0
-    // let count = await TwitterCollection.rawCollection().stats().count
     // let viewedIdsAll =  [...new Set(viewedIds.map(aid=> {
     //   return aid.id  }))]
-      
-    //  let currentOptions = [ { $sample: { size: 1 } } ]
      let currentOptions = []
 
     currentOptions.unshift(
@@ -94,10 +91,9 @@ Meteor.methods({
     }}, { "$replaceRoot": { "newRoot": "$doc" } }
     )
     let option = {}
-    // get raw collection stats count
-
 
     for (const [key, value] of Object.entries(useroptions)) {
+      // update useroptions with size of each collection source group 
       getSize =  await TwitterCollection.rawCollection().aggregate([ { $match: { "source": { $in: useroptions[key].sources }}}]).toArray()
         useroptions[key].size = getSize.length        
       if (!useroptions[key].clicked) { 
@@ -105,6 +101,7 @@ Meteor.methods({
         currentOptions.unshift(option)
       }
       if (useroptions[key].clicked) {
+        // updating useroptions with maximum random value possible based on selected sources
         useroptions['insta'].maxRand += useroptions[key].size 
       }
     }
@@ -116,12 +113,11 @@ Meteor.methods({
     
      try {
         let Data = await TwitterCollection.rawCollection().aggregate(currentOptions).toArray()
-        // Data[0]._id = new Mongo.ObjectID(Data[0]._id.toString())
         return [[Data[0]], useroptions['insta'].maxRand, useroptions]
         
       } catch (e) {
         console.log(e)
-        return [{text: "no data", id: {high: 2, low: 3}, source:"walou"}]
+        return [{text: "no data", id: 666, source:"walou"}]
       }
   },
 

@@ -2,3 +2,5 @@ node_modules/
 server/conf.js
 server/data/*
 *.archive
+public/*
+!public/favicon.ico

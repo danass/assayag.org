@@ -12,9 +12,6 @@ export const Menu = () => {
             <div>
                  <Link to="/rain">Rain</Link>
             </div>
-            {/* <div>
-                <Link to="/fronteras">Fronteras</Link>
-            </div> */}
             <div>
                 <Link to="/asocial">Asocial</Link>
             </div>
