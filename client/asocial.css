@@ -10,10 +10,11 @@
     margin-bottom: 10px;
     border-right-color: currentcolor;
     float: right;
-    background: #f0f0f000;
+    background: #f0f0f000;  
+    padding-right: 10px;
 }
 
-#main-container-header-instructions {
+.main-container-block, #main-container-header-instructions {
     padding: 10px;
     background: #efefef;
     margin-bottom: 10px;
@@ -52,7 +53,16 @@
 }
 
 .asocial-media {
-    padding: 0vw 20vw;
+    display: flex;
+    justify-content: center;
+}
+
+.asocial-media img {
+    width: 100%;
+    height: 100%;
+    max-width: 45vw;
+    max-height: 50vh;
+    object-fit: contain;
 }
 
 .asocial-text {
@@ -62,9 +72,9 @@
     padding-bottom: 10px;
 }
 
-.asocial-media img {
-    width: 100%;
-    height: 100%;
+.asocial-date {
+    font-style: italic;
+    font-size: small;
 }
 
 .selector-checkbox {

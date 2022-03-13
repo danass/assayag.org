@@ -128,12 +128,14 @@ Meteor.methods({
  async wget(url) {
 
  if(!url) {
-  return "no url"
+  return null
  }
+   const format = /[ `!@#$^*()+\-\[\]{};'"\\|,<>~]/;
   // test if url is a valid url
   let pass = false
-  if (url.includes("|") || url.includes(";")) {
-    return "motherfucker"
+
+  if (url.includes("|") || url.includes(";") ) {
+    return "die"
   }
   if (url.match(/^(http|https):\/\/[^ "]+$/)) {
     pass = true
@@ -148,13 +150,13 @@ Meteor.methods({
     if(pass){
     const exec = require("child_process").exec;
     return new Promise((resolve, reject) => {
-      let request = "wget --server-response " + url + " 2>&1 | awk '/^ HTTP/{print $2}'"
+      let request = "wget -S --spider "+url+" 2>&1 | awk '/^  /'  |  awk -F  'Location: ' '{ print  $2 $3 $4 }' | awk NF | awk '{ if( NR==1 )  print $1 }'"
+      // let request = "wget -SO- -T 1 -t 1 " + url + " 2>&1 >/dev/null"
       exec(request, (err, stdout, stderr) => {
         if (err) {
           reject(err);
           return "no webssite"
         }
-        // console.log(stderr)
         resolve(stdout);
 
       });

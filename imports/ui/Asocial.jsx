@@ -4,15 +4,18 @@ import { Tooltip } from './Tooltip';
 import { Global } from './Modules'
 
 export const TweetRender = ({ tweet }) => {
+  
+  const [result, setResult] = useState("");
 
   const getUrl = (url) => {
-    const [result, setResult] = useState("");
     useEffect(() => {
       Meteor.call('wget', url, (err, res) => {
         if (err) {
           console.log("bug", err);
         } else {
+          
           setResult(res)
+          console.log( res)
         }
       });
     }, [url]);
@@ -20,10 +23,12 @@ export const TweetRender = ({ tweet }) => {
   }
   return <div className="asocial-mirror-entry" key={tweet.id}>
     <div className="asocial-source">{tweet.source}</div>
+    <div className="asocial-date">{new Date(tweet.date).toString()}</div>
     <div className="asocial-text">{tweet.text}</div>
     <div className="asocial-usernames">{tweet.usernames ? tweet.usernames.map((u, i) => { return <div key={i}>{u}</div> }) : ""}</div>    
     <div className="asocial-url">{tweet.url ? getUrl(tweet.url[0]) : []}</div>
     <div className="asocial-media">{tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}</div>
+    {result?<div><a target="_blank" href={result}>open</a></div>:null}
   </div>;
 };
 
@@ -39,7 +44,7 @@ export const Asocial = () => {
     twitter: { clicked: true, size: 0, sources: ["https://dev.twitter.com/docs/tfw", "http://twitter.com/download/android", "http://twitter.com", "http://twitter.com/download/iphone", "https://mobile.twitter.com"] },
     google: { clicked: false, size: 0, sources: ["https://www.google.com/"] },
     tumblr: { clicked: false, size: 0, sources: ["https://www.tumblr.com/"] },
-    assayag: { clicked: false, size: 0, sources: ["https://www.assayag.org"] },
+    // assayag: { clicked: false, size: 0, sources: ["https://www.assayag.org"] },
     tiktok: { clicked: false, size: 0, sources: ["https://www.tiktok.com/"] }
   });
   const [viewedIds, setviewedIds] = useState([]);
@@ -64,8 +69,7 @@ export const Asocial = () => {
       setrandomIndex(v ? v : randomIndex)
       // setviewedIds([...viewedIds, { id: r[0][0]?.id.high * 2 ** 32 + r[0][0]?.id.low }]);
       if (tweet[0] == null) {
-        console.log("error", document.querySelector("#twitter-comment-container input").value)
-        document.querySelector("#twitter-comment-container input").value = 0
+        document.querySelector("#main-container-header-navigation input").value = 0
         tweet = [{ text: "(no data more..) Select a source just below!", id: 'no-data-id' }]
         setrandomIndex(0)
       }
@@ -100,6 +104,19 @@ export const Asocial = () => {
   }
 
   function handleClick(e) {
+    if(e.target.nodeName == 'A' ) {
+
+        console.log("what", e.target.href)
+        Meteor.call('wget', e.target.href, (err, res) => {
+          if (err) {
+            console.log("bug", err);
+          } else {
+            console.log( res)
+          }
+        });
+
+      return
+    }
     fetchData(userOptions, 'click', Math.floor(Math.random() * maxRand) + 1)
   }
 
@@ -122,11 +139,14 @@ export const Asocial = () => {
           <h1>Asocial Networks Mirror</h1>
         </div>
 
+        <div className="main-container-block">
+          A mirror of my pityful social life through the main platforms, Tiktok, Youtube, Twitter.
+        </div>
+
         <div id="main-container-header-instructions">
           Browse using input box with an <b>id number</b>,<br></br>
           or <b>click on text</b> to retrieve a random entry.
         </div>
-
 
       </div>
       <div className="main-container-wrapper">
@@ -147,7 +167,7 @@ export const Asocial = () => {
       </div>
       </div>
       <div id="main-container-footer">
-              
+        <br></br>
       </div>
 
       

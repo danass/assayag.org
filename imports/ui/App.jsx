@@ -20,7 +20,7 @@ export const App = () => {
       
       
         <div id="main-container-content" className="css-greydient main-content-fit">
-        Hello!
+        
       
       </div>
      
