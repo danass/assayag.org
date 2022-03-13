@@ -1,0 +1,123 @@
+#main-container-header {
+    margin-bottom: 10px;
+}
+
+#main-container-header-title {
+    width: fit-content;
+    color: #170e26;
+    font-weight: bolder;
+    border: solid 15px #f3f3f300;
+    margin-bottom: 10px;
+    border-right-color: currentcolor;
+    float: right;
+    background: #f0f0f000;
+}
+
+#main-container-header-instructions {
+    padding: 10px;
+    background: #efefef;
+    margin-bottom: 10px;
+    opacity: 0.6;
+    border: solid 20px #ededed;
+    display: flow-root;
+    min-width: 20%;
+    width: fit-content;
+}
+
+#main-container-header-navigation {
+    width: fit-content;
+    border: solid 20px #ededed;
+    background: #ededed;
+    padding: 10px;
+}
+
+#main-container-header-navigation input {
+    padding: 5px;
+    width: 55px;
+    border: solid 2px #e8e8e8;
+    background: #fbfbfb;
+    border-radius: 18px;
+}
+.main-content-fit {
+        width: fit-content!important;
+}
+.main-container-wrapper {
+    opacity: 0.9;
+    border: solid 20px #ededed;
+}
+
+.asocial-source {
+    font-size: 0.8em;
+    color: #9c9c9c;
+}
+
+.asocial-media {
+    padding: 0vw 20vw;
+}
+
+.asocial-text {
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.asocial-media img {
+    width: 100%;
+    height: 100%;
+}
+
+.selector-checkbox {
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 30px;
+    padding: 7px;
+    margin-bottom: 5px; 
+}
+.selector-checkbox input {
+    width: 20px !important;
+    height: 20px !important;
+    filter: invert(50%) hue-rotate(311deg) brightness(1.7);
+}
+.selector-checkbox input:checked {
+    width: 20px !important;
+    height: 20px !important;
+    filter: invert(79%) hue-rotate(207deg) brightness(1.4);
+}
+
+
+.selector-checkbox-info {
+    font-size: smaller;
+}
+
+#main-container-selectors {
+    display: flex;
+    background: #e3e3e37a;
+    color: #585858;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.asocial-mirror-entry {
+    padding: 10px;
+    display: inherit;
+    cursor: copy;
+    background: white;
+}
+  
+.asocial-usernames {
+    display: flex;
+}
+
+.asocial-usernames div {
+    padding-right: 10px;
+    color: #505050;
+    font-size: 14px;
+}
+
+.css-greydient {
+    filter: drop-shadow(0px 0px 250px black);
+    background: #ebebeb24;
+    color: #121212;
+    clip-path: inset(0px 0px 0px 0px);
+}

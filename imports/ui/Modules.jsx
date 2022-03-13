@@ -46,7 +46,7 @@ export const Mail = () => {
 
     return(
         <div>
-            <h1>Mail</h1>
+            <h1>Contact me</h1>
             <div id="mail-form">
             <input type="email" placeholder="Your email" value={email} onChange={e => setEmail(e.target.value)} />
             <textarea placeholder="Message.." value={message} onChange={e => setMessage(e.target.value)} />

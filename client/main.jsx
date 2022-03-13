@@ -14,12 +14,12 @@ import {
   Route
 } from "react-router-dom";
 
+// serving robots.txt
+
 
 rootElement = document.getElementById('react-target');
 
 Meteor.startup(() => {
-
-  
 
   render(
     <BrowserRouter>
@@ -29,6 +29,7 @@ Meteor.startup(() => {
       <Route path="/tasks" element={<div><Menu /><TaskList /></div>} />
       <Route path="/asocial" element={<div><Menu /><Asocial /></div>} />
       <Route path="/mail" element={<div><Menu /><Mail /></div>} />
+      {/* <Route path="/robots.txt" element={"salut"} /> */}
     </Routes>
     </BrowserRouter>
     

@@ -1,15 +1,10 @@
 
 .container-for-div-with-tooltip {
     position: relative;
-    /* width: fit-content; */
     margin: 2em auto;
     width: 100%;
     background: #e8e8e8;
     overflow: overlay;
-  }
-
-  
-  .container-div img {
   }
   
   .container-tooltip {
