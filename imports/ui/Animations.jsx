@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export const Loading = ({props = {init: "Loading", speed:200, text:"...   "}}) => {
+export const Loading = ({props = {init: "Loading", speed:200, text:"...   ", color: false}}) => {
  
   // properties: {
   //   props.text: string,
@@ -35,6 +35,14 @@ export const Loading = ({props = {init: "Loading", speed:200, text:"...   "}}) =
 
 } catch (error) {
   console.dir(error);
+  }
+  if(props.color) {
+    return <div class="snippet" data-title=".dot-collision">
+      {props.init?props.init:""}{textState}
+    <div class="stage">
+      <div class="dot-spin"></div>
+    </div>
+  </div>
   }
   return <div>{props.init?props.init:""}{textState}</div>;
 };

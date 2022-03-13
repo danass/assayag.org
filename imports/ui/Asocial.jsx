@@ -8,14 +8,17 @@ import { Loading } from './Animations';
 export const TweetRender = ({ tweet }) => {
   
   const [result, setResult] = useState("");
+  const [caption, setCaption] = useState("")
 
   const getUrl = (url) => {
     
     useEffect(() => {
       
       setResult("not")
+
       if(tweet.source === "https://www.tumblr.com/"){
       setResult(undefined)
+      setCaption(undefined)
       Meteor.call('wget', url, (err, res) => {
         if (err) {
           console.log("bug", err);
@@ -27,14 +30,19 @@ export const TweetRender = ({ tweet }) => {
             } else {
               
               if(res2) {
-              let html = res2.split("<div class=\"wide\">")[1];
-              html = html.split("</div>")[0];
-              html = html.split("<img src=\"")[1];
-              html = html.split("\"")[0];
-              setResult(html)
+              let tumblrImg = res2.split("<div class=\"wide\">")[1];
+              tumblrImg = tumblrImg.split("</div>")[0];
+              tumblrImg = tumblrImg.split("<img src=\"")[1];
+              tumblrImg = tumblrImg.split("\"")[0];
+              setResult(tumblrImg)
+
+              let tumblrCaption = res2.split("<div class=\"caption\">")[1]?res2.split("<div class=\"caption\">")[1]:"</div>";
+              tumblrCaption = tumblrCaption.split("</div>")[0];
+              setCaption(tumblrCaption)
             }
             else {
               setResult("notumblr")
+              
               Meteor.call('removeTweet', tweet.text, (err, res) => {
                 if (err) {
                   console.log("bug", err);
@@ -52,14 +60,41 @@ export const TweetRender = ({ tweet }) => {
     }, [url]);
 
   }
+
+  function parseText() {
+    console.log(tweet)
+    if (tweet.source == "https://www.tumblr.com/") {
+      console.log(tweet.text)
+      
+      // remove "Photo :" from the text
+      let checkersList = ["Photo : ", "Photo: ", "Diaporama : "]
+      return checkersList.map(checker => {
+        if (tweet.text.match(checker)) {
+          let text = tweet.text.split(checker)[1]
+          // link from the text if text match tweet.url
+          if (text.match(tweet.url)) {
+            text = text.split(tweet.url)[0];
+            console.log(text)
+          } 
+          return <div className="asocial-text">{text}</div>
+          }
+      })
+
+    }
+
+    return <div className="asocial-text">{tweet.text}</div>
+
+  }
+
   return <div className="asocial-mirror-entry" key={tweet.id}>
     <div className="asocial-source">{tweet.source}</div>
     <div className="asocial-date">{new Date(tweet.date).toString()}</div>
-    <div className="asocial-text">{tweet.text}</div>
+    {parseText()}
     <div className="asocial-usernames">{tweet.usernames ? tweet.usernames.map((u, i) => { return <div key={i}>{u}</div> }) : ""}</div>    
-    <div className="asocial-url">{tweet.url ? getUrl(tweet.url[0]) : []}</div>
+    <div className="asocial-url">{tweet.url ? getUrl(tweet.url[tweet.url.length - 1]) : []}</div>
     <div className="asocial-media">{tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}</div>
-    {result == undefined?<Loading props={{init: "Fetching Tumblr"}} />:result == "notumblr"?<div>no tumblr data</div>:result =="not"? null:<div className="asocial-image"><img src={result} /></div>}
+    {result == undefined?<Loading props={{ init: "Fetching Tumblr"}} />:result == "notumblr"?<div>no tumblr data</div>:result =="not"? null:<div className="asocial-image"><img src={result} /></div>}
+    {caption?<div className="asocial-caption" dangerouslySetInnerHTML={{ __html: caption }}></div>:null}
   </div>;
 };
 
