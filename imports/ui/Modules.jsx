@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 export function Global (currentState) {
-  console.log( "allo")
   let localState = {
     pageName: currentState.pageName,
     year: new Date().getFullYear(),

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export const Loading = ({props = {init: "Loading"}}) => {
+export const Loading = ({props = {init: "Loading", speed:200, text:"...   "}}) => {
  
   // properties: {
   //   props.text: string,
@@ -27,7 +27,7 @@ export const Loading = ({props = {init: "Loading"}}) => {
         Meteor.clearInterval(interval);
         setText("");
       }
-    }, props.speed?props.speed:200);
+    }, props.speed);
     return () => {
       Meteor.clearInterval(interval);
     };

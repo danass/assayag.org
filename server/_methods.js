@@ -1,56 +1,7 @@
 import { mailconf } from './conf.js';
 import {TwitterCollection } from '../imports/api/Collection.js';
-// var Long = require("mongodb").Long;
 
 Meteor.methods({
-  // async maritime() {
-  //   const puppeteer = require("puppeteer");
-  //   const browser = await puppeteer.launch();
-  //   const page = await browser.newPage();
-  //   await page.goto(
-  //     "https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/maroc/"
-  //   );
-  //   const data = await page.evaluate((e) => {
-
-  //     function getMaritime() {
-  //       let data = [];
-  //       document
-  //         .getElementById("derniere_nopush")
-  //         .querySelectorAll("strong")
-  //         .forEach((s) => {
-  //           data.push(s);
-  //         });
-  //       return data.filter((d) => {
-  //         return d.innerHTML.includes("maritimes") == true;
-  //       })[0].parentNode.innerText;
-  //     }
-
-  //     function getTerrestre() {
-  //       let data = [];
-  //       document
-  //         .getElementById("derniere_nopush")
-  //         .querySelectorAll("strong")
-  //         .forEach((s) => {
-  //           data.push(s);
-  //         });
-  //       return data.filter((d) => {
-  //         return d.innerHTML.includes("frontières terrestres") == true;
-  //       })[0].parentNode.innerText;
-  //     }
-
-  //     return {
-  //       date: document.getElementsByClassName("date_derniere_minute")[0]
-  //         .children[0].children[0].innerHTML,
-  //       maritime: getMaritime(),
-  //       terrestre: getTerrestre(),
-  //     };
-  //   });
-  //   await browser.close();
-  //   return data;
-  // },
-
-
-
   async mail(from, msg, accuse) {
     "use strict";
     const nodemailer = require("nodemailer");
@@ -75,8 +26,6 @@ Meteor.methods({
 
     console.log("Contact assayag.org: %s", info.messageId);
   },
-
-
 
   async getRandomTweet(useroptions, viewedIds, randomIndex, maxRand) {
     randomIndex = parseInt(randomIndex)
@@ -123,9 +72,26 @@ Meteor.methods({
         return [{text: "no data", id: 666, source:"walou"}]
       }
   },
+  async removeTweet(arg) {
+    try {
+      // await TwitterCollection.rawCollection().deleteOne({_id: Long(arg.id)})
+      // delete where.text match
+      // await TwitterCollection.rawCollection().updateMany({text: arg.text}, {$set: {deleted: true}})
+      // return tweet where text match
+      let tweet = await TwitterCollection.rawCollection().aggregate(
+        [{ $match: { "text": arg  }}]
+        ).forEach(async function(doc) {
+          let deleteTweet = await TwitterCollection.remove({ "_id": doc._id });
+          console.log("deleted?", deleteTweet)
+        })
 
+      // console.log(arg)
+    } catch (e) {
+      console.log(e)
+    }
 
- async wget(url) {
+  },
+ async wget(url, method) {
 
  if(!url) {
   return null
@@ -146,19 +112,22 @@ Meteor.methods({
   else { pass = false }
   // check if url doesnt contain forbidden characters
   
-
     if(pass){
     const exec = require("child_process").exec;
     return new Promise((resolve, reject) => {
       let request = "wget -S --spider "+url+" 2>&1 | awk '/^  /'  |  awk -F  'Location: ' '{ print  $2 $3 $4 }' | awk NF | awk '{ if( NR==1 )  print $1 }'"
+      if(method) {
+      request = "wget -SO- -T 1 -t 1 " + url
+      }
+
       // let request = "wget -SO- -T 1 -t 1 " + url + " 2>&1 >/dev/null"
       exec(request, (err, stdout, stderr) => {
         if (err) {
+          console.log("fuck", stderr)
           reject(err);
-          return "no webssite"
+          return null
         }
         resolve(stdout);
-
       });
     })
 }

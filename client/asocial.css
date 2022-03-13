@@ -65,6 +65,15 @@
     object-fit: contain;
 }
 
+.asocial-image img {
+    min-width: 100%;
+    min-height: 100%;
+}
+.asocial-image  {
+display: flex;
+justify-content: center;
+}
+
 .asocial-text {
     font-size: xx-large;
     display: flex;

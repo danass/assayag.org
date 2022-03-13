@@ -2,22 +2,53 @@ import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from "react";
 import { Tooltip } from './Tooltip';
 import { Global } from './Modules'
+import { Loading } from './Animations';
+
 
 export const TweetRender = ({ tweet }) => {
   
   const [result, setResult] = useState("");
 
   const getUrl = (url) => {
+    
     useEffect(() => {
+      
+      setResult("not")
+      if(tweet.source === "https://www.tumblr.com/"){
+      setResult(undefined)
       Meteor.call('wget', url, (err, res) => {
         if (err) {
           console.log("bug", err);
         } else {
           
-          setResult(res)
-          console.log( res)
+          Meteor.call('wget', res, 1, (err2, res2) => {
+            if (err) {
+              console.log("bug", err);
+            } else {
+              
+              if(res2) {
+              let html = res2.split("<div class=\"wide\">")[1];
+              html = html.split("</div>")[0];
+              html = html.split("<img src=\"")[1];
+              html = html.split("\"")[0];
+              setResult(html)
+            }
+            else {
+              setResult("notumblr")
+              Meteor.call('removeTweet', tweet.text, (err, res) => {
+                if (err) {
+                  console.log("bug", err);
+                  } else {
+                    console.log("removed", tweet.text);
+                  }
+                })
+            }
+            }
+          });
+  
         }
       });
+    }
     }, [url]);
 
   }
@@ -28,7 +59,7 @@ export const TweetRender = ({ tweet }) => {
     <div className="asocial-usernames">{tweet.usernames ? tweet.usernames.map((u, i) => { return <div key={i}>{u}</div> }) : ""}</div>    
     <div className="asocial-url">{tweet.url ? getUrl(tweet.url[0]) : []}</div>
     <div className="asocial-media">{tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}</div>
-    {result?<div><a target="_blank" href={result}>open</a></div>:null}
+    {result == undefined?<Loading props={{init: "Fetching Tumblr"}} />:result == "notumblr"?<div>no tumblr data</div>:result =="not"? null:<div className="asocial-image"><img src={result} /></div>}
   </div>;
 };
 
@@ -43,7 +74,7 @@ export const Asocial = () => {
     insta: { clicked: false, size: 0, maxRand: 1, sources: ["http://instagram.com"] },
     twitter: { clicked: true, size: 0, sources: ["https://dev.twitter.com/docs/tfw", "http://twitter.com/download/android", "http://twitter.com", "http://twitter.com/download/iphone", "https://mobile.twitter.com"] },
     google: { clicked: false, size: 0, sources: ["https://www.google.com/"] },
-    tumblr: { clicked: false, size: 0, sources: ["https://www.tumblr.com/"] },
+    tumblr: { clicked: true, size: 0, sources: ["https://www.tumblr.com/"] },
     // assayag: { clicked: false, size: 0, sources: ["https://www.assayag.org"] },
     tiktok: { clicked: false, size: 0, sources: ["https://www.tiktok.com/"] }
   });
@@ -60,7 +91,7 @@ export const Asocial = () => {
     //   console.log(v, "v is defined")
     //   console.log("but currentval is", randomIndex)
     // }
-
+    
     Meteor.call('getRandomTweet', userOptions, viewedIds, v ? v : randomIndex, (e, r) => {
 
       let tweet = r[0] ? r[0] : [] && setrandomIndex(0)
@@ -104,19 +135,10 @@ export const Asocial = () => {
   }
 
   function handleClick(e) {
-    if(e.target.nodeName == 'A' ) {
-
-        console.log("what", e.target.href)
-        Meteor.call('wget', e.target.href, (err, res) => {
-          if (err) {
-            console.log("bug", err);
-          } else {
-            console.log( res)
-          }
-        });
-
+    if(e.target.nodeName  == 'A' ) {
       return
     }
+    
     fetchData(userOptions, 'click', Math.floor(Math.random() * maxRand) + 1)
   }
 
