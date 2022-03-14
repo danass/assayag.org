@@ -1,21 +1,17 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from "react";
-import { Tooltip } from './Tooltip';
 import { Global } from './Modules'
 import { Loading } from './Animations';
 
 
-export const TweetRender = ({ tweet }) => {
-  
+export const TweetRender = ({ tweet, i }) => {
+
   const [result, setResult] = useState("");
   const [caption, setCaption] = useState("")
+  const [wgetResult, setwgetResult] = useState([]);
 
   const getUrl = (url) => {
-    
-    useEffect(() => {
-      
       setResult("not")
-
       if(tweet.source === "https://www.tumblr.com/"){
       setResult(undefined)
       setCaption(undefined)
@@ -30,9 +26,9 @@ export const TweetRender = ({ tweet }) => {
             } else {
               
               if(res2) {
-              let tumblrImg = res2.split("<div class=\"wide\">")[1];
+              let tumblrImg = res2.split("<div class=\"wide\">")[1]?res2.split("<div class=\"wide\">")[1]:"</div>";
               tumblrImg = tumblrImg.split("</div>")[0];
-              tumblrImg = tumblrImg.split("<img src=\"")[1];
+              tumblrImg = tumblrImg.split("<img src=\"")[1]?tumblrImg.split("<img src=\"")[1]:"";
               tumblrImg = tumblrImg.split("\"")[0];
               setResult(tumblrImg)
 
@@ -57,15 +53,12 @@ export const TweetRender = ({ tweet }) => {
         }
       });
     }
-    }, [url]);
 
   }
 
   function parseText() {
-    console.log(tweet)
+  
     if (tweet.source == "https://www.tumblr.com/") {
-      console.log(tweet.text)
-      
       // remove "Photo :" from the text
       let checkersList = ["Photo : ", "Photo: ", "Diaporama : "]
       return checkersList.map(checker => {
@@ -74,24 +67,28 @@ export const TweetRender = ({ tweet }) => {
           // link from the text if text match tweet.url
           if (text.match(tweet.url)) {
             text = text.split(tweet.url)[0];
-            console.log(text)
           } 
           return <div className="asocial-text">{text}</div>
           }
       })
-
     }
-
     return <div className="asocial-text">{tweet.text}</div>
-
   }
 
-  return <div className="asocial-mirror-entry" key={tweet.id}>
+  return <div className="asocial-mirror-entry">
     <div className="asocial-source">{tweet.source}</div>
     <div className="asocial-date">{new Date(tweet.date).toString()}</div>
     {parseText()}
-    <div className="asocial-usernames">{tweet.usernames ? tweet.usernames.map((u, i) => { return <div key={i}>{u}</div> }) : ""}</div>    
-    <div className="asocial-url">{tweet.url ? getUrl(tweet.url[tweet.url.length - 1]) : []}</div>
+    <div className="asocial-usernames">{tweet.usernames ? tweet.usernames.map((u, i) => { return <div key={i + u}>{u}</div> }) : ""}</div>    
+    {useEffect(() => {
+       if(tweet.url){
+        setwgetResult(...wgetResult, getUrl(tweet.url[tweet.url.length - 1]))
+       }
+       
+
+       }, [])}
+   
+    <div className="asocial-url">{tweet.url ?  wgetResult : []}</div>
     <div className="asocial-media">{tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}</div>
     {result == undefined?<Loading props={{ init: "Fetching Tumblr"}} />:result == "notumblr"?<div>no tumblr data</div>:result =="not"? null:<div className="asocial-image"><img src={result} /></div>}
     {caption?<div className="asocial-caption" dangerouslySetInnerHTML={{ __html: caption }}></div>:null}
@@ -100,52 +97,49 @@ export const TweetRender = ({ tweet }) => {
 
 export const Asocial = () => {
 
-
   useEffect(() => {
     Global({ pageName: "Asocial Networks" })
   }, []);
 
   const [userOptions, setuserOptions] = useState({
+    params: { maxRand: 1, listSize: 1 },
     insta: { clicked: false, size: 0, maxRand: 1, sources: ["http://instagram.com"] },
     twitter: { clicked: true, size: 0, sources: ["https://dev.twitter.com/docs/tfw", "http://twitter.com/download/android", "http://twitter.com", "http://twitter.com/download/iphone", "https://mobile.twitter.com"] },
     google: { clicked: false, size: 0, sources: ["https://www.google.com/"] },
     tumblr: { clicked: true, size: 0, sources: ["https://www.tumblr.com/"] },
     // assayag: { clicked: false, size: 0, sources: ["https://www.assayag.org"] },
-    tiktok: { clicked: false, size: 0, sources: ["https://www.tiktok.com/"] }
+    tiktok: { clicked: false, size: 0, sources: ["https://www.tiktok.com/"] },
+    others: { clicked: false, size: 0, sources: ["http://www.linkedin.com/", "http://publicize.wp.com/", "http://www.buildagadget.com/Product.php?Code=Twitter", "https://www.assayag.org", "http://www.behance.net"] }
   });
   const [viewedIds, setviewedIds] = useState([]);
   const [maxRand, setmaxRand] = useState(1);
   const [randomIndex, setrandomIndex] = useState(1)
 
   const fetchData = async (userOptions, type, v, maxrandv) => {
-    // if (v == undefined && randomIndex != undefined) {
-    //   console.log(v, "parameter is undefined")
-    //   console.log(randomIndex, 'is defined currentval')
-    // }
-    // if (v != undefined) {
-    //   console.log(v, "v is defined")
-    //   console.log("but currentval is", randomIndex)
-    // }
-    
-    Meteor.call('getRandomTweet', userOptions, viewedIds, v ? v : randomIndex, (e, r) => {
 
-      let tweet = r[0] ? r[0] : [] && setrandomIndex(0)
+    Meteor.call('getRandomTweet', userOptions, viewedIds, v ? v : randomIndex, (e, r) => {
+      let tweets  = r[0][0] ? r[0][0] : [] && setrandomIndex(0)
       setmaxRand(r[1] ? r[1] : maxRand)
       setuserOptions(r[2])
       setrandomIndex(v ? v : randomIndex)
       // setviewedIds([...viewedIds, { id: r[0][0]?.id.high * 2 ** 32 + r[0][0]?.id.low }]);
-      if (tweet[0] == null) {
+      if (tweets[0] == null) {
         document.querySelector("#main-container-header-navigation input").value = 0
-        tweet = [{ text: "(no data more..) Select a source just below!", id: 'no-data-id' }]
+        tweets = [{ text: "(no data more..) Select a source just below!", id: 'no-data-id' }]
         setrandomIndex(0)
       }
 
-      let usernames = tweet[0].text.match(/@[a-zA-Z0-9_]+/g);
-      tweet[0].usernames = usernames ? usernames : [];
-      tweet[0].text = tweet[0].text.replace(/@[a-zA-Z0-9_]+/g, '');
-      let url = tweet[0].text.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g);
-      tweet[0].url = url ? url : [];
-      setTweet(tweet)
+      tweets.map((tweet, i) => {
+        
+      let usernames = tweet.text.match(/@[a-zA-Z0-9_]+/g);
+      tweets[i].usernames = usernames ? usernames : [];
+      tweets[i].text = tweet.text.replace(/@[a-zA-Z0-9_]+/g, '');
+      let url = tweet.text.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g);
+      tweets[i].url = url ? url : [];
+      console.log(i, tweets)
+      })
+      
+      setTweet(tweets)
 
     });
   }
@@ -153,6 +147,7 @@ export const Asocial = () => {
   const createBoxes = (userOptions) => {
     let boxes = [];
     for (const [key, value] of Object.entries(userOptions)) {
+     if(key != "params"){
       boxes.push(
         <div className="selector-checkbox" key={key}>
           <label className="checkboxlabel">{key}</label><br></br>
@@ -166,6 +161,8 @@ export const Asocial = () => {
         </div>
       );
     }
+    
+  }
     return boxes;
   }
 
@@ -197,12 +194,13 @@ export const Asocial = () => {
         </div>
 
         <div className="main-container-block">
-          A mirror of my pityful social life through the main platforms, Tiktok, Youtube, Twitter.
+          A mirror of my pityful social life through the main platforms, Tiktok, Youtube, Twitter.<br></br>
+          A navigator through archives of the social media.
         </div>
 
         <div id="main-container-header-instructions">
           Browse using input box with an <b>id number</b>,<br></br>
-          or <b>click on text</b> to retrieve a random entry.
+          or <b>click on main box</b> to shuffle and get a new random entry.
         </div>
 
       </div>
@@ -210,15 +208,18 @@ export const Asocial = () => {
         
       <div id="main-container-selectors">
       <div id="main-container-header-navigation">
-          id: <input type="number" min="0" value={randomIndex} onChange={(e) => handleChange(e)}></input>
-        </div>
+          id: <input className="main-container-header-navigation-input" tabIndex={1} type="number" min="0" value={randomIndex} onChange={(e) => handleChange(e)}></input>
+      </div>
         {createBoxes(userOptions)}
+       
+          <p>wesh<input className="main-container-header-navigation-input" type="number" min="1" max="10" value={userOptions.params.listSize} onChange={(e) => { setuserOptions({ ...userOptions, params: { ...userOptions.params, listSize: e.target.value } }) }}></input>
+          </p>
       </div>
       
       <div id="main-container-content" className="css-greydient" tabIndex={0} onClick={(e) => handleClick(e)} >
-                {tweet.map((tweet_) => {
+                {tweet.map((tweet_, i) => {
                 return (
-                  <TweetRender key={tweet_.id} tweet={tweet_} />
+                  <TweetRender key={tweet_.date + i} tweet={tweet_} />
                 )
               })}
       </div>
@@ -229,29 +230,7 @@ export const Asocial = () => {
 
       
     </div>
-
-    // <div id="twitter-comment-container">
-    //   <h1>Asocial Networks Mirror</h1>
-    //     
-    //   <div tabIndex={0} onClick={(e) => handleClick(e)}>
     //     <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >
-    //       <div id="tiktok-comment-container" >
-    //         <h2 className="tiktok-comment">
-    //           {tweet.map((tweet_) => {
-    //             return (
-    //               <TweetRender key={tweet_.id} tweet={tweet_} />
-    //             )
-    //           })}
 
-    //         </h2>
-    //       </div>
-    //     </Tooltip>
-    //   </div>
-
-    //   <div>
-    //     {createBoxes(userOptions)}
-    //   </div>
-
-    // </div>
   );
 };

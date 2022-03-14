@@ -29,7 +29,7 @@ Meteor.methods({
 
   async getRandomTweet(useroptions, viewedIds, randomIndex, maxRand) {
     randomIndex = parseInt(randomIndex)
-    useroptions['insta'].maxRand = 0
+    useroptions['params'].maxRand = 0
     // let viewedIdsAll =  [...new Set(viewedIds.map(aid=> {
     //   return aid.id  }))]
      let currentOptions = []
@@ -45,27 +45,31 @@ Meteor.methods({
     let option = {}
 
     for (const [key, value] of Object.entries(useroptions)) {
+      if(key != 'params') {
       // update useroptions with size of each collection source group 
-      getSize =  await TwitterCollection.rawCollection().aggregate([ { $match: { "source": { $in: useroptions[key].sources }}}]).toArray()
-        useroptions[key].size = getSize.length        
+      documentsCollection =  await TwitterCollection.rawCollection().aggregate([ { $match: { "source": { $in: useroptions[key].sources }}}]).toArray()
+        useroptions[key].size = documentsCollection.length -1    
       if (!useroptions[key].clicked) { 
         option = { $match: { "source": { $nin: useroptions[key].sources }}}
         currentOptions.unshift(option)
       }
       if (useroptions[key].clicked) {
         // updating useroptions with maximum random value possible based on selected sources
-        useroptions['insta'].maxRand += useroptions[key].size 
+        useroptions['params'].maxRand += useroptions[key].size 
       }
     }
 
+  }
     // currentOptions.push({ $match: {  "_id": { $nin: viewedIdsAll.map(aid => Long(aid.toString())) }}})
     currentOptions.push(  { $skip: randomIndex } )
     // currentOptions.push(   { $sample: { size: 1 } } )
-    currentOptions.push(  { $limit: 1 } )
+    currentOptions.push(  { $limit: parseInt(useroptions['params'].listSize) }  )
+
     
      try {
         let Data = await TwitterCollection.rawCollection().aggregate(currentOptions).toArray()
-        return [[Data[0]], useroptions['insta'].maxRand, useroptions]
+        console.log(Data)
+        return [[Data], useroptions['params'].maxRand, useroptions]
         
       } catch (e) {
         console.log(e)

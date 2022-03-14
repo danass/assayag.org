@@ -32,7 +32,7 @@
     padding: 10px;
 }
 
-#main-container-header-navigation input {
+.main-container-header-navigation-input {
     padding: 5px;
     width: 55px;
     border: solid 2px #e8e8e8;
@@ -122,6 +122,7 @@ justify-content: center;
     display: inherit;
     cursor: copy;
     background: #ffffffeb;
+    margin-bottom: 13px;
 }
   
 .asocial-usernames {

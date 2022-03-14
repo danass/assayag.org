@@ -59,18 +59,24 @@
     margin: 18px;
   }
 
-  div#mail-form {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: flex-end;
-    padding: 50px;
+  div#main-container-form {
     background: #f1f1f1;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
 }
 
-#mail-form textarea {
-    min-width: 35vw;
+div#mail-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    margin: 50px;
+}
+
+#main-container-form textarea {
+    min-width: 46vw;
     min-height: 40vh;
     max-width: 100%;
     font-family: arial;
@@ -95,9 +101,13 @@ button#mail-button {
     input[type="email"] {
     width: 100%;
     }
-    #mail-form textarea {
+    #main-container-form textarea {
         width: 100%;
     }
+    #mail-form {
+        display:block!important;
+    }
+
 
 }
 

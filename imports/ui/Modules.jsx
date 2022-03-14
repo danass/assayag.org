@@ -44,15 +44,38 @@ export const Mail = () => {
     }
 
     return(
-        <div>
-            <h1>Contact me</h1>
-            <div id="mail-form">
+
+            <div id="main-container">
+      
+      <div id="main-container-header">
+        <div id="main-container-header-title">
+          <h1>Contact me</h1>
+        </div>
+        <div id="main-container-header-instructions">
+          Welcome to my contact page. 
+        </div>
+      
+
+
+
+
+        </div>
+        <div id="main-container-form">
+        
+        <div id="mail-form">
             <input type="email" placeholder="Your email" value={email} onChange={e => setEmail(e.target.value)} />
             <textarea placeholder="Message.." value={message} onChange={e => setMessage(e.target.value)} />
             <div id="mail-accuse"> 
             <label htmlFor="accuse">Send yourself a copy</ label> <input type="checkbox" id="accuse" onChange={e => setAccuse(e.target.checked)} /> </div>
             <button id="mail-button" onClick={sendmail}>Send</button>
             </div>
+        </div>
+
+                   
+        <div id="main-container-footer">
+          
+          </div>
+          
         </div>
 
     )
