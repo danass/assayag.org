@@ -8,7 +8,9 @@ export function Global(currentState) {
     year: new Date().getFullYear(),
     link: useLocation().pathname
   }
-  document.title = localState.pageName + " - assayag.org - artist, creator. " + localState.year
+  document.title = "{" + localState.pageName + "} ${DANIEL@ASSAYAG} artist coder activist. <- \\1986-undefined/"
+  let meta = document.getElementsByTagName('meta')
+  meta.description.content = currentState.description
 
   var uC = document.querySelectorAll("link[rel='canonical']")[0];
   var newURL = "https://www.assayag.org" + localState.link + '/';
@@ -31,7 +33,7 @@ export const Uuid = () => {
 
 export const Mail = () => {
 
-    Global({ pageName: "Contact me" })
+    Global({ pageName: "Contact form", description: "{Contact} () => Contact me! (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]. )} " })
 
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');

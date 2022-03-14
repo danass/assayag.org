@@ -4,7 +4,7 @@ import { Global } from './Modules'
 
 export const App = () => {
 
-  const globalState = Global({pageName: "Home"})
+  const globalState = Global({pageName: "Home", description:"{Home} => Daniel Assayag is an Artist and Project Leader in Education. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]."})
 
   return (
     

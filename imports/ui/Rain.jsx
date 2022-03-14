@@ -11,7 +11,7 @@ export const RaindropsRender = ({ drop }) => {
 reverse = true
 export const Rain = () => {
 
-  let globalState = Global({pageName: "Rain Text!"})
+  let globalState = Global({pageName: "{Make it Rain}", description: "{Make it Rain} => Interactive graphical text creation tool. Text memory appears as you write, drawing patterns of letters while playing with the process of time layers." })
 
   const [Tdiv, setTdiv] = useState(<div>Make it rain</div>);
   const [colors, setColors] = useState([getRandomColor(), getRandomColor() ])
@@ -77,7 +77,7 @@ setPluie(pluie => {
                 
         <div id="main-container-header-instructions">
           <ul>This is an <b>interactive graphical text</b> creation tool. <br></br>
-          Text appears as you type and register the <b>process of time</b>.<br></br>
+          Text memory appears as you write, drawing patterns of letters while playing with <b>the process of time layers</b>.<br></br>
           </ul></div>
         <div className="main-container-block">
           <ul><li><b>Start typing</b> a text with your keyboard or <b>{isMobile()?"click":"hover"} on the main central box</b> to make the menu appear.

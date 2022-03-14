@@ -94,7 +94,7 @@ export const TweetRender = ({ tweet, i }) => {
 
 export const Asocial = () => {
 
-    Global({ pageName: "Asocial Networks" })
+    Global({ pageName: "A-Social Networks", description: "{A-Social Networks} () => A Mirror of my Pityful Social Life seen through Tiktok, Youtube, Twitter.. An A-Social networks navigator. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]. " })
 
 
   const [userOptions, setuserOptions] = useState({
