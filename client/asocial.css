@@ -36,12 +36,20 @@
 @media screen and (orientation:portrait) {
     #main-container-header-title  {
         position: relative;
+       
+    }
+    #main-container-header-title  h1 {
+        font: 500 1.444rem Inter;
+        line-height: 3rem;
+
+        
     }
 }
 
-@media screen and (max-width:1400px) {
+@media screen and (max-width:1000px) {
     #main-container-header-title  {
         position: relative;
+        margin-bottom: 20px;
     }
 }
 .main-container-block, #main-container-header-instructions {
