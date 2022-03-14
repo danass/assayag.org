@@ -60,7 +60,7 @@ export const Mail = () => {
 
       <div id="main-container-header">
         <div id="main-container-header-title">
-          Contact me
+          <h1>Contact form</h1>
         </div>
         <div id="main-container-header-instructions">
           Welcome to my contact page.
