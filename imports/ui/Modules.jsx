@@ -54,10 +54,6 @@ export const Mail = () => {
         <div id="main-container-header-instructions">
           Welcome to my contact page. 
         </div>
-      
-
-
-
 
         </div>
         <div id="main-container-form">

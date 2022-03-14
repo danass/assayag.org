@@ -19,12 +19,10 @@ export const TweetRender = ({ tweet, i }) => {
         if (err) {
           console.log("bug", err);
         } else {
-          
           Meteor.call('wget', res, 1, (err2, res2) => {
             if (err) {
               console.log("bug", err);
             } else {
-              
               if(res2) {
               let tumblrImg = res2.split("<div class=\"wide\">")[1]?res2.split("<div class=\"wide\">")[1]:"</div>";
               tumblrImg = tumblrImg.split("</div>")[0];
@@ -38,7 +36,6 @@ export const TweetRender = ({ tweet, i }) => {
             }
             else {
               setResult("notumblr")
-              
               Meteor.call('removeTweet', tweet.text, (err, res) => {
                 if (err) {
                   console.log("bug", err);
@@ -90,7 +87,7 @@ export const TweetRender = ({ tweet, i }) => {
    
     <div className="asocial-url">{tweet.url ?  wgetResult : []}</div>
     <div className="asocial-media">{tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}</div>
-    {result == undefined?<Loading props={{ init: "Fetching Tumblr"}} />:result == "notumblr"?<div>no tumblr data</div>:result =="not"? null:<div className="asocial-image"><img src={result} /></div>}
+    {result == undefined?<Loading props={{ init: "Fetching Tumblr"}} />:result == "notumblr"?<div>no tumblr data</div>:result == "not"? null:<div className="asocial-image"><img src={result} /></div>}
     {caption?<div className="asocial-caption" dangerouslySetInnerHTML={{ __html: caption }}></div>:null}
   </div>;
 };
@@ -130,7 +127,6 @@ export const Asocial = () => {
       }
 
       tweets.map((tweet, i) => {
-        
       let usernames = tweet.text.match(/@[a-zA-Z0-9_]+/g);
       tweets[i].usernames = usernames ? usernames : [];
       tweets[i].text = tweet.text.replace(/@[a-zA-Z0-9_]+/g, '');
@@ -212,7 +208,9 @@ export const Asocial = () => {
       </div>
         {createBoxes(userOptions)}
        
-          <p>wesh<input className="main-container-header-navigation-input" type="number" min="1" max="10" value={userOptions.params.listSize} onChange={(e) => { setuserOptions({ ...userOptions, params: { ...userOptions.params, listSize: e.target.value } }) }}></input>
+          <p>nb of documents:<input className="main-container-header-navigation-input" type="number" min="1" max="15" value={userOptions.params.listSize} onChange={(e) => {
+             setuserOptions({ ...userOptions, params: { ...userOptions.params, listSize: e.target.value } })  
+             }}></input>
           </p>
       </div>
       

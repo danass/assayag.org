@@ -9,11 +9,11 @@ export const Menu = () => {
             <div>
                 <Link to="/">Home</Link>
             </div>
-            {/* <div>
-                 <Link to="/rain">Rain</Link>
-            </div> */}
             <div>
                 <Link to="/asocial">Asocial</Link>
+            </div>
+            <div>
+                 <Link to="/rain">Rain</Link>
             </div>
         </div>
     )

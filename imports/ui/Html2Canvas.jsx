@@ -5,10 +5,10 @@ import { Uuid } from "./Modules";
 
 export const Html2Canvas = (props) => {
   const [canvas, setCanvas] = useState(null);
-
     if(props.tooltip.action == "createimg" || props.tooltip.clickforsave != true){
+      console.log(props.tooltip.children[1].props)
   html2canvas(
-    document.getElementById(props.tooltip.children.props.id),
+    document.getElementById(props.tooltip.children[1].props.id),
     {scale: 1}
   ).then((canvas) => {
     setCanvas(canvas.toDataURL("image/png"));

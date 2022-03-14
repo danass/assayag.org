@@ -10,7 +10,7 @@ export const App = () => {
       
       <div id="main-container-header">
         <div id="main-container-header-title">
-          <h1>home</h1>
+          <h1>Home</h1>
         </div>
         
         <div id="main-container-header-instructions">
@@ -19,11 +19,10 @@ export const App = () => {
       </div>
       
       
-        <div id="main-container-content" className="css-greydient main-content-fit">
+          <div id="main-container-content" className="css-greydient main-content-fit">
+          
         
-      
-      </div>
-     
+        </div>
       <div id="main-container-footer">
         
       </div>

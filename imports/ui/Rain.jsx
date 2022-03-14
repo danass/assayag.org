@@ -68,8 +68,15 @@ setPluie(pluie => {
   }
  
   return (
-    <div className="rain">
-      <h1>{globalState.title}</h1>
+
+    <div>
+        <div id="main-container-header">
+        <div id="main-container-header-title">
+        <h1>{globalState.title}</h1>
+        </div>
+        </div>
+
+        <div className="rain">
      
       <Tooltip
         action="createimg"
@@ -77,13 +84,7 @@ setPluie(pluie => {
         caption="Screenshot"
         atselector="rain-library"
       >
-        <div id="rainfall" className="rainfall" style={{backgroundColor:  colors[0],  color: colors[1] } 
-        }>
-          {Tdiv}
-        </div>
-      </Tooltip>
-
-      <div id="rain-controls" style={(isMobile()? ({ margin: '0px' }): {}) }>
+             <div id="rain-controls" style={(isMobile()? ({ margin: '0px' }): {}) }>
       <ColorPicker values={colors} />
       <input className="rain-input"
         type="text"
@@ -99,9 +100,22 @@ setPluie(pluie => {
       <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
       <div><Fonts /></div>
       </div>
+      
+        <div id="rainfall" className="rainfall" style={{backgroundColor:  colors[0],  color: colors[1] } 
+        }>
+          {Tdiv}
+        </div>
+        
+      </Tooltip>
+
+ 
 
       <div id="rain-library"></div>
+
       
+      <div id="main-container-footer"></div>
+      
+    </div>
     </div>
   );
 };

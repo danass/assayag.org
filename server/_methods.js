@@ -28,6 +28,7 @@ Meteor.methods({
   },
 
   async getRandomTweet(useroptions, viewedIds, randomIndex, maxRand) {
+
     randomIndex = parseInt(randomIndex)
     useroptions['params'].maxRand = 0
     // let viewedIdsAll =  [...new Set(viewedIds.map(aid=> {
@@ -86,7 +87,7 @@ Meteor.methods({
         [{ $match: { "text": arg  }}]
         ).forEach(async function(doc) {
           let deleteTweet = await TwitterCollection.remove({ "_id": doc._id });
-          console.log("deleted?", deleteTweet)
+          console.log("deleted:", deleteTweet? true: false)
         })
 
       // console.log(arg)

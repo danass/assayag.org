@@ -15,8 +15,6 @@ import {
 
 // serving robots.txt
 
-  
-
 rootElement = document.getElementById('react-target');
 
 Meteor.startup(() => {

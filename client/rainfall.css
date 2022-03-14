@@ -50,14 +50,13 @@
 
 #rain-controls {
     transition: .3s ease;
-    position: fixed;
-    top: 132px;
+    position: absolute;
     z-index: 1;
     background: #b0b0b036;
     padding: 13px;
     border-radius: 6px;
-    margin: 18px;
-  }
+    margin: 0px 21px;
+}
 
   div#main-container-form {
     background: #f1f1f1;
