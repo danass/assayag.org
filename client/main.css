@@ -94,8 +94,10 @@ h1 {
   margin: 0px;
   padding: 0px 40px;
   text-align: right;
-  font: 300 2.25rem/1.138 Inter;
-  letter-spacing: -.5px;
+
+
+  font: 500 1.444rem Inter;
+  line-height: 5rem;
 }
 
 #main-container {
