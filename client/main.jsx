@@ -15,6 +15,7 @@ import {
 
 rootElement = document.getElementById('react-target');
 
+
 Meteor.startup(() => {
 
   render(
@@ -24,7 +25,7 @@ Meteor.startup(() => {
       <Route path="/rain" element={<div><Menu /><Rain /></div>} />
       <Route path="/asocial"  element={<div><Menu /><Asocial /></div>} />
       <Route path="/mail"  element={<div><Menu /><Mail /></div>} />
-      <Route path='*' element={<div>walou 404</div>} />
+      <Route path='*' element={<div><Menu /><h1>Walou 404</h1></div>}/>
     </Routes>
     </BrowserRouter>, 
     rootElement

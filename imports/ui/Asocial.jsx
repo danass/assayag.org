@@ -94,9 +94,8 @@ export const TweetRender = ({ tweet, i }) => {
 
 export const Asocial = () => {
 
-  useEffect(() => {
     Global({ pageName: "Asocial Networks" })
-  }, []);
+
 
   const [userOptions, setuserOptions] = useState({
     params: { maxRand: 1, listSize: 1 },
@@ -186,7 +185,7 @@ export const Asocial = () => {
       <div id="main-container-header">
 
         <div id="main-container-header-title">
-          <h1>Asocial Networks Mirror</h1>
+          Asocial Networks Mirror
         </div>
 
         <div className="main-container-block">

@@ -2,28 +2,45 @@
     margin-bottom: 10px;
 }
 
-#main-container-header-title {
+/* #main-container-header-title {
     width: fit-content;
-    color: #170e26;
+    color: #4f3082cf;
     font-weight: bolder;
     border: solid 15px #f3f3f300;
     margin-bottom: 10px;
-    border-right-color: currentcolor;
+    /* border-right-color: currentcolor; 
     float: right;
     background: #f0f0f000;  
-    padding-right: 10px;
+    padding: 0px 21px;
+} */
+
+#main-container-header-title {
+    width: fit-content;
+    float: right;
+    padding: 0px 36px;
+    text-transform: capitalize;
+    border-radius: 200px 0px 0px 200px;
+    color: #944199;
+    background: #8a008b1c;
+    right: 0;
+    z-index: 1;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    margin-right: -18px;
 }
 
 .main-container-block, #main-container-header-instructions {
-    padding: 10px;
     background: #efefef;
     margin-bottom: 10px;
     opacity: 0.6;
-    border: solid 20px #ededed;
+    padding: 30px;
     display: flow-root;
-    min-width: 20%;
+    min-width: 36%;
     width: fit-content;
+    font-size: 1.2em;
+    border-right: solid 40px #f3f3f3;
 }
+
 
 #main-container-header-navigation {
     width: fit-content;

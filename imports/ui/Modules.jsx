@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export function Global (currentState) {
+
   let localState = {
     pageName: currentState.pageName,
     year: new Date().getFullYear(),
+    link: useLocation().pathname
   }
   document.title =  localState.pageName + " - assayag.org - artist, creator. " + localState.year
+  
+  var uC = document.querySelectorAll("link[rel='canonical']")[0];
+  var newURL = "https://www.assayag.org" + localState.link + '/'; 
+
+  uC.setAttribute("href", newURL);
    return (
-    {title: document.title}
+    {title: document.title,
+    link: localState.link}
   )
 } 
 
@@ -168,7 +177,7 @@ return (
         setColor([color[0], e.target.value]);
       }}
     />
-    <input type="reset" value="shuffle" onClick={() => {
+    <input className="rain-button" type="reset" value="shuffle" onClick={() => {
       let colors = [getRandomColor(), getRandomColor()];
       document.getElementById("rainfall").style.backgroundColor = colors[0];
       document.getElementById("rainfall").style.color = colors[1];

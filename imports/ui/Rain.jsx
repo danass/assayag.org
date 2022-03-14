@@ -72,14 +72,16 @@ setPluie(pluie => {
     <div>
         <div id="main-container-header">
         <div id="main-container-header-title">
-        <h1>It's Raining text!</h1>
+        It's Raining text!
         </div>
                 
         <div id="main-container-header-instructions">
           This is an <b>interactive graphical text</b> creation tool. <br></br>
           Text appears as you type and register the <b>process of time</b>.<br></br>
-          <b>Start typing</b> text in the box below.
         </div>
+        <div className="main-container-block">
+          <b>Start typing</b> a text with your keyboard or <b>click on the central box</b> to make the menu appear.
+          </div>
         </div>
 
         <div className="rain">
@@ -92,17 +94,36 @@ setPluie(pluie => {
       >
       <div id="rain-controls" style={(isMobile()? ({ margin: '0px' }): {}) }>
       <ColorPicker values={colors} />
-      <input className="rain-input"
+      <input id="rain-input-mkir" className="rain-input"
         type="text"
-        placeholder="Make it rain"
-        onChange={updateRain}
+        placeholder="Make it rain" 
+        onChange={updateRain} autoFocus
       />
       
       <button className="rain-button" onClick={() => {
         setPluie([])
         setTdiv(<div>Make it rain</div>);
+      }}>clear</button>
 
-      }}>x</button>
+      <div className="rain-buttons-align">
+            <button className="rain-button" onClick={() => { 
+          let el =  document.getElementById("rainfall") 
+          if(el.childElementCount <= 1) {
+            console.error("start typing first!") 
+
+          }
+          el.style.alignItems = 'flex-start'
+          }}>left</button>
+                  <button className="rain-button" onClick={() => { 
+          let el =  document.getElementById("rainfall") 
+          el.style.alignItems = 'center'
+          }}>center</button>
+                  <button className="rain-button" onClick={() => { 
+          let el =  document.getElementById("rainfall") 
+          el.style.alignItems = 'flex-end'
+          }}>right</button>
+      </div>
+
       <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
       <div><Fonts /></div>
       </div>

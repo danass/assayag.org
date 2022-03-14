@@ -1,7 +1,18 @@
 .rainfall, #rainfall {
     padding: 30px;
     width: fit-content;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin: 0 auto;
+}
+
+.rain-buttons-align {
+    display: flex;
+}
+.rain-button:active {
+    background-color: #ffffff;
 }
 
 .rain-img {
@@ -38,7 +49,7 @@
   }
   
 .drop-parent {
-    transition: 2s ease;
+    transition: 0.35s ease;
 }
 
 .noborder {

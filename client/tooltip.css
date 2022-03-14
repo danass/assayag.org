@@ -33,7 +33,7 @@
 
   
 #rain-controls {
-    opacity: 0.25;
+    opacity: 0.01;
     transition: .4s ease;
 }
 
