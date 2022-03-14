@@ -17,27 +17,27 @@ export function Global(currentState) {
   var newURL = "https://www.assayag.org" + localState.link + '/';
   uC.setAttribute("href", newURL);
 
-  // listen for onScroll event
-  window.addEventListener('scroll', function (e) {
-    // get current scroll position 
-    console.log(e)
-    let scrollPosition = window.scrollY;
-    // get height of the window
-    let windowHeight = window.innerHeight;
-    // get height of the document
-    let documentHeight = document.body.offsetHeight;
-    // calculate how far the user has scrolled
-    let scrollPercent = (scrollPosition / (documentHeight - windowHeight));
-    // calculate how far the user has scrolled in decimal form
-    let scrollPercentDecimal = scrollPercent * 100;
+  // // listen for onScroll event
+  // window.addEventListener('scroll', function (e) {
+  //   // get current scroll position 
+  //   console.log(e)
+  //   let scrollPosition = window.scrollY;
+  //   // get height of the window
+  //   let windowHeight = window.innerHeight;
+  //   // get height of the document
+  //   let documentHeight = document.body.offsetHeight;
+  //   // calculate how far the user has scrolled
+  //   let scrollPercent = (scrollPosition / (documentHeight - windowHeight));
+  //   // calculate how far the user has scrolled in decimal form
+  //   let scrollPercentDecimal = scrollPercent * 100;
 
     // if the user has scroll 10% of the page then add .menu-dissapear class to #title
-    if (scrollPercentDecimal >= 10) {
-      document.getElementById('main-container-header-title').classList.add('menu-dissapear');
-    } else {
-      document.getElementById('main-container-header-title').classList.remove('menu-dissapear');
-    }
-  })
+    // if (scrollPercentDecimal >= 10) {
+    //   document.getElementById('main-container-header-title').classList.add('menu-dissapear');
+    // } else {
+    //   document.getElementById('main-container-header-title').classList.remove('menu-dissapear');
+    // }
+  // })
   
 
   return (
