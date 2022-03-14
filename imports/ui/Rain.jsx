@@ -72,16 +72,19 @@ setPluie(pluie => {
     <div>
         <div id="main-container-header">
         <div id="main-container-header-title">
-        It's Raining text!
+        It's Raining Text!
         </div>
                 
         <div id="main-container-header-instructions">
-          This is an <b>interactive graphical text</b> creation tool. <br></br>
+          <ul>This is an <b>interactive graphical text</b> creation tool. <br></br>
           Text appears as you type and register the <b>process of time</b>.<br></br>
-        </div>
+          </ul></div>
         <div className="main-container-block">
-          <b>Start typing</b> a text with your keyboard or <b>click on the central box</b> to make the menu appear.
-          </div>
+          <ul><li><b>Start typing</b> a text with your keyboard or <b>{isMobile()?"click":"hover"} on the main central box</b> to make the menu appear.
+          </li><li>You can <b>remove</b> drops by clicking on text (bold on hover)
+          </li><li>You can also <b>save your creation</b> by clicking on the save button on the top right corner.
+          </li><li>The shuffle button trigger a <b>random set of colors</b>
+          </li></ul></div>
         </div>
 
         <div className="rain">
@@ -103,6 +106,7 @@ setPluie(pluie => {
       <button className="rain-button" onClick={() => {
         setPluie([])
         setTdiv(<div>Make it rain</div>);
+        document.getElementById('rain-input-mkir').focus()
       }}>clear</button>
 
       <div className="rain-buttons-align">
@@ -110,21 +114,26 @@ setPluie(pluie => {
           let el =  document.getElementById("rainfall") 
           if(el.childElementCount <= 1) {
             console.error("start typing first!") 
-
           }
           el.style.alignItems = 'flex-start'
+          document.getElementById('rain-input-mkir').focus()
           }}>left</button>
                   <button className="rain-button" onClick={() => { 
           let el =  document.getElementById("rainfall") 
           el.style.alignItems = 'center'
+          document.getElementById('rain-input-mkir').focus()
           }}>center</button>
                   <button className="rain-button" onClick={() => { 
           let el =  document.getElementById("rainfall") 
           el.style.alignItems = 'flex-end'
+          document.getElementById('rain-input-mkir').focus()
           }}>right</button>
       </div>
 
-      <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
+      <button className="rain-button" onClick={(e) => {
+        updateRain(e, true)
+        document.getElementById('rain-input-mkir').focus()
+      }}>reverse</button>
       <div><Fonts /></div>
       </div>
 
