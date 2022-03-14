@@ -13,8 +13,6 @@ import {
   Route
 } from "react-router-dom";
 
-// serving robots.txt
-
 rootElement = document.getElementById('react-target');
 
 Meteor.startup(() => {
@@ -28,9 +26,7 @@ Meteor.startup(() => {
       <Route path="/mail"  element={<div><Menu /><Mail /></div>} />
       <Route path='*' element={<div>walou 404</div>} />
     </Routes>
-    </BrowserRouter>
-    
-, 
+    </BrowserRouter>, 
     rootElement
   ) 
 });
