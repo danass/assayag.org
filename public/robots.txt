@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /how_to_nuclear_bomb/

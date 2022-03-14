@@ -1,0 +1,2 @@
+RewriteCond %{HTTP_HOST} !^www.assayag.org$ [NC]
+RewriteRule ^(.*)$ http://www.assayag.org/$1 [L,R=301]
