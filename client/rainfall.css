@@ -33,8 +33,14 @@
 
 .drop-parent:hover {
     font-weight: bold;
+    transition: 0.1s ease;
+    cursor: grabbing;
   }
   
+.drop-parent {
+    transition: 2s ease;
+}
+
 .noborder {
     border: none;
 }
@@ -46,6 +52,7 @@
     flex-wrap: wrap;
     width: 70%;
     margin: 0 auto;
+    padding: 40px
 }
 
 #rain-controls {
@@ -56,6 +63,16 @@
     padding: 13px;
     border-radius: 6px;
     margin: 0px 21px;
+}
+
+#rain-controls input, #rain-controls button, #rain-controls select {
+    padding: 5px;
+    border: solid 2px #d7d7d7;
+    border-radius: 6px;
+    margin: 2px;
+}
+#rain-controls input[type="reset"] {
+    cursor: pointer;
 }
 
   div#main-container-form {

@@ -72,7 +72,13 @@ setPluie(pluie => {
     <div>
         <div id="main-container-header">
         <div id="main-container-header-title">
-        <h1>{globalState.title}</h1>
+        <h1>It's Raining text!</h1>
+        </div>
+                
+        <div id="main-container-header-instructions">
+          This is an <b>interactive graphical text</b> creation tool. <br></br>
+          Text appears as you type and register the <b>process of time</b>.<br></br>
+          <b>Start typing</b> text in the box below.
         </div>
         </div>
 
@@ -84,7 +90,7 @@ setPluie(pluie => {
         caption="Screenshot"
         atselector="rain-library"
       >
-             <div id="rain-controls" style={(isMobile()? ({ margin: '0px' }): {}) }>
+      <div id="rain-controls" style={(isMobile()? ({ margin: '0px' }): {}) }>
       <ColorPicker values={colors} />
       <input className="rain-input"
         type="text"
@@ -100,7 +106,7 @@ setPluie(pluie => {
       <button className="rain-button" onClick={e=> updateRain(e, true)}>reverse</button>
       <div><Fonts /></div>
       </div>
-      
+
         <div id="rainfall" className="rainfall" style={{backgroundColor:  colors[0],  color: colors[1] } 
         }>
           {Tdiv}

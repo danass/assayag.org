@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 
 export const Menu = () => {
-    document.body.classList.remove('background-no')
     return (
         <div className="menu">
             <div>
