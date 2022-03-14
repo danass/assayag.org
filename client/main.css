@@ -1,8 +1,28 @@
 body {
   padding: 10px;
   background: #efefefbd;
- 
+  font: 400 1rem/2 Inter;
 }
+/*
+p: 400 1rem/2 Inter;
+max size: --max-width: 1440px;
+code: 400 0.875rem/1.5 Inter;
+roundign corners: --elem-radius: 0.25rem;
+--font-fallback: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-sans;
+*/
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.var.woff2")
+      format("woff2 supports variations"),
+    url("/fonts/Inter.var.woff2") format("woff2-variations");
+  font-weight: 1 999;
+  font-stretch: 75% 100%;
+  font-style: oblique 0deg 20deg;
+  font-display: swap;
+}
+
 
 .task-form {
   margin-top: 1rem;
@@ -49,6 +69,7 @@ a {
   border-bottom: thick;
   position: relative;
   text-decoration-color: #a30077;
+  font: 600 1rem/2 Inter;
 }
 
  a:hover {
@@ -68,10 +89,16 @@ a:active {
   color: #a30077;
 }
 
+
 h1 {
-  font-weight: normal;
   margin: 0px;
   padding: 0px 40px;
   text-align: right;
-  font-size: 2.7em;
+  font: 300 2.25rem/1.138 Inter;
+  letter-spacing: -.5px;
+}
+
+#main-container {
+  max-width: 1440px;
+  margin: 0 auto;
 }

@@ -21,7 +21,14 @@ Meteor.startup(() => {
   render(
     <BrowserRouter>
     <Routes>
-      <Route path="/" index  element={<div><Menu /><App /></div>} />
+      <Route path="/" index element={<div onScroll={(e) => {
+        if (e.target.scrollTop > 1) {
+          document.getElementById('main-container-header-title h1').classList.add('menu-dissapear');
+        }
+        else {
+          document.getElementById('main-container-header-title h1').classList.remove('menu-dissapear');
+        }
+      }}><Menu /><App /></div>} />
       <Route path="/rain" element={<div><Menu /><Rain /></div>} />
       <Route path="/asocial"  element={<div><Menu /><Asocial /></div>} />
       <Route path="/mail"  element={<div><Menu /><Mail /></div>} />

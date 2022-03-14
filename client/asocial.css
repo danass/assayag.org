@@ -23,12 +23,27 @@
     color: #944199;
     background: #8a008b1c;
     right: 0;
-    z-index: 1;
-    margin-bottom: 20px;
-
-    margin-right: -18px;
+    position: fixed;
+    z-index: 2;
+    opacity: 1;
 }
 
+.menu-dissapear {
+    opacity: 0!important;
+    transition: 0.3s ease;
+
+}
+@media screen and (orientation:portrait) {
+    #main-container-header-title  {
+        position: relative;
+    }
+}
+
+@media screen and (max-width:1400px) {
+    #main-container-header-title  {
+        position: relative;
+    }
+}
 .main-container-block, #main-container-header-instructions {
     background: #efefef;
     margin-bottom: 10px;

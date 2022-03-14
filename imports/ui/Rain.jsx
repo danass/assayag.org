@@ -69,7 +69,7 @@ setPluie(pluie => {
  
   return (
 
-    <div>
+    <div id="main-container">
         <div id="main-container-header">
         <div id="main-container-header-title">
         <h1>It's Raining Text!</h1>
