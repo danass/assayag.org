@@ -185,7 +185,7 @@ export const Asocial = () => {
       <div id="main-container-header">
 
         <div id="main-container-header-title">
-          Asocial Networks Mirror
+          <h1>Asocial Networks Mirror</h1>
         </div>
 
         <div className="main-container-block">

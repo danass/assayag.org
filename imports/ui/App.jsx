@@ -12,7 +12,7 @@ export const App = () => {
       
       <div id="main-container-header">
         <div id="main-container-header-title">
-          Home
+          <h1>Home</h1>
         </div>
         
         <div id="main-container-header-instructions">
