@@ -16,17 +16,13 @@ export const App = () => {
         </div>
         
         <div id="main-container-header-instructions">
-          <Link to="/mail">contact</Link>
+        <ul> <Link to="/mail">contact</Link></ul>
         </div>
       </div>
-      
-      
           <div id="main-container-content" className="css-greydient main-content-fit">
-          
-        
         </div>
       <div id="main-container-footer">
-        
+      Copyright © 2022. All rights reserved
       </div>
     </div>
   )

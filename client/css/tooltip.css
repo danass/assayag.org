@@ -5,6 +5,7 @@
     width: 100%;
     background: #e8e8e8;
     overflow: overlay;
+    box-shadow: 0 4px 8px rgba(118,118,120,0.2);
   }
   
   .container-tooltip {
@@ -60,12 +61,13 @@
 }
   
 .container-div {
-  background: #e8e8e8;
+  background: #f3f3f3;
   margin: 0 auto;
   padding: 23px 0px;
   min-height: 50vh;
   min-width: fit-content;
   width: 100%;
+
 }
   
 

@@ -2,30 +2,18 @@
     margin-bottom: 10px;
 }
 
-/* #main-container-header-title {
-    width: fit-content;
-    color: #4f3082cf;
-    font-weight: bolder;
-    border: solid 15px #f3f3f300;
-    margin-bottom: 10px;
-    /* border-right-color: currentcolor; 
-    float: right;
-    background: #f0f0f000;  
-    padding: 0px 21px;
-} */
-
 #main-container-header-title {
     width: fit-content;
     float: right;
-    padding: 0px 36px;
     text-transform: capitalize;
-    border-radius: 200px 0px 0px 200px;
+    border-radius: 200px;
     color: #944199;
     background: #8a008b1c;
     right: 0;
-    position: fixed;
     z-index: 2;
     opacity: 1;
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
 
 .menu-dissapear {
@@ -40,7 +28,7 @@
     }
     #main-container-header-title  h1 {
         font: 500 1.444rem Inter;
-        line-height: 3rem;
+        line-height: 5rem;
 
         
     }
@@ -48,20 +36,33 @@
 
 @media screen and (max-width:1000px) {
     #main-container-header-title  {
-        position: relative;
         margin-bottom: 20px;
+        margin-left: 20px;
     }
 }
-.main-container-block, #main-container-header-instructions {
-    background: #efefef;
-    margin-bottom: 10px;
+
+#main-container-header-instructions {
+    background: #e7d8e7;
+    margin-bottom: 20px;
     opacity: 0.6;
-    padding: 30px;
+    display: flow-root;
+    font-size: 1.2em;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(118,118,120,0.2);
+    border-radius: 0.25rem;
+  }
+  
+
+.main-container-block{
+    background: aliceblue;
+    margin-bottom: 20px;
+    opacity: 0.6;
     display: flow-root;
     min-width: 36%;
-    width: fit-content;
     font-size: 1.2em;
-    border-right: solid 40px #f3f3f3;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(118,118,120,0.2);
+    border-radius: 0.25rem;
 }
 
 
@@ -86,7 +87,11 @@
     opacity: 0.9;
     border: solid 20px #ededed;
 }
-
+.asocial-content-wrapper {
+    min-height: 75vh;
+    box-shadow: 0 4px 8px rgba(118,118,120,0.2);
+    margin-bottom: 20px;
+}
 .asocial-source {
     font-size: 0.8em;
     color: #9c9c9c;
@@ -163,6 +168,7 @@ justify-content: center;
     cursor: copy;
     background: #ffffffeb;
     margin-bottom: 13px;
+    box-shadow: 0 4px 8px rgba(118,118,120,0.2);
 }
   
 .asocial-usernames {

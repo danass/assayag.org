@@ -1,5 +1,5 @@
 import { mailconf } from './conf.js';
-import {TwitterCollection } from '../imports/api/Collection.js';
+import {TwitterCollection } from '../assets/api/Collection.js';
 
 Meteor.methods({
   async mail(from, msg, accuse) {
@@ -69,7 +69,6 @@ Meteor.methods({
     
      try {
         let Data = await TwitterCollection.rawCollection().aggregate(currentOptions).toArray()
-        console.log(Data)
         return [[Data], useroptions['params'].maxRand, useroptions]
         
       } catch (e) {

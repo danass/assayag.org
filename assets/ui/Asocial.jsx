@@ -81,11 +81,9 @@ export const TweetRender = ({ tweet, i }) => {
        if(tweet.url){
         setwgetResult(...wgetResult, getUrl(tweet.url[tweet.url.length - 1]))
        }
-       
-
        }, [])}
    
-    <div className="asocial-url">{tweet.url ?  wgetResult : []}</div>
+    <div className="asocial-url">{tweet.url ?  wgetResult? wgetResult && console.log(wgetResult): [] : []}</div>
     <div className="asocial-media">{tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}</div>
     {result == undefined?<Loading props={{ init: "Fetching Tumblr"}} />:result == "notumblr"?<div>no tumblr data</div>:result == "not"? null:<div className="asocial-image"><img src={result} /></div>}
     {caption?<div className="asocial-caption" dangerouslySetInnerHTML={{ __html: caption }}></div>:null}
@@ -131,11 +129,8 @@ export const Asocial = () => {
       tweets[i].text = tweet.text.replace(/@[a-zA-Z0-9_]+/g, '');
       let url = tweet.text.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g);
       tweets[i].url = url ? url : [];
-      console.log(i, tweets)
       })
-      
       setTweet(tweets)
-
     });
   }
 
@@ -165,7 +160,6 @@ export const Asocial = () => {
     if(e.target.nodeName  == 'A' ) {
       return
     }
-    
     fetchData(userOptions, 'click', Math.floor(Math.random() * maxRand) + 1)
   }
 
@@ -187,19 +181,17 @@ export const Asocial = () => {
         <div id="main-container-header-title">
           <h1>Asocial Networks Mirror</h1>
         </div>
-
-        <div className="main-container-block">
-          A mirror of my pityful social life through the main platforms, Tiktok, Youtube, Twitter.<br></br>
-          A navigator through archives of the social media.
-        </div>
-
         <div id="main-container-header-instructions">
-          Browse using input box with an <b>id number</b>,<br></br>
-          or <b>click on main box</b> to shuffle and get a new random entry.
-        </div>
+        
+          <ul>A mirror of my pityful social life through the main platforms, Tiktok, Youtube, Twitter.
+          </ul><ul>A navigator through archives of the social media.
+        </ul></div>
+        
+
+
 
       </div>
-      <div className="main-container-wrapper">
+      <div className="main-container-wrapper asocial-content-wrapper">
         
       <div id="main-container-selectors">
       <div id="main-container-header-navigation">
@@ -208,21 +200,29 @@ export const Asocial = () => {
         {createBoxes(userOptions)}
        
           <p>nb of documents:<input className="main-container-header-navigation-input" type="number" min="1" max="15" value={userOptions.params.listSize} onChange={(e) => {
-             setuserOptions({ ...userOptions, params: { ...userOptions.params, listSize: e.target.value } })  
+             setuserOptions({ ...userOptions, params: { ...userOptions.params, listSize: e.target.value == 0? 1: e.target.value} })  
              }}></input>
           </p>
       </div>
       
       <div id="main-container-content" className="css-greydient" tabIndex={0} onClick={(e) => handleClick(e)} >
                 {tweet.map((tweet_, i) => {
+                  console.log("noway?", tweet_.date?true:false, tweet_.date + i, Math.floor(Math.random() * 10000) )
                 return (
-                  <TweetRender key={tweet_.date + i} tweet={tweet_} />
+                  <TweetRender key={tweet_.date? tweet_.date: Math.floor(Math.random() * 10000)} tweet={tweet_} />
                 )
               })}
       </div>
       </div>
+
+
+      <div className="main-container-block">
+          <ul>Browse using input box with an <b>id number</b>,
+          </ul><ul>or <b>click on main box</b> to shuffle and get a new random entry.
+        </ul></div>
+        
       <div id="main-container-footer">
-        <br></br>
+      Copyright © 2022. All rights reserved
       </div>
 
       

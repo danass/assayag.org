@@ -150,7 +150,7 @@ setPluie(pluie => {
 
       
       <div id="main-container-footer"></div>
-      
+      Copyright © 2022. All rights reserved
     </div>
     </div>
   );

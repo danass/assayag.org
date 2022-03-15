@@ -6,6 +6,8 @@
     flex-direction: column;
     align-items: flex-start;
     margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(118,118,120,0.2);
+    font: 300 1rem/1.2 Inter;
 }
 
 .rain-buttons-align {
@@ -74,6 +76,7 @@
     padding: 13px;
     border-radius: 6px;
     margin: 0px 21px;
+    box-shadow: 0 4px 8px rgba(118,118,120,0.2);
 }
 
 #rain-controls input, #rain-controls button, #rain-controls select {

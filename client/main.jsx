@@ -1,11 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import  {render} from 'react-dom';
-import { App } from '/imports/ui/App';
-import { Menu } from '/imports/ui/Menu';
-import { Rain }  from '/imports/ui/Rain';
-import { Asocial } from '../imports/ui/Asocial';
-import { Mail } from '../imports/ui/Modules';
+import { App } from '/assets/ui/App';
+import { Menu } from '/assets/ui/Menu';
+import { Rain }  from '/assets/ui/Rain';
+import { Asocial } from '../assets/ui/Asocial';
+import { Mail } from '../assets/ui/Modules';
 
 import {
   BrowserRouter,
@@ -13,29 +13,25 @@ import {
   Route
 } from "react-router-dom";
 
-rootElement = document.getElementById('react-target');
+const rootElement = document.getElementById('react-target');
 
-
-Meteor.startup(() => {
 
   render(
     <BrowserRouter>
     <Routes>
-      <Route path="/" index element={<div onScroll={(e) => {
-        if (e.target.scrollTop > 1) {
-          document.getElementById('main-container-header-title h1').classList.add('menu-dissapear');
-        }
-        else {
-          document.getElementById('main-container-header-title h1').classList.remove('menu-dissapear');
-        }
-      }}><Menu /><App /></div>} />
+      <Route path="/" index element={<div ><Menu /><App /></div>} />
       <Route path="/rain" element={<div><Menu /><Rain /></div>} />
       <Route path="/asocial"  element={<div><Menu /><Asocial /></div>} />
       <Route path="/mail"  element={<div><Menu /><Mail /></div>} />
+      <Route path="/asocial/tiktok/:id" element={<div><Menu /><Asocial /></div>} /> 
       <Route path='*' element={<div><Menu /><h1>Walou 404</h1></div>}/>
     </Routes>
     </BrowserRouter>, 
     rootElement
   ) 
-});
+
+Meteor.startup(() => {
+  // code to run on server at startup
+}
+);
 

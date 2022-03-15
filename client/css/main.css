@@ -1,7 +1,8 @@
 body {
-  padding: 10px;
+  padding: 20px;
   background: #efefefbd;
   font: 400 1rem/2 Inter;
+  
 }
 /*
 p: 400 1rem/2 Inter;
@@ -52,6 +53,7 @@ roundign corners: --elem-radius: 0.25rem;
 a {
   color: darkmagenta;
   text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
 .menu a {
   color: #a30077;
@@ -94,13 +96,31 @@ h1 {
   margin: 0px;
   padding: 0px 40px;
   text-align: right;
-
-
   font: 500 1.444rem Inter;
   line-height: 5rem;
+
 }
 
 #main-container {
   max-width: 1440px;
   margin: 0 auto;
+}
+
+ul {
+  padding-inline-end: 40px;
+} 
+
+.footer-container .top-footer > li .subcategory-links li a:hover:after {
+  width: 100%;
+}
+.footer-container .top-footer > li .subcategory-links li a:after {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 0;
+  content: "";
+  display: block;
+  background: #B89F7C;
+  transition: ease all 0.3s;
 }

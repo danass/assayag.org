@@ -1,6 +1,6 @@
 import { TwitterApi } from 'twitter-api-v2';
 import { twitterconf } from '../conf.js';
-import { TwitterCollection } from '../../imports/api/Collection.js';
+import { TwitterCollection } from '../../assets/api/Collection.js';
 import fs from 'fs'
 
 // import { tiktokdata } from '../data/tiktokdata.js';
