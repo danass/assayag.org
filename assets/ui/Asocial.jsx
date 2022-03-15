@@ -1,8 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from "react";
-import { Global } from './Modules'
+import { Global } from './Membrane'
 import { Loading } from './Animations';
-import { Footer } from './Footer';
 
 
 export const TweetRender = ({ tweet, i }) => {
@@ -84,7 +83,7 @@ export const TweetRender = ({ tweet, i }) => {
        }
        }, [])}
    
-    <div className="asocial-url">{tweet.url ?  wgetResult? wgetResult && console.log(wgetResult): [] : []}</div>
+    <div className="asocial-url">{tweet.url ?  wgetResult? wgetResult : [] : []}</div>
     <div className="asocial-media">{tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}</div>
     {result == undefined?<Loading props={{ init: "Fetching Tumblr"}} />:result == "notumblr"?<div>no tumblr data</div>:result == "not"? null:<div className="asocial-image"><img src={result} /></div>}
     {caption?<div className="asocial-caption" dangerouslySetInnerHTML={{ __html: caption }}></div>:null}
@@ -208,7 +207,6 @@ export const Asocial = () => {
       
       <div id="main-container-content" className="css-greydient" tabIndex={0} onClick={(e) => handleClick(e)} >
                 {tweet.map((tweet_, i) => {
-                  console.log("noway?", tweet_.date?true:false, tweet_.date + i, Math.floor(Math.random() * 10000) )
                 return (
                   <TweetRender key={tweet_.date? tweet_.date: Math.floor(Math.random() * 10000)} tweet={tweet_} />
                 )
@@ -221,9 +219,6 @@ export const Asocial = () => {
           <ul>Browse using input box with an <b>id number</b>,
           </ul><ul>or <b>click on main box</b> to shuffle and get a new random entry.
         </ul></div>
-        
-      <Footer />
-
       
     </div>
     //     <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >

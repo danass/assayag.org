@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
 import { Html2Canvas } from "./Html2Canvas";
-import { Uuid } from "./Modules";
 import html2canvas from "html2canvas";
 import { TaskRender } from "./TaskRender";
-import { isMobile } from "./Menu"
+import { isMobile, Uuid } from "./Membrane"
 
 export const Tooltip = (props) => {
 

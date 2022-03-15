@@ -1,36 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-
-export function Global(currentState) {
-
-  let localState = {
-    pageName: currentState.pageName,
-    year: new Date().getFullYear(),
-    link: useLocation().pathname
-  }
-
-  document.title = "{" + localState.pageName + "} ${DANIEL@ASSAYAG} artist coder activist. <- \\1986-undefined/"
-  let meta = document.getElementsByTagName('meta')
-  meta.description.content = currentState.description
-
-  var uC = document.querySelectorAll("link[rel='canonical']")[0];
-  var newURL = "https://www.assayag.org" + localState.link + '/';
-  uC.setAttribute("href", newURL);
-
-  return (
-    {
-      title: document.title,
-      link: localState.link
-    }
-  )
-}
-
-export const Uuid = () => {
-  return 'xxxx-yxxx-xxxxx'.replace(/[xy]/g, function (c) {
-    return (c === 'x' ? (Math.random() * 16 | 0) : ('r&0x3' | '0x8')).toString(16);
-  })
-}
-
 
 export const Fonts = () => {
   const [fonts, setFonts] = useState([]);
@@ -94,7 +62,6 @@ export const Fonts = () => {
   )
 }
 
-
 export const ColorPicker = (props) => {
   const [color, setColor] = useState([props.values[0], props.values[1]]);
 
@@ -106,7 +73,6 @@ export const ColorPicker = (props) => {
     }
     return color;
   }
-
 
   return (
     <div className="rain-pickers">

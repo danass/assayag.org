@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Tooltip } from "./Tooltip";
-import { isMobile } from "./Menu";
 import { Fonts, ColorPicker } from "./Modules"
-import { Global, Uuid } from './Modules'
-import { Footer } from "./Footer";
+import { Global, Uuid, isMobile } from "./Membrane";
+
 
 export const RaindropsRender = ({ drop }) => {
   return <div>{drop.text}</div>;
@@ -148,8 +147,6 @@ setPluie(pluie => {
  
 
       <div id="rain-library"></div>
-
-      <Footer />
 
     </div>
     </div>

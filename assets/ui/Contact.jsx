@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Global } from './Modules';
-import { Footer } from './Footer';
+import { Global } from './Membrane';
+
 
 export const Contact = () => {
 
@@ -49,7 +49,6 @@ export const Contact = () => {
           <button id="mail-button" onClick={sendmail}>Send</button>
         </div>
       </div>
-      <Footer />
     </div>
 
   )

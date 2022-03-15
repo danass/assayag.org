@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Global } from './Modules'
-import { Footer } from './Footer';
+import { Global } from './Membrane'
 
-export const App = () => {
+export const Home = () => {
 
   const globalState = Global({ pageName: "Home", description: "{Home} => Daniel Assayag is an Artist and Project Leader in Education. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]." })
 
@@ -22,7 +21,7 @@ export const App = () => {
       </div>
       <div id="main-container-content" className="css-greydient main-content-fit">
       </div>
-      <Footer />
+
     </div>
   )
 }

@@ -1,12 +1,13 @@
 import React from 'react'
 import { Meteor } from 'meteor/meteor'
 import  {render} from 'react-dom'
-import { App } from '/assets/ui/App'
-import { Menu } from '/assets/ui/Menu'
+import { Home } from '/assets/ui/Home'
 import { Rain }  from '/assets/ui/Rain'
-import { Asocial } from '../assets/ui/Asocial'
-import { Contact } from '../assets/ui/Contact'
+import { Asocial } from '/assets/ui/Asocial'
+import { Contact } from '/assets/ui/Contact'
+import { Membrane } from '/assets/ui/Membrane'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+
 
 const rootElement = document.getElementById('react-target')
 
@@ -30,11 +31,12 @@ export const Handle404 = (props) => {
   render(
     <BrowserRouter>
     <Routes>
-      <Route path="/" index element={<div ><Menu /><App /></div>} />
-      <Route path="/rain" element={<div><Menu /><Rain /></div>} />
-      <Route path="/asocial"  element={<div><Menu /><Asocial /></div>} />
-      <Route path="/mail"  element={<div><Menu /><Contact /></div>} /> 
-      <Route path='*' element={<div><Menu /><Handle404 /></div>}/>
+      <Route path="/" index element={<Membrane><Home /></Membrane>} />
+      <Route path="/rain" element={<Membrane><Rain /></Membrane>} />
+      <Route path="/asocial"  element={<Membrane><Asocial /></Membrane>} />
+      <Route path='/mail' element={ <Membrane><Contact /></Membrane>  } />
+      <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>
+      
     </Routes>
     </BrowserRouter>, 
     rootElement

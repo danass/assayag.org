@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import html2canvas from "html2canvas";
 import { Tooltip } from "./Tooltip";
-import { Uuid } from "./Modules";
+import { Uuid } from "./Membrane";
 
 export const Html2Canvas = (props) => {
   const [canvas, setCanvas] = useState(null);
