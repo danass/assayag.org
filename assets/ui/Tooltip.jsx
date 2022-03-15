@@ -14,8 +14,6 @@ export const Tooltip = (props) => {
   }]);
 
   function handleClick() {
-
-
     if (props.action == "createimg") {
       try {
         

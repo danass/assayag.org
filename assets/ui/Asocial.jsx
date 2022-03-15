@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from "react";
 import { Global } from './Modules'
 import { Loading } from './Animations';
+import { Footer } from './Footer';
 
 
 export const TweetRender = ({ tweet, i }) => {
@@ -221,9 +222,7 @@ export const Asocial = () => {
           </ul><ul>or <b>click on main box</b> to shuffle and get a new random entry.
         </ul></div>
         
-      <div id="main-container-footer">
-      Copyright © 2022. All rights reserved
-      </div>
+      <Footer />
 
       
     </div>

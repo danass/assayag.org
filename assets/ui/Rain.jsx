@@ -3,6 +3,7 @@ import { Tooltip } from "./Tooltip";
 import { isMobile } from "./Menu";
 import { Fonts, ColorPicker } from "./Modules"
 import { Global, Uuid } from './Modules'
+import { Footer } from "./Footer";
 
 export const RaindropsRender = ({ drop }) => {
   return <div>{drop.text}</div>;
@@ -148,9 +149,8 @@ setPluie(pluie => {
 
       <div id="rain-library"></div>
 
-      
-      <div id="main-container-footer"></div>
-      Copyright © 2022. All rights reserved
+      <Footer />
+
     </div>
     </div>
   );
