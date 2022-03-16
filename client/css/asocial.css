@@ -101,6 +101,7 @@
 .asocial-media {
     display: flex;
     justify-content: center;
+    padding-bottom: 20px;
 }
 
 .asocial-media img {
@@ -124,12 +125,15 @@ justify-content: center;
     font-size: xx-large;
     display: flex;
     justify-content: center;
-    padding-bottom: 10px;
 }
 
 .asocial-date {
     font-style: italic;
     font-size: small;
+}
+
+.asocial-entry-header-container-nomedia {
+    padding: 10px;
 }
 
 .selector-checkbox {
@@ -201,7 +205,6 @@ justify-content: center;
 }
 
 .asocial-mirror-entry {
-    padding: 10px;
     display: inherit;
     cursor: copy;
     background: #ffffffeb;

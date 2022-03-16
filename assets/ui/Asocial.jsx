@@ -73,18 +73,20 @@ export const TweetRender = ({ tweet, i }) => {
   }
 
   return <div className="asocial-mirror-entry">
+    <div className='asocial-entry-header-container-nomedia'>
     <div className="asocial-source">{tweet.source}</div>
     <div className="asocial-date">{new Date(tweet.date).toString()}</div>
     {parseText()}
-    <div className="asocial-usernames">{tweet.usernames ? tweet.usernames.map((u, i) => { return <div key={i + u}>{u}</div> }) : ""}</div>
+    {tweet.usernames? <div className="asocial-usernames">{tweet.usernames.map((u, i) => { return <div key={i + u}>{u}</div> })}</div>: null }
+    
     {useEffect(() => {
       if (tweet.url) {
         setwgetResult(...wgetResult, getUrl(tweet.url[tweet.url.length - 1]))
       }
     }, [])}
-
-    <div className="asocial-url">{tweet.url ? wgetResult ? wgetResult : [] : []}</div>
-    <div className="asocial-media">{tweet.media ? <img src={tweet.media[0].media_url_https} /> : null}</div>
+    {tweet.url ? <div className="asocial-url">{wgetResult}</div> : null}
+    </div>
+    {tweet.media ? <div className="asocial-media"><img src={tweet.media[0].media_url_https} /></div>: null}
     {result == undefined ? <Loading props={{ init: "Fetching Tumblr" }} /> : result == "notumblr" ? <div>no tumblr data</div> : result == "not" ? null : <div className="asocial-image"><img src={result} /></div>}
     {caption ? <div className="asocial-caption" dangerouslySetInnerHTML={{ __html: caption }}></div> : null}
   </div>;

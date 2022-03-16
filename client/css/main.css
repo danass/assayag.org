@@ -128,3 +128,7 @@ ul {
 .footer-links {
   font: 400 calc(10/12 * 1rem)/6 Inter;
 }
+
+.loader-container {
+  padding:10px;
+}
