@@ -42,7 +42,7 @@ export const Footer = () => {
     return (
         <div id="main-container-footer">
             <div className="footer-links">
-                <Link to="/terms-of-use">Terms of Use</Link>
+                <Link to="/terms-of-use">Terms of Use</Link> - <Link to="/privacy">Privacy Policy</Link>
             </div>
             <div id="footer-copyright">
                 Copyright © 2022. All rights reserved

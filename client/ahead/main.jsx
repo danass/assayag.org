@@ -9,6 +9,7 @@ import { Membrane } from '/assets/ui/Membrane'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { LatestActivity } from '/assets/ui/LatestActivity'
 import { Terms } from '/assets/ui/static/Terms'
+import { Privacy } from '/assets/ui/static/Privacy'
 
 
 const rootElement = document.getElementById('react-target')
@@ -40,6 +41,7 @@ export const Handle404 = (props) => {
       <Route path='/la' element={ <Membrane><LatestActivity /></Membrane>  } />
       <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>
       <Route path='/terms-of-use' element={ <Membrane><Terms /></Membrane>  } />
+      <Route path='/privacy' element={ <Membrane><Privacy /></Membrane>  } />
       
     </Routes>
     </BrowserRouter>, 
