@@ -360,3 +360,263 @@ export const Privacy = () => {
  </>)
 
 }
+
+export const ReturnAndRefund = () => {
+    return (<>
+<div>
+    <h1>Return &amp; Refund Policy</h1>
+    <p>Updated at 2022-03-16</p>
+    <p><br></br></p>
+    <h1>Definitions and key terms</h1>
+    <p><span>To help explain things as clearly as possible in this Return &amp; Refund Policy,
+            every time any of these terms are referenced, are strictly defined as:</span></p>
+    <p><br></br></p>
+    <ul>
+
+        <li><span><strong>Company:</strong> when this policy mentions “Company,” “we,” “us,” or
+                “our,” it refers to <a>Assayag.org</a> that is responsible for your information under this Return &amp;
+                Refund Policy.<br></br></span></li>
+        <li><span><strong>Customer:</strong> refers to the company, organization or person that
+                signs up to use the Assayag.org Service to manage the relationships with your consumers or service
+                users.<br></br></span></li>
+        <li><span><strong>Device:</strong> any internet connected device such as a phone, tablet,
+                computer or any other device that can be used to visit Assayag.org and use the services.<br></br></span></li>
+        <li><span><strong>Service:</strong> refers to the service provided by <a>Assayag.org</a>
+                as described in the relative terms (if available) and on this platform.<br></br></span></li>
+        <li><span><strong>Website:</strong> <a>Assayag.org</a>’s site, which can be accessed via
+                this URL: <a>.</a><br></br></span></li>
+        <li><span><strong>You:</strong> a person or entity that is registered with
+                <a>Assayag.org</a> to use the Services.<br></br></span></li>
+    </ul>
+    <p><br></br></p>
+    <h1>Return &amp; Refund Policy</h1>
+    <p><span>Thanks for shopping at <a>Assayag.org</a>. We appreciate the fact that you like to
+            buy the stuff we build. We also want to make sure you have a rewarding experience while you’re exploring,
+            evaluating, and purchasing our products.
+            <br></br><br></br>
+            As with any shopping experience, there are terms and conditions that apply to transactions at
+            <a>Assayag.org</a>. We’ll be as brief as our attorneys will allow. The main thing to remember is that by
+            placing an order or making a purchase at <a>Assayag.org</a>, you agree to the terms set forth below along
+            with <a>Assayag.org</a>’s&nbsp;Privacy Policy.
+            <br></br><br></br>
+            If there’s something wrong with the product you bought, or if you are not happy with it, you have () to
+            issue a refund and return your item.
+            <br></br><br></br>
+            If you would like to return a product, the only way would be if you follow the next guidelines:</span></p>
+    <ul>
+
+        <li><span>The product has to be in the packaging we sent in the first place.</span></li>
+
+    </ul>
+    <p><br></br></p>
+    <h1>Refunds</h1>
+    <p><span>We at&nbsp;<a>Assayag.org</a>&nbsp;commit ourselves to serving our customers with
+            the best products. Every single product that you choose is thoroughly inspected, checked for defects and
+            packaged with utmost care. We do this to ensure that you fall in love with our products.
+            <br></br><br></br>
+            Sadly, there are times when we may not have the product(s) that you choose in stock, or may face some issues
+            with our inventory and quality check. In such cases, we may have to cancel your order. You will be intimated
+            about it in advance so that you don't have to worry unnecessarily about your order. If you have purchased
+            via Online payment (not Cash on Delivery), then you will be refunded once our team confirms your request.
+            <br></br><br></br>
+            We carry out thorough quality check before processing the ordered item. We take utmost care while packing
+            the product. At the same time we ensure that the packing is good such that the items won’t get damaged
+            during transit. Please note that <a>Assayag.org</a> is not liable for damages that are caused to the items
+            during transit or transportation.
+            <br></br><br></br>
+            We will revise your returned product as soon as we receive it and if it follows the guidelines addressed
+            above, we will proceed to issue a refund of your purchase. Your refund may take a couple of days to process
+            but you will be notified when you receive your money.</span></p>
+    <p><br></br></p>
+    <h1>Shipping</h1>
+    <p><span><a>Assayag.org</a> is not responsible for return shipping costs. Every shipping has
+            to be paid by the customer, even if the item had free shipping in the first place, the customer has to pay
+            for the shipping in return.
+        </span></p>
+    <p><br></br></p>
+    <h1>Your Consent</h1>
+    <p><span>By using our platform, registering an account, or making a purchase, you hereby
+            consent to our Return &amp; Refund Policy and agree to its terms.</span></p>
+    <p><br></br></p>
+    <h1>Changes To Our Return &amp; Refund Policy</h1>
+    <p><span>Should we update, amend or make any changes to this document so that they accurately
+            reflect our Service and policies. Unless otherwise required by law, those changes will be prominently posted
+            here. Then, if you continue to use the Service, you will be bound by the updated Return &amp; Refund Policy.
+            If you do not want to agree to this or any updated Return &amp; Refund Policy, you can delete your
+            account.</span></p>
+    <p><br></br></p>
+    <h1>Contact Us</h1>
+    <p><span>If, for any reason, You are not completely satisfied with any good or service that
+            we provide, don't hesitate to contact us and we will discuss any of the issues you are going through with
+            our product.</span></p>
+    <ul>
+
+
+        <li><span>Via this Link: <Link to="/mail">https://www.assayag.org/mail</Link></span></li>
+
+    </ul>
+</div>
+    </>)
+
+}
+
+export const Disclaimer = () => {
+    return (
+        <>
+        <div>
+    <h1>Disclaimer</h1>
+    <p>Updated at 2022-03-16</p>
+    <p><span><a>Assayag.org</a> hereby grants you access to <a>.</a> (“the Website”) and invites
+            you to purchase the services offered here.</span></p>
+    <p><br></br></p>
+    <h1>Definitions and key terms</h1>
+    <p><span>To help explain things as clearly as possible in this Disclaimer, every time any of
+            these terms are referenced, are strictly defined as:</span></p>
+    <p><br></br></p>
+    <ul>
+        <li><span><strong>Cookie:</strong> small amount of data generated by a website and saved
+                by your web browser. It is used to identify your browser, provide analytics, remember information about
+                you such as your language preference or login information.<br></br></span></li>
+        <li><span><strong>Company:</strong> when this policy mentions “Company,” “we,” “us,” or
+                “our,” it refers to <a>Assayag.org</a> that is responsible for your information under this Privacy
+                Policy.<br></br></span></li>
+        <li><span><strong>Country:</strong> where <a>Assayag.org</a> or the owners/founders of
+                <a>Assayag.org</a> are based, in this case is <a>France</a>.<br></br></span></li>
+        <li><span><strong>Customer:</strong> refers to the company, organization or person that
+                signs up to use the <a>Assayag.org</a> Service to manage the relationships with your consumers or
+                service users.<br></br></span></li>
+        <li><span><strong>Device:</strong> any internet connected device such as a phone, tablet,
+                computer or any other device that can be used to visit <a>Assayag.org</a> and use the
+                services.<br></br></span></li>
+        <li><span><strong>IP address:</strong> Every device connected to the Internet is assigned
+                a number known as an Internet protocol (IP) address. These numbers are usually assigned in geographic
+                blocks. An IP address can often be used to identify the location from which a device is connecting to
+                the Internet.<br></br></span></li>
+        <li><span><strong>Personnel:</strong> refers to those individuals who are employed by
+                <a>Assayag.org</a> or are under contract to perform a service on behalf of one of the
+                parties.<br></br></span></li>
+        <li><span><strong>Personal Data:</strong> any information that directly, indirectly, or
+                in connection with other information — including a personal identification number — allows for the
+                identification or identifiability of a natural person.<br></br></span></li>
+        <li><span><strong>Service:</strong> refers to the service provided by <a>Assayag.org</a>
+                as described in the relative terms (if available) and on this platform.<br></br></span></li>
+        <li><span><strong>Third-party service:</strong> refers to advertisers, contest sponsors,
+                promotional and marketing partners, and others who provide our content or whose products or services we
+                think may interest you.<br></br></span></li>
+        <li><span><strong>Website:</strong> <a>Assayag.org</a>’s site, which can be accessed via
+                this URL: <a>https://www.assayag.org.</a><br></br></span></li>
+        <li><span><strong>You:</strong> a person or entity that is registered with
+                <a>Assayag.org</a> to use the Services.<br></br></span></li>
+    </ul>
+    <p><br></br></p>
+    <h1>Limited liability</h1>
+    <p><span>
+            We endeavour to update and/or supplement the content of our service on a regular basis. Despite our care and
+            attention, content may be incomplete and/or incorrect.
+            <br></br>
+            The materials we offer are offered without any form of guarantee or claim to their correctness. These
+            materials can be changed at any time without prior notice from us.
+            <br></br>
+            Particularly, all prices on our service are stated subject to typing and programming errors. No liability is
+            assumed for the implications of such errors. No agreement is concluded on the basis of such errors.
+            <br></br>
+            We shall not bear any liability for hyperlinks to websites or services of third parties included on our
+            service. From our service, you can visit other websites by following hyperlinks to such external sites.
+            While we strive to provide only quality links to useful and ethical websites, we have no control over the
+            content and nature of these sites. These links to other websites do not imply a recommendation for all the
+            content found on these sites. Site owners and content may change without notice and may occur before we have
+            the opportunity to remove a link which may have gone ‘bad’.
+            <br></br>
+            Please be also aware that when you leave our service, other sites may have different privacy policies and
+            terms which are beyond our control. Please be sure to check the Privacy Policies of
+            these sites as well as their "Terms of Service" before engaging in any business or uploading any
+            information.</span></p>
+    <p><br></br></p>
+    <h1>Errors and Omissions Disclaimer</h1>
+    <p><span>We are not responsible for any content, code or any other imprecision.
+            <br></br>
+            We do not provide warranties or guarantees.
+            <br></br>
+            In no event shall we be liable for any special, direct, indirect, consequential, or incidental damages or
+            any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in
+            connection with the use of the Service or the contents of the Service. We reserve the right to make
+            additions, deletions, or modifications to the contents on the Service at any time without prior
+            notice.</span></p>
+    <p><br></br></p>
+    <h1>Copyright Disclaimer</h1>
+    <p><span>All intellectual property rights concerning these materials are vested in
+            <a>Assayag.org</a>. Copying, distribution and any other use of these materials is not permitted without the
+            written permission from <a>Assayag.org</a>, except and only to the extent otherwise provided in regulations
+            of mandatory law (such as the right to quote), unless otherwise stated for certain materials.
+        </span></p>
+    <p><br></br></p>
+    <h1>General Disclaimer</h1>
+    <p><span>The <a>Assayag.org</a> Service and its contents are provided "as is" and "as
+            available" without any warranty or representations of any kind, whether express or implied.
+            <a>Assayag.org</a> is a distributor and not a publisher of the content supplied by third parties; as such,
+            <a>Assayag.org</a> exercises no editorial control over such content and makes no warranty or representation
+            as to the accuracy, reliability or currency of any information, content, service or merchandise provided
+            through or accessible via the <a>Assayag.org</a> Service. Without limiting the foregoing, <a>Assayag.org</a>
+            specifically disclaims all warranties and representations in any content transmitted on or in
+            connection with the <a>Assayag.org</a> Service or on sites that may appear as links on the
+            <a>Assayag.org</a> Service, or in the products provided as a part of, or otherwise in connection with, the
+            <a>Assayag.org</a> Service, including without limitation any warranties of merchantability, fitness for a
+            particular purpose or non-infringement of third party rights. No oral advice or written information given by
+            <a>Assayag.org</a> or any of its affiliates, employees, officers, directors, agents, or the like will create
+            a warranty. Price and availability information is subject to change without notice. Without limiting the
+            foregoing, <a>Assayag.org</a> does not warrant that the <a>Assayag.org</a> Service will be uninterrupted,
+            uncorrupted, timely, or error-free.
+        </span></p>
+    <p><br></br></p>
+    <h1>Educational Disclosure</h1>
+    <p><span>Any Information provided by <a>Assayag.org</a> is for educational purposes only, and
+            is not to be interpreted as a recommendation for
+            a specific treatment plan, product, or course of action. We are a distributor and not a publisher of the
+            content supplied by third parties; as such, We exercise no editorial control over such content and makes no
+            warranty or representation as to the accuracy, reliability or currency of any information or educational
+            content provided through or accessible via <a>Assayag.org</a>. Without limiting the foregoing, We
+            specifically disclaim all warranties and representations in any content transmitted on or in connection with
+            us or on sites that may appear as links on our platform, or in the products provided as a part of, or
+            otherwise in connection with us. No oral advice or written information given by us or any of its affiliates,
+            employees, officers, directors, agents, or the like will create a warranty.
+        </span></p>
+    <p><br></br></p>
+    <h1>Testimonials Disclosure</h1>
+    <p><span>Any testimonials provided on this platform are opinions of those providing them. The
+            information provided in the testimonials is not to be relied upon to predict results in your specific
+            situation. The results you experience will be dependent on many factors including but not limited to your
+            level of personal responsibility, commitment, and abilities, in addition to those factors that you and/or us
+            may not be able to anticipate.
+            <br></br>
+            We will give honest testimonials to our visitors regardless of any discount. Any product or service that we
+            test are individual experiences, reflecting real life experiences. The testimonials could be displayed on
+            audio, text or video and are not necessarily representative of all of those who will use our products and/or
+            services.
+            <br></br> <a>Assayag.org</a> does not guarantee the same results as the testimonials given on our platform.
+            Testimonials presented on our platform are applicable to the individuals writing them, and may not be
+            indicative of future success of any other individuals.
+            <br></br>
+            Please don’t hesitate to contact us if you would like to know more about testimonials, discounts, or any of
+            the products/services that we review.
+        </span></p>
+    <p><br></br></p>
+    <h1>Your Consent</h1>
+    <p><span>We've updated our Disclaimer to provide you with complete transparency into what is
+            being set when you visit our site and how it's being used. By using our service, registering an account, or
+            making a purchase, you hereby consent to our Disclaimer and agree to its terms.</span></p>
+    <p><br></br></p>
+    <h1>Changes To Our Disclaimer</h1>
+    <p><span>Should we update, amend or make any changes to this document so that they accurately
+            reflect our Service and policies. Unless otherwise required by law, those changes will be prominently posted
+            here. Then, if you continue to use the Service, you will be bound by the updated Disclaimer. If you do not
+            want to agree to this or any updated Disclaimer, you can delete your account.</span></p>
+    <p><br></br></p>
+    <h1>Contact Us</h1>
+    <p><span>Don't hesitate to contact us if you have any questions.</span></p>
+    <ul>
+        <li><span>Via this Link: <Link to="/mail">https://www.assayag.org/mail</Link></span></li>
+    </ul>
+</div>
+        </>
+    )
+}
