@@ -124,3 +124,7 @@ ul {
   background: #B89F7C;
   transition: ease all 0.3s;
 }
+
+.footer-links {
+  font: 400 calc(10/12 * 1rem)/6 Inter;
+}
