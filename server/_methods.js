@@ -1,7 +1,26 @@
 import { mailconf } from './conf.js';
 import {TwitterCollection } from '../assets/api/Collection.js';
+const https = require('https');
 
 Meteor.methods({
+  async fetchTwitter() {
+    const exec = require("child_process").exec;
+    return new Promise((resolve, reject) => {
+      let request = "wget -SO- https://rsshub.app/twitter/user/danielassayag/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showQuotedAuthorAvatarInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweetAndReply=1&showRetweetTextInTitle=0&addLinkForPics=1&showTimestampInDescription=1&showQuotedInTitle=1&heightOfPics=150 2>&1"
+
+      // let request = "wget -SO- -T 1 -t 1 " + url + " 2>&1 >/dev/null"
+      exec(request, (err, stdout, stderr) => {
+        if (err) {
+          console.log("fuck", stderr)
+          reject(err);
+          return null
+        }
+        console.log(stdout)
+        resolve(stdout);
+      });
+    })
+
+  },
   async mail(from, msg, accuse) {
     "use strict";
     const nodemailer = require("nodemailer");
