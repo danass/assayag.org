@@ -12,7 +12,7 @@ import { Terms } from '/assets/ui/static/Terms'
 import { Privacy } from '/assets/ui/static/Privacy'
 
 
-const rootElement = document.getElementById('react-target')
+const rootElement = document.getElementById('membrane')
 
 export const Handle404 = (props) => {
     let metas = [['errorpage', 'true'], ['errortype', '404 - Not Found'], ['prerender-status-code', '404']]

@@ -1,8 +1,31 @@
 import { mailconf } from './conf.js';
 import {TwitterCollection } from '../assets/api/Collection.js';
 const https = require('https');
+var axios = require("axios").default;
 
 Meteor.methods({
+  async getInstaRapidAPI() {
+    var options = {
+      method: 'GET',
+      url: 'https://instagram47.p.rapidapi.com/public_user_posts',
+      params: {userid: 195972450},
+      headers: {
+        'x-rapidapi-host': 'instagram47.p.rapidapi.com',
+        'x-rapidapi-key': '870b512470msha207c6658103fa8p1d5fe1jsn235e8b6e57e5'
+      }
+    };
+    
+    
+     axios.request(options).then(function (response) {
+
+      console.log(response.data);  
+      return response.data;
+    }).catch(function (error) {
+        console.error(error);
+    });
+    
+
+  },
   async fetchTwitter() {
     const exec = require("child_process").exec;
     return new Promise((resolve, reject) => {

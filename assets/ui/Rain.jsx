@@ -5,7 +5,10 @@ import { Global, Uuid, isMobile } from "./Membrane";
 
 
 export const RaindropsRender = ({ drop }) => {
-  return <div>{drop.text}</div>;
+  return <div onClick={() => { 
+                  // filter out the clicked drop
+        document.getElementById(drop._id).style.display = "none";
+  }} id={drop._id} className="drop-parent rain-drop">{drop.text}</div>;
 };
 
 reverse = true
@@ -29,23 +32,15 @@ setPluie(pluie => {
   
   let rain = pluie.map((drop, i) => {
     return (
-      <div key={drop._id} id={drop._id} className="drop-parent" onClick={(e) => {
-        // filter out the clicked drop
-        let newPluie = rain.filter((drop, i) => {
-          if(drop.key === e.target.parentNode.id) {
-            // remove the drop from the array
-            delete rain[i]
-          }
-          return drop.key !== e.target.parentNode.id
-        });
+              // filter out the clicked drop
+        // let newPluie = rain.filter((drop, i) => {
+        //   return drop.key !== e.target.parentNode.id
+        // });
         
-        setTdiv(newPluie)
-        setPluie(newPluie)
-      }}>
+        // setTdiv(newPluie)
+        // setPluie(newPluie)
      
-    <RaindropsRender key={drop._id} drop={drop} 
-
-    /></div>
+    <RaindropsRender key={drop._id} drop={drop} />
     )
   });
 
@@ -103,11 +98,6 @@ setPluie(pluie => {
         onChange={updateRain} autoFocus
       />
       
-      <button className="rain-button" onClick={() => {
-        setPluie([])
-        setTdiv(<div>Make it rain</div>);
-        document.getElementById('rain-input-mkir').focus()
-      }}>clear</button>
 
       <div className="rain-buttons-align">
             <button className="rain-button" onClick={() => { 
@@ -134,6 +124,16 @@ setPluie(pluie => {
         updateRain(e, true)
         document.getElementById('rain-input-mkir').focus()
       }}>reverse</button>
+
+
+<button className="rain-button" onClick={() => {
+        setPluie([])
+        setTdiv(<div>Make it rain</div>);
+        document.getElementById('rain-input-mkir').focus()
+      }}>clear</button>
+
+
+
       <div><Fonts /></div>
       </div>
 

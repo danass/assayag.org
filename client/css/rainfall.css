@@ -49,12 +49,13 @@
 
 .drop-parent:hover {
     font-weight: bold;
-    transition: 0.1s ease;
+    transition: 0.1s ease-in-out;
     cursor: grabbing;
   }
   
 .drop-parent {
-    transition: 0.35s ease;
+    transition: 0.25s ease-in-out;
+    white-space: pre;
 }
 
 .noborder {

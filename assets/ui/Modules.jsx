@@ -42,12 +42,37 @@ export const Fonts = () => {
         <div id="font-form">
           <select id="font-selector" defaultValue={'Inter'} onChange={
             (e) => {
-              document.getElementById('rainfall').style.font = "300 1rem " + document.getElementById('font-selector').value
+              document.getElementById('rainfall').style.fontFamily = document.getElementById('font-selector').value
             }} >
             {fonts.map(font => <option key={font}>{font}</option>)}
           </select>
         </div>
+
+        <div id="font-weight">
+          <select id="font-weight-selector" defaultValue={'400'} onChange={
+            (e) => {
+              document.getElementById('rainfall').style.fontWeight = document.getElementById('font-weight-selector').value
+            }} >
+            <option value={'100'}>100</option>
+            <option value={'200'}>200</option>
+            <option value={'300'}>300</option>
+            <option value={'400'}>400</option>
+            <option value={'500'}>500</option>
+            <option value={'600'}>600</option>
+            <option value={'700'}>700</option>
+            <option value={'800'}>800</option>
+            <option value={'900'}>900</option>
+          </select>
+        </div>
         
+        <div id="font-lineheight">
+          <input id="font-lineheight-input" type="number" defaultValue={'1.0'} step="0.1" onChange={
+            (e) => {
+              document.getElementById('rainfall').style.lineHeight = document.getElementById('font-lineheight-input').value
+            }} />
+
+        </div>
+
         <div id="font-size-form">
           <input type="number" id="font-size-input" defaultValue={16} onChange={
             (e) => {
