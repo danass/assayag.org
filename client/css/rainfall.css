@@ -58,9 +58,12 @@
     white-space: pre;
 }
 
+
+
 .noborder {
     border: none;
 }
+
 
 #rain-library {
     display: flex;
@@ -91,6 +94,14 @@
 }
 #rain-controls input[type="reset"] {
     cursor: pointer;
+}
+
+#font-matrix-form input {
+    width: 25px;
+}
+
+#font-size-input, #font-lineheight-input   {
+    width: 50px;
 }
 
   div#main-container-form {

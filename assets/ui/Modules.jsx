@@ -49,24 +49,24 @@ export const Fonts = () => {
         </div>
 
         <div id="font-weight">
-          <select id="font-weight-selector" defaultValue={'400'} onChange={
+         <select id="font-weight-selector" defaultValue={400} onChange={
             (e) => {
               document.getElementById('rainfall').style.fontWeight = document.getElementById('font-weight-selector').value
             }} >
-            <option value={'100'}>100</option>
-            <option value={'200'}>200</option>
-            <option value={'300'}>300</option>
-            <option value={'400'}>400</option>
-            <option value={'500'}>500</option>
-            <option value={'600'}>600</option>
-            <option value={'700'}>700</option>
-            <option value={'800'}>800</option>
-            <option value={'900'}>900</option>
+            <option value={100}>100</option>
+            <option value={200}>200</option>
+            <option value={300}>300</option>
+            <option value={400}>400</option>
+            <option value={500}>500</option>
+            <option value={600}>600</option>
+            <option value={700}>700</option>
+            <option value={800}>800</option>
+            <option value={900}>900</option>
           </select>
         </div>
         
         <div id="font-lineheight">
-          <input id="font-lineheight-input" type="number" defaultValue={'1.0'} step="0.1" onChange={
+          <input id="font-lineheight-input" type="number" min={0.1} defaultValue={1.0} step={0.1} onChange={
             (e) => {
               document.getElementById('rainfall').style.lineHeight = document.getElementById('font-lineheight-input').value
             }} />
@@ -74,11 +74,33 @@ export const Fonts = () => {
         </div>
 
         <div id="font-size-form">
-          <input type="number" id="font-size-input" defaultValue={16} onChange={
+          <input type="number" id="font-size-input" min={1} defaultValue={16} onChange={
             (e) => {
               document.getElementById('rainfall').style.fontSize = document.getElementById('font-size-input') ? document.getElementById('font-size-input').value + 'px' : "12px"
             }} />
+        </div>
+        <div id="font-matrix-container">
+          <div id="font-matrix-form">
+            <input type="number" id="font-matrix-input-a" step={0.1} defaultValue={1} onChange={
+              (e) => {
+                document.getElementById('rainfall').style.transform = `matrix(${document.getElementById('font-matrix-input-a').value}, ${document.getElementById('font-matrix-input-b').value}, ${document.getElementById('font-matrix-input-c').value}, ${document.getElementById('font-matrix-input-d').value}, 0, 0)`
+              }} />
+            <input type="number" id="font-matrix-input-b" step={0.1} defaultValue={0} onChange={
+              (e) => {
+                document.getElementById('rainfall').style.transform = `matrix(${document.getElementById('font-matrix-input-a').value}, ${document.getElementById('font-matrix-input-b').value}, ${document.getElementById('font-matrix-input-c').value}, ${document.getElementById('font-matrix-input-d').value}, 0, 0)`
+              }} />
+            <input type="number" id="font-matrix-input-c" step={0.1} defaultValue={0} onChange={
+              (e) => {
+                document.getElementById('rainfall').style.transform = `matrix(${document.getElementById('font-matrix-input-a').value}, ${document.getElementById('font-matrix-input-b').value}, ${document.getElementById('font-matrix-input-c').value}, ${document.getElementById('font-matrix-input-d').value}, 0, 0)`
+              }} />
+            <input type="number" id="font-matrix-input-d" step={0.1} defaultValue={1} onChange={
+              (e) => {
+                document.getElementById('rainfall').style.transform = `matrix(${document.getElementById('font-matrix-input-a').value}, ${document.getElementById('font-matrix-input-b').value}, ${document.getElementById('font-matrix-input-c').value}, ${document.getElementById('font-matrix-input-d').value}, 0, 0)`
+              }} />
+        
+              </div>
 
+              
         </div>
       </div>
     </div>

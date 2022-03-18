@@ -6,7 +6,6 @@ import { Global, Uuid, isMobile } from "./Membrane";
 
 export const RaindropsRender = ({ drop }) => {
   return <div onClick={() => { 
-                  // filter out the clicked drop
         document.getElementById(drop._id).style.display = "none";
   }} id={drop._id} className="drop-parent rain-drop">{drop.text}</div>;
 };
@@ -32,15 +31,7 @@ setPluie(pluie => {
   
   let rain = pluie.map((drop, i) => {
     return (
-              // filter out the clicked drop
-        // let newPluie = rain.filter((drop, i) => {
-        //   return drop.key !== e.target.parentNode.id
-        // });
-        
-        // setTdiv(newPluie)
-        // setPluie(newPluie)
-     
-    <RaindropsRender key={drop._id} drop={drop} />
+      <RaindropsRender key={drop._id} drop={drop} />
     )
   });
 
@@ -81,9 +72,12 @@ setPluie(pluie => {
           </li><li>The shuffle button trigger a <b>random set of colors</b>
           </li></ul></div>
         </div>
+        <div className="main-container-block" style={{background: "#e7d8e7"}}>
+          <ul>Hint games: Try to draw a heart! (it's possible, is it? hint: you can use multiple whitespaces) </ul>
 
+        </div>
         <div className="rain">
-     
+
       <Tooltip
         action="createimg"
         clickforsave={true}
@@ -136,7 +130,6 @@ setPluie(pluie => {
 
       <div><Fonts /></div>
       </div>
-
         <div id="rainfall" className="rainfall" style={{backgroundColor:  colors[0],  color: colors[1] } 
         }>
           {Tdiv}
