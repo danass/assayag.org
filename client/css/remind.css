@@ -1,0 +1,45 @@
+.event-label, .events-container .event {
+    background: #efefef;
+    display: flex;
+}
+.event div, .event-label div {
+    padding: 10px;
+    max-width: 10vw;
+    min-width: 10vw;
+    overflow-y: auto;
+}
+
+.event-begin input, .event-end input {
+    width: 75%;
+    display: grid;
+}
+
+.event-label div {
+    font-weight: 600;
+}
+.event {
+    border-top: 1px solid;
+}
+
+.events-container:last-child {
+    border-bottom: 2px solid;
+}
+
+.events-container .event-label:first-child {
+    border-bottom: 0px solid;
+}
+
+div [contenteditable="true"]:focus {
+    outline: none;
+    user-select: none;
+  }
+
+  div [contenteditable="false"] {
+
+    color: transparent;
+    text-shadow: 0 0 0 black;
+  }
+
+  .event-_id {
+      overflow: hidden;
+  }

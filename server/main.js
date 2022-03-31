@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { TasksCollection } from '../assets/api/Collection.js';
+import { TasksCollection, RemindCollection } from '../assets/api/Collection.js';
 import  './_methods.js';
 
 const insertTask = (Collection, taskText) => {
@@ -7,23 +7,12 @@ const insertTask = (Collection, taskText) => {
 }
 
 Meteor.startup(async () => {
+  Meteor.publish('remind', async function () {
+    return await RemindCollection.find({});
+  });
 
   if(TasksCollection.find().count() === 0) {
-   ['Laver les chiottes',
-    'Faire les courses',
-   'Laver le frigo',
-   'Se brosser les dents',
-   'Manger du pain',
-    'Faire du sport',
-    'Faire la vaisselle',
-    'Faire du shopping',
-    'Voler à la plage',
-    'Signer le contrat de travail',
-    'Organiser les vacances',
-    'Laver le salon',
-    'Balayer les plantes',
-    'Oculter les chats',
-    "Faire l'examen",
+   ["Faire l'examen",
     "Faire l'amour",
     "Faire la vie",
 ].forEach(insertTask.bind(null, TasksCollection))

@@ -11,19 +11,20 @@ export const Menu = () => {
         const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
         return top;
     }
-    useEffect(() => {
-        window.addEventListener('scroll', () => {
-            // if the user is scrolling
-            if (isScrolling() > 30) {
-                document.getElementById('main-container-header-title').classList.add('menu-dissapear');
-            }
-            else {
-                document.getElementById('main-container-header-title').classList.remove('menu-dissapear');
-            }
-        });
-    }, [])
+    // useEffect(() => {
+    //     window.addEventListener('scroll', () => {
+    //         // if the user is scrolling
+    //         if (isScrolling() > 30) {
+    //             document.getElementById('main-container-header-title').classList.add('menu-dissapear');
+    //         }
+    //         if (isScrolling() < 30) {
+    //             document.getElementById('main-container-header-title').classList.remove('menu-dissapear');
+    //         }
+    //     });
+    // }, [])
 
     return (
+        <header>
         <div className="menu" onScroll={(e) => hideMenu(e)}>
             <div>
                 <Link to="/">Home</Link>
@@ -35,11 +36,13 @@ export const Menu = () => {
                 <Link to="/rain">Rain</Link>
             </div>
         </div>
+        </header>
     )
 }
 
 export const Footer = () => {
     return (
+        <footer>
         <div id="main-container-footer">
             <div className="footer-links">
                 <Link to="/terms-of-use">Terms of Use</Link> - <Link to="/privacy">Privacy Policy</Link>
@@ -48,6 +51,7 @@ export const Footer = () => {
                 Copyright © 2022. All rights reserved
             </div>
         </div>
+        </footer>
     )
 }
 
@@ -88,7 +92,6 @@ export function Global(currentState) {
         }
     )
 }
-
 
 export const Membrane = (props) => {
     return (<>
