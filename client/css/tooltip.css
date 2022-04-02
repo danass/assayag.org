@@ -110,3 +110,13 @@
 
   }
 }
+
+@media (max-width: 600px) {
+  #main-container-header-instructions {
+
+  }
+  #main-container-header-title {
+    display: none;
+  }
+
+}

@@ -76,7 +76,6 @@ a {
 
  a:hover {
   color: #1316d9;
-  padding-right: 18px;
   font-weight: bold;
 }
 
@@ -93,11 +92,10 @@ a:active {
 
 
 h1 {
-  margin: 0px;
+  margin: 10px auto;
   padding: 0px 40px;
   text-align: right;
   font: 500 1.444rem Inter;
-  line-height: 5rem;
 
 }
 
@@ -110,25 +108,11 @@ ul {
   padding-inline-end: 40px;
 } 
 
-.footer-container .top-footer > li .subcategory-links li a:hover:after {
-  width: 100%;
-}
-.footer-container .top-footer > li .subcategory-links li a:after {
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  height: 1px;
-  width: 0;
-  content: "";
-  display: block;
-  background: #B89F7C;
-  transition: ease all 0.3s;
-}
-
-.footer-links {
-  font: 400 calc(10/12 * 1rem)/6 Inter;
-}
 
 .loader-container {
   padding:10px;
+}
+
+#main-container-content {
+  min-height: 58vh;
 }

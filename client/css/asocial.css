@@ -1,19 +1,20 @@
 #main-container-header {
-    margin-bottom: 10px;
+    display: flex;
+    clear: both;
+    flex-direction: column;
 }
+
 
 .main-container-header-title, #main-container-header-title {
     width: fit-content;
-    float: right;
     text-transform: capitalize;
-    border-radius: 200px;
+    border-radius: 3px;
     color: #944199;
-    background: #8a008b1c;
-    right: 0;
+    background: #70365e26;
     z-index: 2;
     opacity: 1;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: auto;
 }
 
 .menu-dissapear {
@@ -28,7 +29,7 @@
     }
     #main-container-header-title  h1 {
         font: 500 1.444rem Inter;
-        line-height: 5rem;
+        line-height: 2.1rem;
 
         
     }
@@ -43,7 +44,7 @@
 
 #main-container-header-instructions {
     background: #e7d8e7;
-    margin-bottom: 20px;
+    margin: 0px 0px 20px 0px;
     opacity: 0.6;
     display: flow-root;
     font-size: 1.2em;
@@ -79,9 +80,7 @@
     background: #fbfbfb;
     border-radius: 18px;
 }
-.main-content-fit {
-        width: fit-content!important;
-}
+
 .main-container-wrapper {
     opacity: 0.9;
     border: solid 20px #ededed;

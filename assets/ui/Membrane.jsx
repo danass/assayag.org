@@ -44,12 +44,29 @@ export const Footer = () => {
     return (
         <footer>
         <div id="main-container-footer">
-            <div className="footer-links">
-                <Link to="/terms-of-use">Terms of Use</Link> - <Link to="/privacy">Privacy Policy</Link>
+    
+            <div className="footer-social">
+                <div class="footer-link-container"><a href="https://t.me/+qyB90R0t94k4MmVk" target={"_blank"}>Telegram</a></div>
+                <div class="footer-link-container"><a href="https://www.instagram.com/superdani.el" target={"_blank"}>Instagram</a></div>
+                <div class="footer-link-container"><a href="https://www.twitch.tv/danassadon" target={"_blank"}>Twitch</a></div>
+                <div class="footer-link-container"><a href="https://www.buymeacoffee.com/danielassayag/posts" target={"_blank"}>Buy me a coffee</a></div>
+                <div class="footer-link-container"><a href="https://github.com/danass" target={"_blank"}>Github</a></div>
+                <div class="footer-link-container"><a href="https://stackoverflow.com/users/2244093/" target={"_blank"}>Stack Overflow</a></div>
+                <div class="footer-link-container"><a href="https://soundcloud.com/zuperdaniel" target={"_blank"}>Soundcloud</a></div>
             </div>
+
+  
+            <div className="footer-links">
+            <div class="footer-link-container"><Link to="/terms-of-use">Terms of Use</Link></div>
+            <div class="footer-link-container"><Link to="/privacy">Privacy Policy</Link></div>
+            </div>
+
             <div id="footer-copyright">
                 Copyright © 2022. All rights reserved
             </div>
+            <div id="main-container-header-instructions">
+                <ul> <Link to="/mail">contact</Link></ul>
+             </div>
         </div>
         </footer>
     )

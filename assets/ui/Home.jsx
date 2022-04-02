@@ -13,7 +13,7 @@ export const Home = () => {
       width: "50%",
       height: "400px"
     });
-    player.addEventListener(Twitch.Player.READY, initiate)
+    // player.addEventListener(Twitch.Player.READY, initiate)
 
     function initiate() {
       player.addEventListener(Twitch.Player.ONLINE, handleOnline);
@@ -45,20 +45,14 @@ export const Home = () => {
           <h1>Home</h1>
         </div>
 
-        <div id="main-container-header-instructions">
-          <ul> <Link to="/mail">contact</Link></ul>
-        </div>
       </div>
       <div id="main-container-content" className="css-greydient main-content-fit">
-      </div>
-      <h1 style={{ textAlign: "left" }}>Twitch</h1>
       <section id="twitch">
-
+        <h1 style={{ textAlign: "left" }}>Twitch</h1>
         <div id="twitch-embed"></div>
       </section>
-
-
-
+      </div>
+   
     </div>
 
   )

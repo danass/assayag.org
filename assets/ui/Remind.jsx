@@ -9,6 +9,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 
 
 export const EventRender = ({event}) => {
+
 const [sogound, setsogound] = useState(0)
     const [countdowns, setCountdowns] = useState([])
     // let's print the event name, the begi nning date, the expiration date, the interval, the description, the link and the status
@@ -16,7 +17,7 @@ const [sogound, setsogound] = useState(0)
     useTracker(() => {
     setInterval(function () {
         setCountdowns(["countdown"])
-        setsogound(sogound + 1)
+
     }, 1000)
 
     }, [])
@@ -78,13 +79,10 @@ const [sogound, setsogound] = useState(0)
         let chhar = Math.floor((end - now) / (1000 * 60 * 60 * 24) )
         let sa3a = Math.floor((end - now) / (1000 * 60 * 60) )
         let daqi9a = Math.floor((end - now) / (1000 * 60) )
-        useEffect(() => {
-        setsogound(sogound + 20)
-        }, [])
-        
 
         if(eldiv){
-        eldiv.style.backgroundColor = `rgb(${sogound}, ${100}, ${sogound}, ${0.5} )` 
+            scalsogound = scale(sogound, 0, 60, 0, 255)
+        eldiv.style.backgroundColor = `rgb(${Math.log(sogound)}, ${sogound/2}, ${100}, ${0.5} )` 
         }
         // return diff
     }
@@ -157,6 +155,7 @@ const [sogound, setsogound] = useState(0)
 }
 
 export const Remind = () => {
+    
 
     const { mEvents, isLoading } = useTracker(() => {
         const handler = Meteor.subscribe('remind');
