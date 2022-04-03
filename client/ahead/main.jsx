@@ -11,7 +11,6 @@ import { LatestActivity } from '/assets/ui/LatestActivity'
 import { Terms } from '/assets/ui/static/Terms'
 import { Privacy } from '/assets/ui/static/Privacy'
 import { Remind } from '/assets/ui/Remind'
-import { Test } from '/assets/ui/Test'
 
 
 const rootElement = document.getElementById('membrane')
@@ -33,14 +32,22 @@ export const Handle404 = (props) => {
   )
 }
 
+  const Fuck = () => {
+    return(
+      <div>
+        <h1>Fuck</h1>
+      </div>
+    )
+  }
+
+
   render(
     <BrowserRouter>
     <Routes>
       <Route path="/" index element={<Membrane><Home /></Membrane>} />
       <Route path="/rain" element={<Membrane><Rain /></Membrane>} />
       <Route path="/asocial"  element={<Membrane><Asocial /></Membrane>} />
-      <Route path="/allo"  element={<Membrane><Remind /></Membrane>} />
-      <Route path="/test"  element={<><Test /></>} />
+      <Route path="/remind" element={<Membrane><Remind /></Membrane>} />
       <Route path='/mail' element={ <Membrane><Contact /></Membrane>  } />
       <Route path='/la' element={ <Membrane><LatestActivity /></Membrane>  } />
       <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>

@@ -98,7 +98,7 @@ export const Asocial = () => {
 
 
   const [userOptions, setuserOptions] = useState({
-    params: { maxRand: 1, listSize: 1 },
+    params: { maxRand: 1, listSize: 5 },
     insta: { clicked: false, size: 0, maxRand: 1, sources: ["http://instagram.com"] },
     twitter: { clicked: true, size: 0, sources: ["https://dev.twitter.com/docs/tfw", "http://twitter.com/download/android", "http://twitter.com", "http://twitter.com/download/iphone", "https://mobile.twitter.com"] },
     google: { clicked: false, size: 0, sources: ["https://www.google.com/"] },
@@ -126,6 +126,7 @@ export const Asocial = () => {
       }
 
       tweets.map((tweet, i) => {
+        tweet.key = i
         let usernames = tweet.text.match(/@[a-zA-Z0-9_]+/g);
         tweets[i].usernames = usernames ? usernames : [];
         tweets[i].text = tweet.text.replace(/@[a-zA-Z0-9_]+/g, '');
@@ -207,6 +208,7 @@ export const Asocial = () => {
 
         <div id="main-container-content" className="css-greydient" tabIndex={0} onClick={(e) => handleClick(e)} >
           {tweet.map((tweet_, i) => {
+
             return (
               <TweetRender key={tweet_.date ? tweet_.date : Math.floor(Math.random() * 10000)} tweet={tweet_} />
             )

@@ -1,4 +1,4 @@
-.event-label, .events-container .event {
+/* .event-label, .events-container .event {
     background: #efefef;
     display: flex;
 }
@@ -43,4 +43,55 @@ div [contenteditable="true"]:focus {
 
   .event-_id {
       overflow: hidden;
+  } */
+
+
+
+  .event-remain {
+    text-align: center;
+    padding: 45px;
+    font-weight: 500;
+}
+
+.event {
+    width: 100%;
+}
+
+.event-container {
+    margin: 0px 0px 18px 0px;
+    background: #f7f7f7;
+    box-shadow: 0 4px 8px rgb(118 118 120 / 16%);
+    padding: 10px;
+}
+
+.event-wrapper {
+    padding: 10px;
+}
+
+div [contenteditable="true"]:focus {
+    outline: none;
+    transition: ease-in-out 0.1s;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgb(118 118 120 / 10%);
+    padding: 0px 4px 0px 4px;
   }
+
+  div [contenteditable="true"]:hover {
+  background: #ffffff;
+  width: fit-content;
+  transition: ease-in-out 0.1s;
+  }
+
+  button.event-meta {
+    float: right;
+    margin: 10px;
+    background: #4444443d;
+    border-width: 3px;
+    border-color:#dddedfa6;
+    color: #666666;
+}
+
+button.event-meta:hover {
+    border-color: #ffffff;
+    color: #464646;
+}

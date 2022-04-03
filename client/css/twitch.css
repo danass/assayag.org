@@ -13,17 +13,25 @@
   }
 
   .hide-twitch {
-      display: none;
-      content: "twitch is offline, come again later"
+
+      content: "twitch is offline, come again later";
+      width: 24%;
+  transition: width 4s, height 2s, background-color 2s, transform 4s;
   }
 
   #twitch {
-    /* background: var(--twitchsection); */
     max-width: 1440px;
     margin: 0px 0px auto;
-    padding: 2% 2%;
-    /* border-bottom: 40px solid var(--twitchsection); */
-    box-shadow: 0 4px 8px rgba(118,118,120,0.2);
+    box-shadow: 0 4px 8px rgb(118 118 120 / 20%);
+    transition-property: width;
+    transition-duration: 4s;
+    transition-delay: 4s;
+    width: 100%;
+    margin-bottom: 50px;
+    background: white;
+    border-bottom: solid 75px white;
+    border-radius: 28px 4px 15px 15px;
+
   }
  
   :root {
@@ -31,5 +39,5 @@
   }
 
   #twitch h1 {
-    padding: 10px 0px;
+    padding-top: 25px;
 }

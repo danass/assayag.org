@@ -12,7 +12,9 @@ div#main-container-footer {
   display: flex;
   flex-direction: column;
 }
-
+footer {
+  margin-top: 125px;
+}
 
 footer .footer-link-container a:hover:after {
   width: 100%;
@@ -34,3 +36,4 @@ footer .footer-link-container a:after {
 .footer-link-container {
   width: fit-content;
 }
+

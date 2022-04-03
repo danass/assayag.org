@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { Global } from './Membrane'
 import './static/twitch'
 import Twitch from './static/twitch';
-
+<div className="main-container-block">
+<ul>This is a <b>tool</b> to <b>create events</b> and get a notification on your Telegram.
+</ul><ul>You can also have an <b>overview of your current tasks</b> and the time before they end.
+</ul>
+</div>
 export const Home = () => {
   const globalState = Global({ pageName: "Home", description: "{Home} => Daniel Assayag is an Artist and Project Leader in Education. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]." })
 
@@ -13,7 +16,7 @@ export const Home = () => {
       width: "50%",
       height: "400px"
     });
-    // player.addEventListener(Twitch.Player.READY, initiate)
+    player.addEventListener(Twitch.Player.READY, initiate)
 
     function initiate() {
       player.addEventListener(Twitch.Player.ONLINE, handleOnline);
@@ -44,6 +47,11 @@ export const Home = () => {
         <div id="main-container-header-title">
           <h1>Home</h1>
         </div>
+        <div  id="main-container-header-instructions" >
+            <ul>Welcome, salam, bonjour.
+            </ul><ul>Que la ptite souris soit avec vous.
+            </ul>
+          </div>
 
       </div>
       <div id="main-container-content" className="css-greydient main-content-fit">

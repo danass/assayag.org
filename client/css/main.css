@@ -34,13 +34,6 @@ roundign corners: --elem-radius: 0.25rem;
   background: orangered;
 }
 
-.menu {
-  margin-bottom: 20px;
-}
-
-.menu div {
-  padding: 3px;
-}
 
 #home {
   display: flex;
@@ -55,24 +48,8 @@ a {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
-.menu a {
-  color: #a30077;
-  text-transform: uppercase;
-  text-decoration: overline;
-  border: 62px dotted #670093;
-  border-top-color: darkmagenta;
-  padding-right: 14px;
-  margin-right: -11px;
-  top: 4px;
-  z-index: 2;
-  border-top-style: none;
-  border-left: thick;
-  border-right: thick;
-  border-bottom: thick;
-  position: relative;
-  text-decoration-color: #a30077;
-  font: 600 1rem/2 Inter;
-}
+
+
 
  a:hover {
   color: #1316d9;
@@ -84,19 +61,12 @@ a:active {
   text-decoration-thickness: 4px;
 }
 
-.menu a:focus {
-  text-decoration-thickness: 4px;
-  font-weight: bold;
-  color: #a30077;
-}
+
 
 
 h1 {
-  margin: 10px auto;
-  padding: 0px 40px;
-  text-align: right;
+  padding: 0px 20px;
   font: 500 1.444rem Inter;
-
 }
 
 #main-container {

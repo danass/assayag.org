@@ -1,0 +1,46 @@
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu {
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+  
+  .menu div {
+    padding: 3px;
+  }
+  
+  .menu a {
+    color: #a30077;
+    text-transform: uppercase;
+    text-decoration: overline;
+    border: 62px dotted #670093;
+    border-top-color: darkmagenta;
+    padding-right: 14px;
+    margin-right: -11px;
+    top: 4px;
+    z-index: 2;
+    border-top-style: none;
+    border-left: thick;
+    border-right: thick;
+    border-bottom: thick;
+    position: relative;
+    text-decoration-color: #a30077;
+    font: 600 1rem/2 Inter;
+  }
+  
+  .menu a:focus {
+    text-decoration-thickness: 4px;
+    font-weight: bold;
+    color: #a30077;
+  }
+
+  .login {
+    width: fit-content;
+}
+
+  .login-form {
+    display: table-caption;
+}

@@ -1,7 +1,6 @@
 import { mailconf } from './conf.js';
 import {TwitterCollection, RemindCollection } from '../assets/api/Collection.js';
 const https = require('https');
-var axios = require("axios").default;
 
 Meteor.methods({
   async fetchTwitter() {
@@ -155,6 +154,7 @@ Meteor.methods({
 },
 
 async 'remind.update'(id, event) {
+
   let currentEvent = {
     name: event.name,
     begin: event.begin,                    
@@ -164,11 +164,21 @@ async 'remind.update'(id, event) {
     link: event.link
     }
     // update the database
+    if(Meteor.userId()) {
     await RemindCollection.update({_id: id}, {$set: currentEvent})
+    }
+    else {
+      throw new Meteor.Error('not logged in')
+    }
   },
 
 async 'remind.remove'(id) {
-  await RemindCollection.remove({_id: id})
+  if(Meteor.userId()) {
+  return await RemindCollection.remove({_id: id})
+  }
+  else {
+    throw new Meteor.Error('unauthorized, you need to be logged in')
+  }
 },
 
  async 'remind.find'() {
@@ -178,7 +188,13 @@ async 'remind.remove'(id) {
 
 async 'remind.new'() {
   // update the database
-  await RemindCollection.insert({name: "Event #", begin: "", end: "", description: "", link: "", remaining: "", status: ""})
+  if(Meteor.userId()) {
+  await RemindCollection.insert({name: "Event #", begin: new Date(Date.now()), end: "", description: "", link: "", remaining: "", status: ""})
+  }
+  else {
+    throw new Meteor.Error('unauthorized, you need to be logged in')
+  }
+  
 },
 
 
