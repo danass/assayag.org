@@ -95,28 +95,3 @@
   left: 10px;
   color: #adadad;
 }
-
-@media (max-width: 1024px) {
-  #tiktok-comment-container {
-      width: 90%;
-      height: 100%;
-      max-width: fit-content;
-  }
-}
-
-@media (max-height: 512px) {
-  #tiktok-comment-container {
-      height: 100%;
-
-  }
-}
-
-@media (max-width: 600px) {
-  #main-container-header-instructions {
-
-  }
-  #main-container-header-title {
-    display: none;
-  }
-
-}

@@ -39,6 +39,10 @@ header {
 
   .login {
     width: fit-content;
+    padding: 20px;
+    background: #FFF;
+    height: fit-content;
+  
 }
 
   .login-form {

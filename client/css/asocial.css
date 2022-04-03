@@ -49,28 +49,6 @@ div#main-container-header-instructions ul {
     opacity: 0!important;
     transition: 0.3s ease;
 }
-/* 
-@media screen and (orientation:portrait) {
-    #main-container-header-title  {
-        position: relative;
-       
-    }
-    #main-container-header-title  h1 {
-        font: 500 1.444rem Inter;
-        line-height: 2.1rem;
-
-        
-    }
-}
-
-@media screen and (max-width:1000px) {
-    #main-container-header-title  {
-        margin-bottom: 20px;
-        margin-left: 20px;
-    }
-} */
-
-
   
   #main-container-header-navigation {
     border: solid 0px #ededed;
