@@ -1,6 +1,5 @@
 import { mailconf } from './conf.js';
 import {TwitterCollection, RemindCollection } from '../assets/api/Collection.js';
-const https = require('https');
 
 Meteor.methods({
   async fetchTwitter() {

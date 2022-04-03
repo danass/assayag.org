@@ -7,7 +7,6 @@ import { Asocial } from '/assets/ui/Asocial'
 import { Contact } from '/assets/ui/Contact'
 import { Membrane } from '/assets/ui/Membrane'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { LatestActivity } from '/assets/ui/LatestActivity'
 import { Terms } from '/assets/ui/static/Terms'
 import { Privacy } from '/assets/ui/static/Privacy'
 import { Remind } from '/assets/ui/Remind'
@@ -49,7 +48,6 @@ export const Handle404 = (props) => {
       <Route path="/asocial"  element={<Membrane><Asocial /></Membrane>} />
       <Route path="/remind" element={<Membrane><Remind /></Membrane>} />
       <Route path='/mail' element={ <Membrane><Contact /></Membrane>  } />
-      <Route path='/la' element={ <Membrane><LatestActivity /></Membrane>  } />
       <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>
       <Route path='/terms-of-use' element={ <Membrane><Terms /></Membrane>  } />
       <Route path='/privacy' element={ <Membrane><Privacy /></Membrane>  } />
