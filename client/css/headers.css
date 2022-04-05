@@ -40,6 +40,7 @@ header {
 
   .login-container {
 opacity: 0;
+width: 50%;
 transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1.3s; 
   }
 
@@ -59,7 +60,9 @@ transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1.3s;
 }
 
 .login-form {
-    display: table-caption;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .transparent-bg {
@@ -72,6 +75,23 @@ transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1.3s;
   background: #afa2c3;
   height: fit-content;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.7s;
-  border-radius: 54px;
-  padding: 17px;
+  width: 200px;
+}
+
+.popup-menu-container input {
+  background: #9687ad;
+  border: 0;
+  color: white;
+  padding: 10px;
+  margin-bottom: 3px;
+  width: 100%;
+}
+
+.popup-menu-container button {
+  padding: 3px;
+  background: #9083a5;
+  color: white;
+  border-radius: 50px;
+  border: solid 5px #9083a5;
+  margin: 8px 0px;
 }

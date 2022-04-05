@@ -207,7 +207,7 @@ async 'remind.new'() {
         console.log("fuck")
         return null
       }
-
+      console.log("ich fitchi")
       resolve(stdout);
       
     });

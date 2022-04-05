@@ -61,7 +61,7 @@ export const LoginForm = () => {
   
         <button type="submit">Log In</button>
       </form>
-        <p>{errorLoginMessage}</p>
+            {errorLoginMessage}
       </div>
       
       
