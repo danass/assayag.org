@@ -10,6 +10,7 @@
 
 .tsocial-text img {
     height: fit-content!important;
+    width:100%;
 }
 
 .tsocial-text hr {
