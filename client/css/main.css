@@ -4,14 +4,6 @@ body {
   font: 400 1rem/2 Inter;
   
 }
-/*
-p: 400 1rem/2 Inter;
-max size: --max-width: 1440px;
-code: 400 0.875rem/1.5 Inter;
-roundign corners: --elem-radius: 0.25rem;
---font-fallback: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-sans;
-*/
 
 @font-face {
   font-family: "Inter";

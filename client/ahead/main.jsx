@@ -9,6 +9,7 @@ import { Membrane } from '/assets/ui/Membrane'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Terms } from '/assets/ui/static/Terms'
 import { Privacy } from '/assets/ui/static/Privacy'
+import { Test } from '/assets/ui/Test'
 
 
 
@@ -31,15 +32,6 @@ export const Handle404 = (props) => {
   )
 }
 
-  const Fuck = () => {
-    return(
-      <div>
-        <h1>Fuck</h1>
-      </div>
-    )
-  }
-
-
   render(
     <BrowserRouter>
     <Routes>
@@ -51,6 +43,7 @@ export const Handle404 = (props) => {
       <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>
       <Route path='/terms-of-use' element={ <Membrane><Terms /></Membrane>  } />
       <Route path='/privacy' element={ <Membrane><Privacy /></Membrane>  } />
+      <Route path='/test' element={ <Membrane><Test /></Membrane>  } />
       
     </Routes>
     </BrowserRouter>, 

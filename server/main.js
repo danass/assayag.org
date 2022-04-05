@@ -14,7 +14,6 @@ const SEED_USERNAME = 'daniel';
 const SEED_PASSWORD = 'temp';
 
   if (!Accounts.findUserByUsername(SEED_USERNAME)) {
-    console.log("hey")
     Accounts.createUser({
       username: SEED_USERNAME,
       password: SEED_PASSWORD,
