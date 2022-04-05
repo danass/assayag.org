@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Global } from './Membrane'
-import './static/twitch'
-import Twitch from './static/twitch';
+import { Global } from '../Membrane'
+import '../static/twitch'
+import Twitch from '../static/twitch';
 <div className="main-container-block">
 <ul>This is a <b>tool</b> to <b>create events</b> and get a notification on your Telegram.
 </ul><ul>You can also have an <b>overview of your current tasks</b> and the time before they end.

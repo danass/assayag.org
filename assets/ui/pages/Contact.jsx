@@ -1,6 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
-import { Global } from './Membrane';
+import React, { useState } from 'react';
+import { Global } from '../Membrane';
 
 
 export const Contact = () => {

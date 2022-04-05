@@ -1,5 +1,5 @@
 import { mailconf } from './conf.js';
-import {TwitterCollection, RemindCollection } from '../assets/api/Collection.js';
+import { TwitterCollection, RemindCollection } from '../assets/api/Collection.js';
 
 Meteor.methods({
   async fetchTwitter() {

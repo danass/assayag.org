@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 const humanizeDuration = require("humanize-duration");
-import { Loading } from './Animations';
+import { Loading } from '../Animations';
 
 import { DateTimePicker} from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -24,7 +24,9 @@ export const Remind = () => {
                 setEvents(r)
             })
         }
+
         fetchData()
+        
         return () => {
             Meteor.clearInterval(interval);
         };
@@ -64,7 +66,7 @@ export const Remind = () => {
             {events ?
                 events.map((event, i) => {
                     return <section className="event-container" key={event._id}>
-                                               <button className="event-meta" onClick={() => {
+                             <button className="event-meta" onClick={() => {
                                 Meteor.call('remind.remove', event._id);
                             }}>Delete</button>
                     

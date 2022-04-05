@@ -37,14 +37,41 @@ header {
     color: #a30077;
   }
 
-  .login {
-    width: fit-content;
-    padding: 20px;
-    background: #FFF;
-    height: fit-content;
-  
+
+  .login-container {
+opacity: 0;
+transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1.3s; 
+  }
+
+.show-menu {
+opacity: 1;
+transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1.3s; 
 }
 
-  .login-form {
+.login {
+  padding: 12px;
+}
+
+.logo {
+  text-align: right;
+  margin: 5px;
+  width: fit-content;
+}
+
+.login-form {
     display: table-caption;
+}
+
+.transparent-bg {
+  background: rgba(0,0,0,0)!important;
+}
+.popup-menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #afa2c3;
+  height: fit-content;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.7s;
+  border-radius: 54px;
+  padding: 17px;
 }

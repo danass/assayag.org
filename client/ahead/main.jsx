@@ -1,15 +1,15 @@
 import React from 'react'
-import { Meteor } from 'meteor/meteor'
 import  {render} from 'react-dom'
-import { Home } from '/assets/ui/Home'
-import { Rain }  from '/assets/ui/Rain'
-import { Asocial } from '/assets/ui/Asocial'
-import { Contact } from '/assets/ui/Contact'
+import { Home } from '/assets/ui/pages/Home'
+import { Rain }  from '/assets/ui/pages/Rain'
+import { Asocial } from '/assets/ui/pages/Asocial'
+import { Contact } from '/assets/ui/pages/Contact'
+import { Remind } from '/assets/ui/pages/Remind'
 import { Membrane } from '/assets/ui/Membrane'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Terms } from '/assets/ui/static/Terms'
 import { Privacy } from '/assets/ui/static/Privacy'
-import { Remind } from '/assets/ui/Remind'
+
 
 
 const rootElement = document.getElementById('membrane')

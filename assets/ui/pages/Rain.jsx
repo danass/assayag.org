@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Tooltip } from "./Tooltip";
-import { Fonts, ColorPicker } from "./Modules"
-import { Global, Uuid, isMobile } from "./Membrane";
+import { Tooltip } from "../Tooltip";
+import { Fonts, ColorPicker } from "../Modules"
+import { Global, Uuid, isMobile } from "../Membrane";
 
 
 export const RaindropsRender = ({ drop }) => {
@@ -72,7 +72,7 @@ setPluie(pluie => {
           </li><li>The shuffle button trigger a <b>random set of colors</b>
           </li></ul></div>
         </div>
-        <div className="main-container-block" style={{background: "#e7d8e7"}}>
+        <div className="main-container-block" style={{background: "rgb(113 0 255)"}}>
           <ul>Hint games: Try to draw a heart! (it's possible, is it? hint: you can use multiple whitespaces) </ul>
 
         </div>

@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { TasksCollection, RemindCollection } from '../assets/api/Collection.js';
+import { RemindCollection } from '../assets/api/Collection.js';
 import  './_methods.js';
 
 

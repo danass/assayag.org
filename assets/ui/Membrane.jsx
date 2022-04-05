@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 export const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -23,11 +23,11 @@ export const LoginForm = () => {
         });
     };
 
-    
-  
     return (
         <>
+        <div className="login-container">
         {user?
+        
         <div className="login login-logged">
         <div>
             <p>{user.username}</p>
@@ -42,6 +42,7 @@ export const LoginForm = () => {
         <div className="login">
             
       <form onSubmit={submit} className="login-form">
+          
         <input
           type="text"
           placeholder="Username"
@@ -63,7 +64,9 @@ export const LoginForm = () => {
         <p>{errorLoginMessage}</p>
       </div>
       
+      
         : ''}
+        </div>
       </>
     );
   };
@@ -78,6 +81,16 @@ export const Menu = () => {
         const doc = document.documentElement;
         const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
         return top;
+    }
+
+    function dropMenuChanges() {
+        document.querySelector('.login-container').classList.toggle('show-menu');
+        document.querySelector('.popup-menu-container').classList.toggle('transparent-bg');
+    }
+
+    function clickAwayMenu() {
+        document.querySelector('.login-container').classList.remove('show-menu');
+         document.querySelector('.popup-menu-container').classList.add('transparent-bg');
     }
 
     return (
@@ -97,7 +110,20 @@ export const Menu = () => {
                 <Link to="/remind">Re:mind</Link>
             </div>
         </div>
+
+
+        <ClickAwayListener onClickAway={clickAwayMenu}>
+        <div className={"popup-menu-container transparent-bg"}   >
+                    <div className="logo" onClick={dropMenuChanges} >
+            <img src="/favicon.ico" width={50} alt="logo" />
+        </div>
+
+        
         <LoginForm />
+        </div>
+        </ClickAwayListener>
+
+
         </header>
     )
 }
@@ -108,30 +134,39 @@ export const Footer = () => {
     return (
         <footer>
         <div id="main-container-footer">
-    
+
+        <div className="footer-links">
+
+            </div>
+
             <div className="footer-social">
-                <div className="footer-link-container"><a href="https://t.me/+qyB90R0t94k4MmVk" target={"_blank"}>Telegram</a></div>
+            <ul>
+            <Link to="/terms-of-use">Terms of Use</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+         </ul>
+             <ul>
                 <div className="footer-link-container"><a href="https://www.instagram.com/superdani.el" target={"_blank"}>Instagram</a></div>
-                <div className="footer-link-container"><a href="https://www.twitch.tv/danassadon" target={"_blank"}>Twitch</a></div>
-                <div className="footer-link-container"><a href="https://www.buymeacoffee.com/danielassayag/posts" target={"_blank"}>Buy me a coffee</a></div>
-                <div className="footer-link-container"><a href="https://github.com/danass" target={"_blank"}>Github</a></div>
-                <div className="footer-link-container"><a href="https://stackoverflow.com/users/2244093/" target={"_blank"}>Stack Overflow</a></div>
                 <div className="footer-link-container"><a href="https://soundcloud.com/zuperdaniel" target={"_blank"}>Soundcloud</a></div>
+                <div className="footer-link-container"><a href="https://www.twitch.tv/danassadon" target={"_blank"}>Twitch</a></div>
+             </ul>
+            <ul>
+            <div className="footer-link-container"><a href="https://stackoverflow.com/users/2244093/" target={"_blank"}>Stack Overflow</a></div>
+            <div className="footer-link-container"><a href="https://github.com/danass" target={"_blank"}>Github</a></div>
+            </ul>
+            <ul>
+            <div className="footer-link-container"><a href="https://t.me/+qyB90R0t94k4MmVk" target={"_blank"}>Telegram</a></div>
+                <div className="footer-link-container"><a href="https://www.buymeacoffee.com/danielassayag/posts" target={"_blank"}>Buy me a coffee</a></div>
+            </ul>    
             </div>
-
   
-            <div className="footer-links">
-            <div className="footer-link-container"><Link to="/terms-of-use">Terms of Use</Link></div>
-            <div className="footer-link-container"><Link to="/privacy">Privacy Policy</Link></div>
-            </div>
-
-            <div id="footer-copyright">
-                Copyright © 2022. All rights reserved
-            </div>
-            <div id="main-container-header-instructions">
+            <div className="footer-contact-button">
                 <ul> <Link to="/mail">contact</Link></ul>
              </div>
+
         </div>
+        <div className="main-container-block" id="footer-copyright">
+                <ul>Copyright © 2022. All rights reserved</ul>
+            </div>
         </footer>
     )
 }

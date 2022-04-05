@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from "react";
-import { Global } from './Membrane'
-import { Loading } from './Animations';
+import { Global } from '../Membrane'
+import { Loading } from '../Animations';
 
 
 export const TweetRender = ({ tweet, i }) => {
