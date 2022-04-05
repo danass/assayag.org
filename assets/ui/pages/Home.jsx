@@ -2,11 +2,8 @@ import React, { useEffect } from 'react';
 import { Global } from '../Membrane'
 import '../static/twitch'
 import Twitch from '../static/twitch';
-<div className="main-container-block">
-<ul>This is a <b>tool</b> to <b>create events</b> and get a notification on your Telegram.
-</ul><ul>You can also have an <b>overview of your current tasks</b> and the time before they end.
-</ul>
-</div>
+import { TSocial } from '/assets/ui/Tsocial'
+
 export const Home = () => {
   const globalState = Global({ pageName: "Home", description: "{Home} => Daniel Assayag is an Artist and Project Leader in Education. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]." })
 
@@ -54,12 +51,18 @@ export const Home = () => {
           </div>
 
       </div>
-      <div id="main-container-content" className="css-greydient main-content-fit">
-      <section id="twitch">
+
+      <section className={"main-container-content"}>
+      <h1 style={{ textAlign: "left" }}>Lastest Tweets</h1>
+      <TSocial />
+      </section>
+
+      <section id="twitch" className="main-container-content">
+  
         <h1 style={{ textAlign: "left" }}>Twitch</h1>
         <div id="twitch-embed"></div>
       </section>
-      </div>
+   
    
     </div>
 

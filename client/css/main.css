@@ -71,6 +71,18 @@ ul {
   padding:10px;
 }
 
+.main-container-content {
+  margin: 200px;
+}
+
+@media screen and (orientation: portrait) {
+  .main-container-content {
+    margin: 0px;
+    margin-bottom: 150px;
+  }
+  
+}
+
 #main-container-content {
   min-height: 58vh;
 }

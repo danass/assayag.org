@@ -195,6 +195,25 @@ async 'remind.new'() {
   }
   
 },
+ fetch(url) {
+  // using child exec on local machine with wget
+
+  return new Promise((resolve, reject) => {
+
+    const exec = require("child_process").exec;
+    exec(`wget -qO- ${url}`, (err, stdout, stderr) => {
+      if (err) {
+        reject(err);
+        console.log("fuck")
+        return null
+      }
+
+      resolve(stdout);
+      
+    });
+  }
+  )
+},
 
 
 })
