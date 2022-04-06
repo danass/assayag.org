@@ -1,6 +1,7 @@
 header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 60px;
 }
 
 .menu {
@@ -50,7 +51,7 @@ transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1.3s;
 }
 
 .login {
-  padding: 12px;
+  padding: 0px;
 }
 
 .logo {
@@ -75,16 +76,19 @@ transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1.3s;
   background: #afa2c3;
   height: fit-content;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.7s;
-  width: 200px;
+  width: 120px;
+  border-radius: 110px;
+  padding: 30px;
 }
 
 .popup-menu-container input {
-  background: #9687ad;
+  background: #9687ad61;
   border: 0;
   color: white;
   padding: 10px;
-  margin-bottom: 3px;
+  margin-bottom: 6px;
   width: 100%;
+  border-radius: 40px;
 }
 
 .popup-menu-container button {

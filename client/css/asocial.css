@@ -37,7 +37,7 @@ div#main-container-header-instructions ul {
     display: flex;
     clear: both;
     flex-direction: column;
-    margin: 10px 200px;
+    margin: 0px 200px 120px 200px;
 }
  
 .main-container-header-title, #main-container-header-title {

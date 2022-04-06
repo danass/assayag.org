@@ -5,8 +5,13 @@ export const Box = ({tweet}) => {
 
     function clean(str) {
         // remove ": ↩️"
+        // search for usernames formatted like this "@username" and remove them from string
+        str = str.replace(/@[a-zA-Z0-9_]+/g, '');
+        // search for :&ensp;
+        // replace with space
+        str = str.replace(/: ↩️/g, '');
 
-        return str.replace(/: ↩️/g, '');
+        return str.replace(/: /g, '');
     }
 
     
@@ -32,7 +37,6 @@ const [data, setData] = useState([]);
         Meteor.call('fetch', url, (e, r) => { 
             if(e) {
             } else {
-               
                 var res = JSON.parse(convert.xml2json(r, {compact: true, spaces: 4}));
                 setData(res.rss.channel.item)
             }

@@ -14,7 +14,8 @@ export const Remind = () => {
     const [now, setCountdowns] = useState(null)
     const [error, setError] = useState(null)
     const [colors, setColors] = useState([135,55,255, 1]) //143,102, 255
-
+    const [eSel, seteSel] = useState(1)
+    
     useEffect(() => {
         
         const interval = Meteor.setInterval(() => {
@@ -91,27 +92,54 @@ export const Remind = () => {
           <div  id="main-container-header-instructions">
        
         {Meteor.userId() ? <ul>Add and edit your event reminders</ul> : <ul>Login to edit.</ul> }
-        
-
-        {/* Create an input color picker */}
-        {/* <input type="color" output id="color-picker" onChange={(e) => {
-            let currentColor = e.target.value
-            setColors([hexToRgb(currentColor).r, hexToRgb(currentColor).g, hexToRgb(currentColor).b, 1])
-        }} />
-
-         */}
-
-
       </div>
         </div>
         </div>
-
+        <div id="remind-selectors">
+            <div onClick={()=> {seteSel(1)
+            document.querySelector('#remind-selectors').scrollIntoView({behavior: "smooth"})
+        }} className={`remind-selector ${eSel == 1 ? "remind-selected" : ""}`}>Present&Future </div>
+            <div onClick={()=> {seteSel(0) 
+            document.querySelector('#remind-selectors').scrollIntoView({behavior: "smooth"})
+                        
+            }} className={`remind-selector ${eSel == 0 ? "remind-selected" : ""}`}>All</div>
+           
+            <div onClick={() => {seteSel(2)}} className={`remind-selector ${eSel == 2 ? "remind-selected" : ""}`}>Past</div>
+           {eSel == 0? 
+            <div className="remind-selector event-create">
+                <div onClick={() => { Meteor.call('remind.new', ((e, r) => {
+                    if(e) {
+                    setError(e.message)
+                    setTimeout(() => {
+                        setError("")
+                    }, 1000);
+                    } else {
+                        document.querySelectorAll('.event-container')[document.querySelectorAll('.event-container').length-1].scrollIntoView({behavior: "smooth"})
+                        // scrollIntoView("#membrane .event-container:last-child")
+                        
+                    } 
+                })) }}>
+                <Tooltip TransitionComponent={Zoom} title={error? error: ""}>
+                    <b className='div-purple-slim'>+ new event</b>
+                </Tooltip>
+                </div>
+            </div>
+            : null}
+        </div>
             {events ?
-                events.sort((a, b) => {
-                    return new Date(a.end) - new Date(b.end)
+                events.filter((event) => {
+                    if(eSel == 0) { // all
+                        return true
+                    }
+                     if(eSel == 1) // present and future
+                      { return toNow(event.end) <= 0 } 
+                     if(eSel == 2) // past
+                      { return toNow(event.end) >= 0 }}).sort((a, b) => {
+                        let diff = new Date(a.end) - new Date(b.end) 
+                        // console.log(diff + now)
+                    return diff
+
                 }).map((event, i) => {
-                    
-                    
                     return <section className="event-container" style={{
                         backgroundColor: toNow(event.end) <= 0 ? `rgba( ${logToColorDomInt(event.end, colors[0])} , ${logToColorDomInt(event.end, colors[1])}, ${logToColorDomInt(event.end, colors[2])} , 1)` : 'rgba(0,0,0,0.9)',
                         color : toNow(event.end) <= 0 ? `black`  : 'darkgrey'
@@ -124,8 +152,8 @@ export const Remind = () => {
                             <div className="event-wrapper">
                             <div onBlur={(e) => { updateEvent(event._id, "name", e) }} className="event-name" contentEditable suppressContentEditableWarning><b>{event.name}</b></div>
                             
-                            <div className="event-remain">{toNow(event.end) <= 0? humanizeDuration(toNow(event.end)) : "expired" }</div>
-                            <div className="event-enddate">
+                            <div className="event-remain">{toNow(event.end) <= 0? humanizeDuration(toNow(event.end)) : eSel == 0? event.end == ""? "Select a date.." : "passed" : "it's been " + humanizeDuration(toNow(event.end)) }</div>
+                            {eSel == 0 || event.end == "" || toNow(event.end) <= 0? <div className="event-enddate">
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                     <DateTimePicker
                                         renderInput={(props) => <TextField {...props} />}
@@ -141,7 +169,7 @@ export const Remind = () => {
                                 </LocalizationProvider>
                             
                             </div>
-                            
+                            : <div className="date-skeleton" />}
                         </div>
 
                         <Tooltip TransitionComponent={Zoom} title={error? error: ""}>
@@ -161,15 +189,18 @@ export const Remind = () => {
                         
                     </section>
                 }) : <Loading />}
-
-                
-            <div className="event-create ">
+    {eSel == 0? 
+            <div className="remind-selector event-create">
                 <div onClick={() => { Meteor.call('remind.new', ((e, r) => {
                     if(e) {
                     setError(e.message)
                     setTimeout(() => {
                         setError("")
                     }, 1000);
+                    } else {
+                        document.querySelectorAll('.event-container')[document.querySelectorAll('.event-container').length-1].scrollIntoView({behavior: "smooth"})
+                        // scrollIntoView("#membrane .event-container:last-child")
+                        
                     } 
                 })) }}>
                 <Tooltip TransitionComponent={Zoom} title={error? error: ""}>
@@ -177,6 +208,9 @@ export const Remind = () => {
                 </Tooltip>
                 </div>
             </div>
+            : null}
+            
+
         </>
     )
 
