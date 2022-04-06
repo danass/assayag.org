@@ -30,7 +30,13 @@ setPluie(pluie => {
   pluieArray.push({ _id: Uuid(), text: e.target.value });
   
   let rain = pluie.map((drop, i) => {
+    // detect if drop.text contain a return carriage
+    // if so, split it into multiple drops
+    // if not, just return the drop
+    //
+
     return (
+      
       <RaindropsRender key={drop._id} drop={drop} />
     )
   });
@@ -66,7 +72,7 @@ setPluie(pluie => {
           Text memory appears as you write, drawing patterns of letters while playing with <b>the process of time layers</b>.<br></br>
           </ul></div>
         <div className="main-container-block">
-          <ul><li><b>Start typing</b> a text with your keyboard or <b>{isMobile()?"click":"hover"} on the main central box</b> to make the menu appear.
+          <ul><li><b>Start typing</b> a text with your keyboard or <b>{isMobile()?"click on":"hover over"} the main central box</b> to make the menu appear.
           </li><li>You can <b>remove</b> drops by clicking on text (bold on hover)
           </li><li>You can also <b>save your creation</b> by clicking on the save button on the top right corner.
           </li><li>The shuffle button trigger a <b>random set of colors</b>

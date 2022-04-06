@@ -1,0 +1,13 @@
+.div-purple-slim {
+    background: #ede0ff;
+    padding: 5px 10px 8px 5px;
+    border-radius: 30px;
+    color: #221d2c;
+    font-weight: 600;
+}
+
+.div-purple-slim:hover {
+    font-weight: 700;
+    cursor: pointer;
+    background: #ebdcff;
+}

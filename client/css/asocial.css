@@ -209,6 +209,7 @@ justify-content: center;
 
 .asocial-usernames {
     display: flex;
+    flex-flow: wrap;
 }
 
 .asocial-usernames div {

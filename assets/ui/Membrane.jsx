@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Tooltip, Zoom } from '@mui/material';
 
 export const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -59,9 +60,10 @@ export const LoginForm = () => {
           onChange={e => setPassword(e.target.value)}
         />
   
+        <Tooltip TransitionComponent={Zoom} title={errorLoginMessage? errorLoginMessage: ""}>
         <button type="submit">Log In</button>
+        </Tooltip>
       </form>
-            {errorLoginMessage}
       </div>
       
       

@@ -6,8 +6,12 @@
 
 .event {
     width: 100%;
+    filter: contrast(1.5);
 }
-
+.event-name {
+    font-size: 25px;
+    width: fit-content;
+}
 .event-container {
     margin: 0px 0px 18px 0px;
     background: #f7f7f7;
@@ -34,15 +38,19 @@ div [contenteditable="true"]:focus {
   }
 
   button.event-meta {
-    float: right;
-    margin: 10px;
-    background: #4444443d;
-    border-width: 3px;
-    border-color:#dddedfa6;
-    color: #666666;
-}
 
-button.event-meta:hover {
-    border-color: #ffffff;
-    color: #464646;
+    background: #9687ad;
+    border: 0;
+    color: white;
+    padding: 10px;
+    width: 10%;
+    border-radius: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: ease-in-out 0.1s;
+  }
+.event-create {
+    text-align-last: center;
+    padding: 20px;
 }
