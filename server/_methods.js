@@ -179,16 +179,33 @@ async 'remind.update'(id, event) {
     telegramSent: event.telegramSent
     }
     // update the database
-    if(Meteor.userId() || Meteor.isServer === true) {
+    if(Meteor.userId()) {
     await RemindCollection.update({_id: id}, {$set: currentEvent})
     }
     else {
       throw new Meteor.Error('not logged in')
     }
   },
+  async 'remind.update.server'(id, event) {
+
+    let currentEvent = {
+      name: event.name,
+      begin: event.begin,                    
+      end: event.end,
+      interval: event.interval,
+      description: event.description,
+      link: event.link,
+      telegram: event.telegram,
+      telegramSent: event.telegramSent
+      }
+      // update the database
+      if(Meteor.isServer) {
+      await RemindCollection.update({_id: id}, {$set: currentEvent})
+      }
+    },
 
 async 'remind.remove'(id) {
-  if(Meteor.userId() || Meteor.isServer === true) {
+  if(Meteor.userId()) {
   return await RemindCollection.remove({_id: id})
   }
   else {
@@ -203,17 +220,17 @@ async 'remind.remove'(id) {
 
 async 'remind.new'() {
   // update the database
-  if(Meteor.userId() || Meteor.isServer === true) {
+  if(Meteor.userId()) {
   await RemindCollection.insert({name: "Event #", begin: new Date(Date.now()+ 1000*60*360), end: new Date(Date.now()+ 1000*60*360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false}, (e,r) => {
     return r
   })
-    
 }
   else {
     throw new Meteor.Error('unauthorized, you need to be logged in')
   }
-  
 },
+
+
  fetch(url, telegram) {
   // using child exec on local machine with wget
 

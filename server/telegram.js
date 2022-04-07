@@ -27,9 +27,9 @@ function triggerTelegram(event) {
         if (!event.telegramSent) {
             if (ten_ago) {
                 Meteor.call('TelegramIt', event.name)
-                Meteor.call('remind.update', event._id, { telegramSent: true })
+                Meteor.call('remind.update.server', event._id, { telegramSent: true })
                 Meteor.setTimeout(() => {
-                    Meteor.call('remind.update', event._id, { telegram: false, telegramSent: false });
+                    Meteor.call('remind.update.server', event._id, { telegram: false, telegramSent: false });
                 }, 1000 * 60 * 1);
             }
         }
