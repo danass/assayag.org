@@ -19,6 +19,7 @@
     padding: 10px;
 }
 
+
 .event-wrapper {
     padding: 6px;
 }
@@ -62,10 +63,23 @@ div#remind-selectors {
     font-weight: 700;
 }
 
+.remind-disabled {
+    font-weight: 400;
+    color: grey;
+    width: fit-content;
+    margin: 0px 20px 5px 0px;
+}
+
+
 .date-skeleton {
     width: 271px;
     height: 56px;
 }
+
+.event-choices-buttons-wrapper {
+    display: flex;
+}
+
 .event-choices {
     display: flex;
     flex-direction: row;
@@ -73,11 +87,16 @@ div#remind-selectors {
     align-items: flex-end;
 }
 
+.event-choice {
+    padding: 0px 0px 0px 4px;
+}
+
 .Mui-selected, .event-choice button {
     padding: 6px 9px;
     background-color: rgba(0,0,0,0.0);
     color: rgba(0,0,0,0.2);
 }
+
 
 
  .event-ended div, .event-ended label, .event-ended button, .event-ended fieldset {

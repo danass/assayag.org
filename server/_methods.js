@@ -175,7 +175,8 @@ async 'remind.update'(id, event) {
     description: event.description,
     link: event.link,
     telegram: event.telegram,
-    telegramSent: event.telegramSent
+    telegramSent: event.telegramSent,
+    private: event.private,
     }
     // update the database
     if(Meteor.userId()) {
@@ -185,7 +186,7 @@ async 'remind.update'(id, event) {
       throw new Meteor.Error('not logged in')
     }
   },
-  
+
   async 'remind.server.update'(id, event) {
 
     let currentEvent = {
@@ -196,7 +197,8 @@ async 'remind.update'(id, event) {
       description: event.description,
       link: event.link,
       telegram: event.telegram,
-      telegramSent: event.telegramSent
+      telegramSent: event.telegramSent,
+      private: event.private
       }
       // update the database
       if(Meteor.isServer) {
