@@ -148,7 +148,7 @@ export const Remind = () => {
                 }).map((event, i) => {
                     return <section className="event-container" style={{
                         backgroundColor: toNow(event.end) <= 0 ? `rgba( ${logToColorDomInt(event.end, colors[0])} , ${logToColorDomInt(event.end, colors[1])}, ${logToColorDomInt(event.end, colors[2])} , 1)` : 'rgba(0,0,0,0.9)',
-                        color: toNow(event.end) <= 0 ? `black` : 'rgb(167, 101, 255, 0.9)'
+                        color: toNow(event.end) <= 0 ? `black` : '#e1a0ff'
                     }} key={event._id}>
 
                         <div className="event">

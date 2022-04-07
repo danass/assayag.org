@@ -63,8 +63,9 @@ footer .footer-link-container a:after {
 }
 
 #footer-copyright {
-  text-align: center;
-  margin-top: 80px;
+  position: absolute;
+  width: -webkit-fill-available;
+  left: 0;
 }
 
 .footer-social ul {

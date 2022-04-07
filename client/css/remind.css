@@ -37,12 +37,6 @@ div [contenteditable="true"]:focus {
   transition: ease-in-out 0.1s;
   }
 
- .event-meta {
-    border: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
 .event-create {
     text-align-last: center;
     padding: 20px;
@@ -61,8 +55,6 @@ div#remind-selectors {
 .remind-selector:hover {
     cursor: pointer;
     font-weight: 700;
-
-   
 }
 
 .remind-selected {
@@ -83,9 +75,22 @@ div#remind-selectors {
 
 .Mui-selected, .event-choice button {
     padding: 6px 9px;
+    background-color: rgba(0,0,0,0.0);
+    color: rgba(0,0,0,0.2);
 }
+
 
  .event-ended div, .event-ended label, .event-ended button, .event-ended fieldset {
     color: #786685;
     border-color: #908399;
 }
+
+
+.event-meta button  {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 4px;
+    min-width: fit-content;
+    background: rgba(0,0,0,0.07);
+  }
