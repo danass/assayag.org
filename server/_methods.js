@@ -179,7 +179,7 @@ async 'remind.update'(id, event) {
     telegramSent: event.telegramSent
     }
     // update the database
-    if(Meteor.userId() || Meteor.isServer) {
+    if(Meteor.userId() || Meteor.isServer === true) {
     await RemindCollection.update({_id: id}, {$set: currentEvent})
     }
     else {
@@ -188,7 +188,7 @@ async 'remind.update'(id, event) {
   },
 
 async 'remind.remove'(id) {
-  if(Meteor.userId() || Meteor.isServer) {
+  if(Meteor.userId() || Meteor.isServer === true) {
   return await RemindCollection.remove({_id: id})
   }
   else {
@@ -203,7 +203,7 @@ async 'remind.remove'(id) {
 
 async 'remind.new'() {
   // update the database
-  if(Meteor.userId() || Meteor.isServer) {
+  if(Meteor.userId() || Meteor.isServer === true) {
   await RemindCollection.insert({name: "Event #", begin: new Date(Date.now()+ 1000*60*360), end: new Date(Date.now()+ 1000*60*360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false}, (e,r) => {
     return r
   })

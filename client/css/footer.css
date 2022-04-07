@@ -66,6 +66,7 @@ footer .footer-link-container a:after {
   position: absolute;
   width: -webkit-fill-available;
   left: 0;
+  text-align: center;
 }
 
 .footer-social ul {

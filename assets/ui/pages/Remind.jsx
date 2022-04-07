@@ -221,7 +221,7 @@ export const Remind = () => {
                                     setError("")
                                 }, 1200);
                             } else {
-                                document.querySelectorAll('.event-container')[0].scrollIntoView({ behavior: "smooth" })
+                                // document.querySelectorAll('.event-container')[0].scrollIntoView({ behavior: "smooth" })
                             }
                         }))
                     }}>
