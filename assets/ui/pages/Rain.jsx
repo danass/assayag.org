@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Tooltip } from "../Tooltip";
 import { Fonts, ColorPicker } from "../Modules"
 import { Global, Uuid, isMobile } from "../Membrane";
+import { Backdrop } from '@mui/material';
 
 
 export const RaindropsRender = ({ drop }) => {
@@ -71,17 +72,20 @@ setPluie(pluie => {
           <ul>This is an <b>interactive graphical text</b> creation tool. <br></br>
           Text memory appears as you write, drawing patterns of letters while playing with <b>the process of time layers</b>.<br></br>
           </ul></div>
+          
         <div className="main-container-block">
           <ul><li><b>Start typing</b> a text with your keyboard or <b>{isMobile()?"click on":"hover over"} the main central box</b> to make the menu appear.
           </li><li>You can <b>remove</b> drops by clicking on text (bold on hover)
           </li><li>You can also <b>save your creation</b> by clicking on the save button on the top right corner.
           </li><li>The shuffle button trigger a <b>random set of colors</b>
           </li></ul></div>
-        </div>
-        <div className="main-container-block" style={{background: "rgb(113 0 255)"}}>
+
+          <div className="main-container-block" style={{background: "rgb(113 0 255)"}}>
           <ul>Hint games: Try to draw a heart! (it's possible, is it? hint: you can use multiple whitespaces) </ul>
 
         </div>
+        </div>
+      
         <div className="rain">
 
       <Tooltip
@@ -95,7 +99,7 @@ setPluie(pluie => {
       <input id="rain-input-mkir" className="rain-input"
         type="text"
         placeholder="Make it rain" 
-        onChange={updateRain} autoFocus
+        onChange={updateRain}
       />
       
 

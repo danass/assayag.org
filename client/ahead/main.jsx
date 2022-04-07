@@ -11,9 +11,6 @@ import { Terms } from '/assets/ui/static/Terms'
 import { Privacy } from '/assets/ui/static/Privacy'
 import { Test } from '/assets/ui/Test'
 
-
-
-
 const rootElement = document.getElementById('membrane')
 
 export const Handle404 = (props) => {

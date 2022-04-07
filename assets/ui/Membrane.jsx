@@ -73,6 +73,29 @@ export const LoginForm = () => {
     );
   };
 
+  function goTop() {
+      // when document is document.ready
+
+      setTimeout(() => {
+        document.querySelector('header').scrollIntoView({behavior: "smooth"})
+          
+      }, 300);
+
+  
+
+  }
+
+export const MenuItems = () => {
+    return (<>
+
+        <Link to="/"> <div onClick={goTop}>Home</div></Link>
+        <Link to="/asocial"><div onClick={goTop}>Asocial</div></Link>
+        <Link to="/rain"><div onClick={goTop}>Rain</div></Link>
+        <Link to="/remind"><div onClick={goTop}>Re:mind</div></Link>
+    
+    </>
+    )
+}
 
 
 export const Menu = () => {
@@ -97,22 +120,9 @@ export const Menu = () => {
 
     return (
         <header>
-        <div className="menu" onScroll={(e) => hideMenu(e)}>
-            <div>
-                <Link to="/">Home</Link>
-            </div>
-            <div>
-                <Link to="/asocial">Asocial</Link>
-            </div>
-
-            <div>
-                <Link to="/rain">Rain</Link>
-            </div>
-            <div>
-                <Link to="/remind">Re:mind</Link>
-            </div>
+        <div className="menu">
+           <MenuItems />
         </div>
-
 
         <ClickAwayListener onClickAway={clickAwayMenu}>
         <div className={"popup-menu-container transparent-bg"}   >
@@ -165,6 +175,10 @@ export const Footer = () => {
                 <ul> <Link to="/mail">contact</Link></ul>
              </div>
 
+        </div>
+
+        <div id="footer-menu">
+            <MenuItems />
         </div>
         <div className="main-container-block" id="footer-copyright">
                 <ul>Copyright © 2022. All rights reserved</ul>

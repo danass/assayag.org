@@ -2,7 +2,13 @@ body {
   padding: 20px;
   background: #efefefbd;
   font: 400 1rem/2 Inter;
-  
+  min-width: 300px;
+}
+
+@media screen and (max-width: 380px) {
+  body {
+    padding: 5px;
+  }  
 }
 
 @font-face {

@@ -58,14 +58,14 @@ export const TweetRender = ({ tweet, i }) => {
     if (tweet.source == "https://www.tumblr.com/") {
       // remove "Photo :" from the text
       let checkersList = ["Photo : ", "Photo: ", "Diaporama : "]
-      return checkersList.map(checker => {
+      return checkersList.map((checker, i) => {
         if (tweet.text.match(checker)) {
           let text = tweet.text.split(checker)[1]
           // link from the text if text match tweet.url
           if (text.match(tweet.url)) {
             text = text.split(tweet.url)[0];
           }
-          return <div className="asocial-text">{text}</div>
+          return <div key={i} className="asocial-text">{text}</div>
         }
       })
     }
@@ -98,7 +98,7 @@ export const Asocial = () => {
 
 
   const [userOptions, setuserOptions] = useState({
-    params: { maxRand: 1, listSize: 5 },
+    params: { maxRand: 1, listSize: 3 },
     insta: { clicked: false, size: 0, maxRand: 1, sources: ["http://instagram.com"] },
     twitter: { clicked: true, size: 0, sources: ["https://dev.twitter.com/docs/tfw", "http://twitter.com/download/android", "http://twitter.com", "http://twitter.com/download/iphone", "https://mobile.twitter.com"] },
     google: { clicked: false, size: 0, sources: ["https://www.google.com/"] },
@@ -164,6 +164,7 @@ export const Asocial = () => {
       return
     }
     fetchData(userOptions, 'click', Math.floor(Math.random() * maxRand) + 1)
+    document.querySelector('.main-container-wrapper').scrollIntoView({ behavior: "smooth" })
   }
 
   const handleChange = async (e) => {
@@ -186,7 +187,16 @@ export const Asocial = () => {
           <ul>A mirror of my pityful social life through the main platforms, Tiktok, Youtube, Twitter.
           </ul><ul>A navigator through archives of the social media.
           </ul></div>
+
+          <div className="main-container-block">
+        <ul>Browse using input box with an <b>index number</b>,
+        </ul><ul>or <b>click on main box</b> to shuffle and get a new random entry.
+        </ul><ul>Input <b>a larger number</b> to view multiple entries at once.
+
+        </ul>
       </div>
+      </div>
+
       <div className="main-container-wrapper asocial-content-wrapper">
         <div id="main-container-selectors">
           <div id="main-container-header-navigation">
@@ -217,13 +227,7 @@ export const Asocial = () => {
       </div>
 
 
-      <div className="main-container-block">
-        <ul>Browse using input box with an <b>index number</b>,
-        </ul><ul>or <b>click on main box</b> to shuffle and get a new random entry.
-        </ul><ul>Input <b>a larger number</b> to view multiple entries at once.
 
-        </ul>
-      </div>
 
     </div>
     //     <Tooltip uuid="tiktok-comment-container" caption="Save" directCreation={true} clickforsave={true} >

@@ -12,6 +12,9 @@
 .rain div .container-div {
     background: white;
 }
+.rain {
+    border-top: solid 9px #ebebeb;
+}
 
 .rain-buttons-align {
     display: flex;

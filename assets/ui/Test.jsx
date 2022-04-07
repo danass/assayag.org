@@ -22,11 +22,9 @@ export const Test = () => {
             if (err) {
                 console.log("bug", err);
             } else {
-                setresponseTweets([...responseTweets, tweet.full_text])
+                setresponseTweets([...responseTweets, tweet])
             }
         })
-
-
     }
 
 
@@ -45,7 +43,7 @@ export const Test = () => {
                     <b>{tweet.in_reply_to_screen_name}</b>
                     {newTweet}
                     <br></br>
-                    {responseTweets ? responseTweets[i] ? responseTweets[i] : "walou" : "loading    "}
+                   
                     <br></br>
                 </div>
             }) : "loading"}

@@ -1,7 +1,3 @@
-#main-container-footer {
-
-}
-
 div#main-container-footer {
   display: flex;
   flex-wrap: wrap;
@@ -81,4 +77,35 @@ footer .footer-link-container a:after {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+div#footer-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 100px;
+}
+
+#footer-menu div {
+  margin-top: 12px;
+  padding: 0px 10px;
+  /* border: solid 1px #8e008b; */
+  border-radius: 30px;
+}
+#footer-menu div:hover {
+  background: #43286c;
+  border-color: #b864b6;
+  transition: ease-in-out 0.15s;
+  cursor: pointer;
+}
+
+#footer-menu a:hover {
+
+color: white;
+
+}
+#footer-menu a:hover div {
+transition: ease-in-out 0.1s;
+color: white;
 }

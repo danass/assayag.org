@@ -1,8 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { RemindCollection } from '../assets/api/Collection.js';
 import  './_methods.js';
-
-
+import './telegram.js'
 
 Meteor.startup(async () => {
   Meteor.publish('remind', async function () {
@@ -10,15 +9,15 @@ Meteor.startup(async () => {
   });
 
 
-const SEED_USERNAME = 'daniel';
-const SEED_PASSWORD = 'temp';
+// const SEED_USERNAME = 'daniel';
+// const SEED_PASSWORD = 'temp';
 
-  if (!Accounts.findUserByUsername(SEED_USERNAME)) {
-    Accounts.createUser({
-      username: SEED_USERNAME,
-      password: SEED_PASSWORD,
-    });
-  }
+//   if (!Accounts.findUserByUsername(SEED_USERNAME)) {
+//     Accounts.createUser({
+//       username: SEED_USERNAME,
+//       password: SEED_PASSWORD,
+//     });
+//   }
 
 });
 

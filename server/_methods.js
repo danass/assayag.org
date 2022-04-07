@@ -1,18 +1,16 @@
-import { twitterconf, mailconf } from './conf.js';
+import { Twitterconf, mailconf, Telegramconf } from './conf.js';
 import { TwitterCollection, RemindCollection } from '../assets/api/Collection.js';
 import  { TwitterApi }  from 'twitter-api-v2';
-
-
 
 Meteor.methods({
  async getTwitter(id) {
 
 
     const twitterClient = new TwitterApi({
-        appKey: twitterconf.CONSUMER_KEY,
-        appSecret: twitterconf.CONSUMER_SECRET,
-        accessToken: twitterconf.ACCESS_TOKEN_KEY,
-        accessSecret: twitterconf.ACCESS_TOKEN_SECRET
+        appKey: Twitterconf.CONSUMER_KEY,
+        appSecret: Twitterconf.CONSUMER_SECRET,
+        accessToken: Twitterconf.ACCESS_TOKEN_KEY,
+        accessSecret: Twitterconf.ACCESS_TOKEN_SECRET
     });
 
     async function getDb(nbOfPages) {
@@ -176,10 +174,12 @@ async 'remind.update'(id, event) {
     end: event.end,
     interval: event.interval,
     description: event.description,
-    link: event.link
+    link: event.link,
+    telegram: event.telegram,
+    telegramSent: event.telegramSent
     }
     // update the database
-    if(Meteor.userId()) {
+    if(Meteor.userId() || Meteor.isServer) {
     await RemindCollection.update({_id: id}, {$set: currentEvent})
     }
     else {
@@ -188,7 +188,7 @@ async 'remind.update'(id, event) {
   },
 
 async 'remind.remove'(id) {
-  if(Meteor.userId()) {
+  if(Meteor.userId() || Meteor.isServer) {
   return await RemindCollection.remove({_id: id})
   }
   else {
@@ -203,15 +203,18 @@ async 'remind.remove'(id) {
 
 async 'remind.new'() {
   // update the database
-  if(Meteor.userId()) {
-  await RemindCollection.insert({name: "Event #", begin: new Date(Date.now()), end: "", description: "", link: "", remaining: "", status: ""})
-  }
+  if(Meteor.userId() || Meteor.isServer) {
+  await RemindCollection.insert({name: "Event #", begin: new Date(Date.now()+ 1000*60*360), end: new Date(Date.now()+ 1000*60*360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false}, (e,r) => {
+    return r
+  })
+    
+}
   else {
     throw new Meteor.Error('unauthorized, you need to be logged in')
   }
   
 },
- fetch(url) {
+ fetch(url, telegram) {
   // using child exec on local machine with wget
 
   return new Promise((resolve, reject) => {
@@ -223,13 +226,36 @@ async 'remind.new'() {
         console.log("fuck")
         return null
       }
-      console.log("ich fitchi")
+
       resolve(stdout);
       
     });
   }
   )
 },
+
+TelegramIt(message) {
+
+  return new Promise((resolve, reject) => {
+    let url = `https://api.telegram.org/${Telegramconf.botkey}/sendMessage?chat_id=${Telegramconf.channelid}&text=${message}`
+    console.log(url)
+    const exec = require("child_process").exec;
+    exec(`wget -qO- "${url}"`, (err, stdout, stderr) => {
+      if (err) {
+        reject(err);
+        console.log("fuck")
+        return null
+      }
+      else {
+        console.log(stdout  )
+      }
+      resolve(stdout);
+      
+    });
+  }
+  )
+  
+}
 
 
 })
