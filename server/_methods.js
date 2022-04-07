@@ -167,7 +167,6 @@ Meteor.methods({
 },
 
 async 'remind.update'(id, event) {
-
   let currentEvent = {
     name: event.name,
     begin: event.begin,                    
@@ -180,13 +179,14 @@ async 'remind.update'(id, event) {
     }
     // update the database
     if(Meteor.userId()) {
+      console.log(userId())
     await RemindCollection.update({_id: id}, {$set: currentEvent})
     }
     else {
       throw new Meteor.Error('not logged in')
     }
   },
-  async 'remind.update.server'(id, event) {
+  async 'remind.server.update'(id, event) {
 
     let currentEvent = {
       name: event.name,
