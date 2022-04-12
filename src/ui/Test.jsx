@@ -1,0 +1,56 @@
+
+
+import React, { useState, useEffect } from "react"
+
+export const Test = () => {
+ const [data, setData] = useState(null);
+ const [responseTweets, setresponseTweets] = useState([]);
+
+ useEffect(() => {
+  Meteor.call('getTwitter', (err, twitterClient) => {
+   if (err) {
+    console.log("bug", err);
+   } else {
+    setData(twitterClient._realData)
+   }
+  })
+
+ }, [])
+
+ function getTweet(id) {
+  Meteor.call('getTwitter', id, (err, tweet) => {
+   if (err) {
+    console.log("bug", err);
+   } else {
+    setresponseTweets([...responseTweets, tweet])
+   }
+  })
+ }
+
+
+ return (
+  <>
+   {data ? data.map((tweet, i) => {
+    // console.log(tweet)
+    // remove all usernames: '@username' from the tweet.full_text
+
+    let newTweet = tweet.full_text.replace(/@[a-zA-Z0-9_]+/g, '');
+    newTweet = newTweet.replace(/https?:\/\/[^\s]+/g, '');
+
+    // {getTweet(tweet.in_reply_to_status_id_str)}
+
+    return <div key={i}>
+     <b>{tweet.in_reply_to_screen_name}</b>
+     {newTweet}
+     <br></br>
+<svg viewBox="0 0 150 100" >
+  <rect width="50" height="100" />
+  <rect x="50" width="100" height="100" rx="15" />
+</svg>
+
+    </div>
+   }) : "loading"}
+
+  </>
+ )
+}

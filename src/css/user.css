@@ -1,0 +1,13 @@
+form#user-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#user-form * {
+  padding: 7px;
+  margin: 4px;
+}
+
+button#userform-button {
+  width: fit-content;
+}

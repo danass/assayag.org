@@ -1,0 +1,77 @@
+
+.container-for-div-with-tooltip {
+  position: relative;
+  overflow: hidden;
+  height: min-content;
+  }
+
+  
+  .container-tooltip {
+    position: absolute;
+    top: 0;
+    right:0;
+    min-height: 50px;
+    min-width: 50px;
+    opacity: 0;
+    transition: .2s ease-out;
+    background-color: #00000047!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60% !important;
+    margin: 5px!important;
+    border-radius: 4px;
+    width: 50px !important;
+    height: 50px !important;
+    
+  }
+  
+  .container-for-div-with-tooltip:hover .container-tooltip {
+    opacity: 1;
+  }
+
+
+  .tooltip-label {
+    color: white;
+    position: absolute;
+  }
+
+  .tiktok-comment img {
+    width: 50%;
+    height: 50%;
+    padding: 10px;
+  }
+  .tiktok-comment {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+  
+
+  
+
+#tiktok-comment-container {
+  background: #e8e8e8;
+  width: 1024px;
+  height: 512px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  padding: 0.5em 1.5em;
+  margin: 0 auto;  
+}
+
+.twitter-usernames {
+  color: rgb(29, 155, 240);
+  font-size: 0.4em;
+}
+
+.twitter-source {
+  font-size: 0.4em;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #adadad;
+}

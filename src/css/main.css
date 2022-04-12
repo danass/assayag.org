@@ -1,0 +1,85 @@
+body {
+  padding: 20px;
+  background: #efefefbd;
+  font: 400 1rem/2 Inter;
+  min-width: 300px;
+}
+
+@media screen and (max-width: 380px) {
+  body {
+    padding: 5px;
+  }  
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.var.woff2")
+      format("woff2 supports variations"),
+    url("/fonts/Inter.var.woff2") format("woff2-variations");
+  font-weight: 1 999;
+  font-stretch: 75% 100%;
+  font-style: oblique 0deg 20deg;
+  font-display: swap;
+}
+
+
+.task-form {
+  margin-top: 1rem;
+}
+
+.background-no {
+  background: orangered;
+}
+
+
+#home {
+  display: flex;
+}
+#home div {
+  align-self: center;
+  padding-right: 4px;
+}
+
+a {
+  color: darkmagenta;
+  text-decoration: none;
+  transition: all 0.2s ease-out;
+}
+
+
+
+ a:hover {
+  color: #1316d9;
+  font-weight: bold;
+}
+
+a:active {
+  font-weight: bold;
+  text-decoration-thickness: 4px;
+}
+
+
+
+.main-container-content {
+  margin: 0px 200px;
+}
+
+@media screen and (orientation: portrait) {
+  .main-container-content {
+    margin: 0px;
+    margin-bottom: 150px;
+  }
+  
+}
+
+#main-container-content {
+  min-height: 58vh;
+}
+
+
+@media screen and (orientation: portrait) {
+  #main-container-header {
+    justify-content: center;
+   
+  }
+}

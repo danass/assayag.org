@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: assayag.org
+Token: d3583ab79900cad798a3ce31bb0f13c7664648c9f4d6368136c458403dc538ee

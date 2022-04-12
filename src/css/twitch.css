@@ -1,0 +1,44 @@
+#twitch-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+  }
+  #twitch-embed object, #twitch-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hide-twitch {
+
+      content: "twitch is offline, come again later";
+      width: 24%;
+  transition: width 4s, height 2s, background-color 2s, transform 4s;
+  }
+
+  @media screen and (orientation: portrait) {
+  #twitch {
+    margin: 0px;
+    padding: 0px!important;
+}
+}
+
+
+  #twitch {
+    transition-property: width;
+    transition-duration: 0.2s;
+    transition-delay: 0.7s;
+    width: 100%;
+    background: #ffffff00;
+    margin: 0 auto;
+    padding: 200px;
+  }
+
+
+ 
+  :root {
+    --twitchsection: #dedede;
+  }
