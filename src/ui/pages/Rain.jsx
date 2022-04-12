@@ -80,7 +80,7 @@ export const Rain = (props) => {
 
   return (
 
-    <div id="main-container">
+    <div id="main-container" className="rain-container">
       <div id="main-header-wrapper">
       <div id="main-container-header">
         
@@ -110,7 +110,7 @@ export const Rain = (props) => {
    
           
           <ClickAwayListener onClickAway={clickAwayMenu}>
-          <div className="disparition" id="rain-controls" style={(isMobile() ? ({ margin: '0px' }) : {})} onClick={(e) => {
+          <div className="disparition" id="rain-controls" onClick={(e) => {
           }}>
             <ColorPicker values={colors} />
             <input id="rain-input-mkir" className="rain-input" autoComplete="off" type="text" placeholder="Make it rain" onChange={updateRain} />
@@ -157,14 +157,16 @@ export const Rain = (props) => {
         </div>
 
         <div id="rain-library">
+          <div className="rain-frontispice">RAIN-LIBRARY</div>
           {allcanvas.map((canvas, i) => {
             return <div key={i} className={"rain-book"}>
               <a href={canvas} download={`rain-${new Date().getDate()}-${new Date().getHours()}-${new Date().getMinutes()}-${allcanvas.length}`}>
-                <img alt="download full image" key={`img-${i}`} src={canvas} />
+                <img key={`img-${i}`} src={canvas} />
                 </a>
                 </div>
           })
           }
+          {allcanvas.length==1? null: "Start creating and saving your rains!"}
         </div>
 
       </div>

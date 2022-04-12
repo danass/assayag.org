@@ -42,8 +42,8 @@ export const Fonts = (props) => {
   }, [props.crop])
 
   return (
-    <div>
-      <div>
+    <>
+      <div className='rain-controls-wrapper'>
 
         <div id="font-form">
           <select id="font-selector" defaultValue={'Inter'} onChange={
@@ -54,7 +54,7 @@ export const Fonts = (props) => {
           </select>
         </div>
 
-        <div id="font-weight">
+        <div className="rc-sliders">
         <Typography gutterBottom>FontWeight</Typography>
         <Slider size="small" aria-label="Small" type="number" min={100} defaultValue={400} step={1} max={900} valueLabelDisplay="auto"  id="font-weight-selector" onChange={
             (e) => { 
@@ -63,20 +63,20 @@ export const Fonts = (props) => {
 
         </div>
         
-        <div id="font-lineheight">
+        <div className="rc-sliders">
         <Typography gutterBottom>LineHeight</Typography>
         <Slider size="small" aria-label="Small" type="number" min={0.01} defaultValue={1.0} step={0.1} max={2.8} valueLabelDisplay="auto" id="font-lineheight-input"  onChange={
             (e) => { document.getElementById('rainfall').style.lineHeight = e.target.value }} />
         </div>
 
-        <div id="font-size-form">
+        <div className="rc-sliders">
         <Typography gutterBottom>FontSize</Typography>
         <Slider size="small" aria-label="Small" type="number" min={12} defaultValue={50} step={0.1} max={120} valueLabelDisplay="auto"  id="font-size-input"  onChange={
             (e) => {
               document.getElementById('rainfall').style.fontSize = e.target.value  + 'px' 
             }} />
         </div>
-        <div id="font-matrix-container">
+        <div className="rc-sliders" id="font-matrix-container">
           <div id="font-matrix-form">
           <Typography gutterBottom>3D Rotation</Typography>
           <Slider size="small" aria-label="Small" type="number" id="font-matrix-input-a" defaultValue={1}  step={Math.PI/24} max={Math.PI*2} min={-Math.PI*2} onChange={
@@ -105,7 +105,7 @@ export const Fonts = (props) => {
               
         </div>
       </div>
-    </div>
+    </>
 
 
   )
