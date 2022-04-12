@@ -19,14 +19,14 @@ export const Rain = (props) => {
   const [Tdiv, setTdiv] = useState(<div>Make it rain</div>);
   const [colors, setColors] = useState([getRandomColor(), getRandomColor()])
   const [pluie, setPluie] = useState([]);
-  const [crop, setCrop] = useState(false);
+  const [crop, setCrop] = useState(true);
   const [reverse, setReverse] = useState(true);
   const [allcanvas, setallCanvas] = useState([]);
 
   async function saveScreenshot() {
 
     setallCanvas([await html2canvas(
-        crop? document.getElementById("rain"): document.getElementById('rainfall'),
+        crop? document.getElementById('rainfall'):  document.getElementById("rain"),
         {scale: 1, backgroundColor:null}
       ).then(canvas => canvas.toDataURL("image/png"))
     , ...allcanvas]);
