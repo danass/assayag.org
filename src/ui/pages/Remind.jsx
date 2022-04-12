@@ -167,7 +167,7 @@ useEffect(()=> {
 
           <div className={`"event-enddate" ${toNow(event.end) <= 0 ? "" : "event-ended"}`}>
            <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DateTimePicker disabled={user? true: false} renderInput={(props) => <TextField  {...props} />}
+            <DateTimePicker disabled={user? false: true} renderInput={(props) => <TextField  {...props} />}
              label="DateTimePicker" value={event.end} onChange={(newValue) => {
               let currentEvent = { end: newValue }
               Meteor.call('remind.update', event._id, currentEvent); }}  />
@@ -176,14 +176,14 @@ useEffect(()=> {
            
          <div className="event-choices-buttons-wrapper">   
           <div className="event-choice">
-           <ToggleButton disabled={user? true: false} value="check" selected={event.telegram} onClick={() => {
+           <ToggleButton disabled={user? false: true} value="check" selected={event.telegram} onClick={() => {
              Meteor.call('remind.update', event._id, { telegram: !event.telegram }) }}>
             <TelegramIcon />
            </ToggleButton>
           </div>
 
           <div className="event-choice">
-           <ToggleButton disabled={user? true: false} value="check" selected={event.private} onClick={() => {
+           <ToggleButton disabled={user? false: true} value="check" selected={event.private} onClick={() => {
              Meteor.call('remind.update', event._id, { private: !event.private }) }}>
             {event.private ? <VisibilityIcon /> : <VisibilityOffIcon />}
            </ToggleButton>
