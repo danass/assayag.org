@@ -166,7 +166,7 @@ export const Rain = (props) => {
                 </div>
           })
           }
-          {allcanvas.length==1? null: "Start creating and saving your rains!"}
+          {allcanvas.length>=1? null: "Start creating and saving your rains!"}
         </div>
 
       </div>
