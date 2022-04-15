@@ -3,7 +3,6 @@ import html2canvas from "html2canvas";
 import { Fonts, ColorPicker } from "../Modules"
 import { Global, Uuid, isMobile } from "../Membrane";
 import { Zoom, ToggleButton, Slider, Button } from '@mui/material';
-import Draggable from 'react-draggable';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 export const RaindropsRender = ({ drop }) => {
@@ -20,8 +19,11 @@ export const Rain = (props) => {
   const [colors, setColors] = useState([getRandomColor(), getRandomColor()])
   const [pluie, setPluie] = useState([]);
   const [crop, setCrop] = useState(true);
-  const [reverse, setReverse] = useState(true);
+  const [reverse, setReverse] = useState(false);
   const [allcanvas, setallCanvas] = useState([]);
+
+  useEffect(() => {
+  }, [reverse])
 
   async function saveScreenshot() {
 
@@ -41,22 +43,17 @@ export const Rain = (props) => {
     setPluie(pluie => {
       let pluieArray = pluie
       pluieArray.push({ _id: Uuid(), text: e.target.value });
-
       let rain = pluie.map((drop, i) => {
-        // detect if drop.text contain a return carriage
-        // if so, split it into multiple drops
-        // if not, just return the drop
-        //
-
         return (
-
           <RaindropsRender key={drop._id} drop={drop} />
         )
       });
 
       if (reverse) {
+        console.log("sa, ", reverse)
         rain = rain.reverse();
       }
+      
       setTdiv(rain)
       return pluieArray;
     })
@@ -74,7 +71,6 @@ export const Rain = (props) => {
 
   function clickAwayMenu() {
     document.getElementById('rain-controls').classList.remove('disparition');
-
   }
   
 
@@ -114,6 +110,7 @@ export const Rain = (props) => {
           }}>
             <ColorPicker values={colors} />
             <input id="rain-input-mkir" className="rain-input" autoComplete="off" type="text" placeholder="Make it rain" onChange={updateRain} />
+           
             <div className="rain-buttons-align">
               <Button variant="text" className="rain-button" onClick={() => {
                 let el = document.getElementById("rainfall");
@@ -148,11 +145,11 @@ export const Rain = (props) => {
           </ClickAwayListener>
 
           <div id="rain">
-          <Draggable>
+
           <div id="rainfall" style={{ backgroundColor: colors[0], color: colors[1], fontWeight: 500, fontSize: 35}}  >
             {Tdiv}
           </div>
-          </Draggable>
+
 
         </div>
 

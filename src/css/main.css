@@ -80,6 +80,11 @@ a:active {
 @media screen and (orientation: portrait) {
   #main-container-header {
     justify-content: center;
-   
+  }
+}
+
+@media screen and (orientation: portrait) {
+  #main-container-header {
+    justify-content: center;
   }
 }

@@ -21,7 +21,7 @@ export const Remind = (props) => {
  const [eSel, seteSel] = useState(1)
  const [user, setUser] = useState(null);
 
- 
+
 useEffect(()=> {
   setUser(props.user)
 }, [user, props])
@@ -33,6 +33,7 @@ useEffect(()=> {
 
   fetchData = async () => {
    Meteor.call('remind.find', (e, r) => {
+    //  console.log(r)
     setEvents(r)
    })
   }
@@ -41,7 +42,6 @@ useEffect(()=> {
 
   return () => {
    Meteor.clearInterval(interval);
-
   };
  }, [now])
 
@@ -50,12 +50,7 @@ useEffect(()=> {
   return diff
  }
 
- function updateEvent(id, key, e) {
-  let currentEvent = {
-   [key]: e.currentTarget.innerText ? e.currentTarget.innerText : undefined
-  }
-  Meteor.call('remind.update', id, currentEvent);
- }
+
 
  function scale(number, inMin, inMax, outMin, outMax) {
   return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
@@ -157,10 +152,11 @@ useEffect(()=> {
        <div className="event">
         <div className="event-wrapper">
          <div onBlur={(e) => { 
-           updateEvent(event._id, "name", e) }}
+           Meteor.call('remind.update', event, { name: e.currentTarget.innerText }) 
+          }}
             className="event-name" contentEditable={user? true: false} suppressContentEditableWarning><b>{event.name}</b></div>
 
-         <div className="event-remain">{toNow(event.end) <= 0 ? <time>{humanizeDuration(toNow(event.end))}</time> : eSel == 0 ? event.end == "" ? "Select a date.." : "passed" : "it's been " + <time>{humanizeDuration(toNow(event.end))}</time> }</div>
+         <div className="event-remain">{toNow(event.end) <= 0 ? <time>{humanizeDuration(toNow(event.end))}</time> : eSel == 0 ? event.end == "" ? "Select a date.." : "passed" : "it's been " + humanizeDuration(toNow(event.end)) }</div>
          
          <div className="event-choices">
           {eSel == 0 || event.end == "" || toNow(event.end) <= 0 ? 
@@ -169,22 +165,23 @@ useEffect(()=> {
            <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateTimePicker disabled={user? false: true} renderInput={(props) => <TextField  {...props} />}
              label="DateTimePicker" value={event.end} onChange={(newValue) => {
-              let currentEvent = { end: newValue }
-              Meteor.call('remind.update', event._id, currentEvent); }}  />
+              Meteor.call('remind.update', event, { end: newValue }) 
+              }}  />
            </LocalizationProvider>
           </div> : <div className="date-skeleton" />}
            
          <div className="event-choices-buttons-wrapper">   
           <div className="event-choice">
            <ToggleButton disabled={user? false: true} value="check" selected={event.telegram} onClick={() => {
-             Meteor.call('remind.update', event._id, { telegram: !event.telegram }) }}>
+             Meteor.call('remind.update', event, { telegram: !event.telegram }) }}>
             <TelegramIcon />
            </ToggleButton>
           </div>
 
           <div className="event-choice">
            <ToggleButton disabled={user? false: true} value="check" selected={event.private} onClick={() => {
-             Meteor.call('remind.update', event._id, { private: !event.private }) }}>
+             Meteor.call('remind.update', event, { private: !event.private }) 
+              }}>
             {event.private ? <VisibilityIcon /> : <VisibilityOffIcon />}
            </ToggleButton>
           </div>

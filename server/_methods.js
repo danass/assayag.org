@@ -1,7 +1,8 @@
 import { Twitterconf, mailconf } from './conf.js';
-import { TwitterCollection, RemindCollection, UsersAppDB } from '../src/api/Collection.js';
+import { TwitterCollection, RemindCollection, UsersAppDB, TransitionCollection } from '../src/api/Collection.js';
 import { TwitterApi } from 'twitter-api-v2';
 import { serialize } from 'v8';
+import { MobileTimePicker } from '@mui/lab';
 
 Meteor.methods({
   async 'user.create'(credentials) {
@@ -28,10 +29,10 @@ Meteor.methods({
         userId: userId,
         username: credentials.username,
         app: {
-          remind: {},
-          fauxprophetmail: {},
-          rain: {},
-          asocials: {},
+          remind: [],
+          fauxprophetmail: [],
+          rain: [],
+          asocials: [],
         }
       }, ((e, r) => {
         Meteor.users.update({ _id: userId }, { $set: { 'userappdb': r } })
@@ -44,7 +45,8 @@ Meteor.methods({
   },
   async 'user.get.db'() {
     if (Meteor.userId()) {
-      return UsersAppDB.find({}, { user: { userid: Meteor.userId() } }).fetch()
+     
+      return  UsersAppDB.findOne( {"userId": Meteor.userId() } ).fetch()
     }
     else {
       throw new Meteor.Error('user.not.exists', 'user has not an assigned db')
@@ -227,22 +229,28 @@ Meteor.methods({
     }
   },
 
-  async 'remind.update'(id, event) {
-    let currentEvent = {
-      name: event.name,
-      begin: event.begin,
-      end: event.end,
-      interval: event.interval,
-      description: event.description,
-      link: event.link,
-      telegram: event.telegram,
-      telegramSent: event.telegramSent,
-      private: event.private,
-    }
-    // update the database
+  async 'remind.update'(event, change, pass) {
+      let currentE = event
+      currentE[Object.entries(change)[0][0]] = Object.entries(change)[0][1]
+
     if (Meteor.userId()) {
-      await RemindCollection.update({ _id: id }, { $set: currentEvent })
+      await UsersAppDB.update( { "userId": Meteor.userId(), "app.remind._id": event._id }, 
+      {
+        $set: { "app.remind.$": currentE  },
+      }
+      )
     }
+    if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555") { 
+      console.log("uptading")
+      await UsersAppDB.update( { "app.remind._id": event._id }, 
+      {
+        $set: { "app.remind.$": currentE  },
+      }
+      )
+    
+    }
+
+    
     else {
       throw new Meteor.Error('not logged in')
     }
@@ -251,24 +259,47 @@ Meteor.methods({
 
   async 'remind.remove'(id) {
     if (Meteor.userId()) {
-      return await RemindCollection.remove({ _id: id })
+      await UsersAppDB.update(
+        { "userId": Meteor.userId() } ,
+        { $pull: { 'app.remind': { _id: id } } }
+      )
+    
     }
     else {
       throw new Meteor.Error('unauthorized, you need to be logged in')
     }
   },
 
-  async 'remind.find'() {
-    let Data = await RemindCollection.rawCollection().aggregate([{ $limit: 10 }]).toArray()
+  async 'remind.find'(pass) {
+    if (Meteor.user() ) {
+    let user = Meteor.user() 
+    let Data = await UsersAppDB.rawCollection().distinct("app.remind", {"userId": Meteor.userId()})
     return Data
+    }
+    if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555"){
+     return  await UsersAppDB.rawCollection().distinct("app.remind", {})
+    }
+    return await RemindCollection.rawCollection().aggregate([{ $limit: 10 }]).toArray()
+    
   },
 
   async 'remind.new'() {
+
     // update the database
     if (Meteor.userId()) {
-      await RemindCollection.insert({ name: "Event #", begin: new Date(Date.now() + 1000 * 60 * 360), end: new Date(Date.now() + 1000 * 60 * 360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false }, (e, r) => {
-        return r
+      await TransitionCollection.insert({ name: "Eventa #", begin: new Date(Date.now() + 1000 * 60 * 360), end: new Date(Date.now() + 1000 * 60 * 360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false }, (e, r) => {
+        // console.log(TransitionCollection.findOne({"_id": r}) )
+        UsersAppDB.update({"userId" : Meteor.userId() }, 
+        {
+            $addToSet: { "app.remind": TransitionCollection.findOne({"_id": r}) }
+            
+          }, (e, r) => {
+            console.log(e, r)
+        })
       })
+
+     
+   
     }
     else {
       throw new Meteor.Error('unauthorized, you need to be logged in')
