@@ -233,6 +233,7 @@ Meteor.methods({
       let currentE = event
       currentE[Object.entries(change)[0][0]] = Object.entries(change)[0][1]
 
+
     if (Meteor.userId()) {
       await UsersAppDB.update( { "userId": Meteor.userId(), "app.remind._id": event._id }, 
       {
@@ -241,7 +242,6 @@ Meteor.methods({
       )
     }
     if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555") { 
-      console.log("uptading")
       await UsersAppDB.update( { "app.remind._id": event._id }, 
       {
         $set: { "app.remind.$": currentE  },
@@ -270,10 +270,15 @@ Meteor.methods({
     }
   },
 
-  async 'remind.find'(pass) {
+  async 'remind.find'(pass, username) {
+    if(username) {
+        let Data = await UsersAppDB.rawCollection().distinct("app.remind", {"username": username})
+        return Data
+    }
     if (Meteor.user() ) {
     let user = Meteor.user() 
     let Data = await UsersAppDB.rawCollection().distinct("app.remind", {"userId": Meteor.userId()})
+    // console.log(Data)
     return Data
     }
     if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555"){

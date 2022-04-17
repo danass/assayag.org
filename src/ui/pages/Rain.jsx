@@ -5,6 +5,7 @@ import { Global, Uuid, isMobile } from "../Membrane";
 import { Zoom, ToggleButton, Slider, Button } from '@mui/material';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 
+
 export const RaindropsRender = ({ drop }) => {
   return <div onClick={() => {
     document.getElementById(drop._id).style.display = "none";

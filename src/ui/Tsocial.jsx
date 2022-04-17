@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Loading } from './Animations';
+
 var convert = require('xml-js');
 
 export const Box = ({tweet}) => {
@@ -48,17 +50,15 @@ const [data, setData] = useState([]);
 
 
     return (
-        <div>
-            
-            {/* display the tweets */}
-            
-            {data? data.slice(0, nbOfTweets).map((tweet, i) => {
+        <>
+            {data.length > 0? data.slice(0, nbOfTweets).map((tweet, i) => {
                 return <Box tweet={tweet} key={i}/>
             }
-            ) : "Loading "}
-            <input type="number" min={1} max={20} defaultValue={3} onChange={(e) => {
-                setNbOfTweets(e.target.value)
-            }}/>
-        </div>
+            ) : <Loading />}
+            <button onClick={() => {
+                  setNbOfTweets(nbOfTweets + 3)
+            }}>Load more</button>
+
+        </>
     )
 }

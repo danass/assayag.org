@@ -92,6 +92,11 @@ div#remind-selectors {
 .event-choice {
     padding: 0px 0px 0px 4px;
 }
+.choice-black  {
+    padding: 6px 9px;
+    background-color: rgb(36, 26, 37);
+    color: rgb(165, 124, 165);
+}
 
 .Mui-selected, .event-choice button {
     padding: 6px 9px;

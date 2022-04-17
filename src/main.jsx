@@ -22,6 +22,7 @@ export const App = () => {
       <Route path="/rain" element={<Membrane><Rain /></Membrane>} />
       <Route path="/asocial"  element={<Membrane><Asocial /></Membrane>} />
       <Route path="/remind" element={<Membrane><Remind /></Membrane>} />
+      <Route path="/remind/:username" element={<Membrane><Remind /></Membrane>} />
       <Route path='/mail' element={ <Membrane><Contact /></Membrane>  } />
       <Route path='/test' element={ <Membrane><Test /></Membrane>  } />
       <Route path='/user' element={<Membrane ><User /></Membrane>  } />

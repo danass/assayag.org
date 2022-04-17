@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Zoom, ToggleButton, Slider, Button, Typography } from '@mui/material';
+import { Tooltip, Zoom, ToggleButton, Slider, Button, Typography } from '@mui/material';
 
 export const Fonts = (props) => {
   const [fonts, setFonts] = useState([]);
   const [obfuscatedFont, setObfuscatedFont] = useState('');
+  const [message, setMessage] = useState(null);
 
   const fontCheck = new Set([
     // Windows 10
@@ -98,10 +99,13 @@ export const Fonts = (props) => {
               props.setCrop(!props.crop)
               document.getElementById('rain').style.overflow = props.crop ? 'hidden' : 'visible'
             }}>{props.crop? "Crop": "Full image"}</ToggleButton>
-
+        
+        <Tooltip TransitionComponent={Zoom} title={message ? message : ""}>
             <ToggleButton value={true} aria-label="Screenshot" onClick={() => {
+               setMessage("Added to Library!"); setTimeout(() => { setMessage("") }, 1500);
               props.saveScreenshot()
-            }}>Screenshot</ToggleButton>              
+            }}>Screenshot</ToggleButton>     
+            </Tooltip>         
               
         </div>
       </div>
