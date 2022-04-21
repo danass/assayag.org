@@ -13,7 +13,9 @@ export const Register = (props) => {
     <div id="main-container-header-instructions">
       <ul>Let's get started, b.</ul>
     </div>
-    <div id="user-container-form">
+  </div>
+
+  <section id="user-container-form">
       <form id="user-form" onSubmit={(e) => {
           e.preventDefault(); const credentials = { username: e.target.login.value, email: e.target.email.value, password: e.target.password.value };
           Meteor.call('user.create', credentials, ((e, r) => { if (e) { props.setError(e)  }
@@ -26,10 +28,8 @@ export const Register = (props) => {
           <button id="userform-button" type="submit">Create</button>
         </form>
         {props.error?.message}
-  </div>
+  </section>
   
-
-  </div>
 
 </div>
 </>
@@ -42,22 +42,23 @@ export const User = (props) => {
   const [error, setError] = useState(null)
   const [step, setStep] = useState(0)
   const [user, setUser] = useState(props.user)
-
+  const [userdata, setUserdata] = useState(null)
 
   useEffect(() => {
     setUser(props.user)
   }, [props, user]);
 
-  useEffect(() => {
-    const interval = Meteor.setInterval(() => { setCountdowns(Date.now()) }, 2000);
-    return () => { Meteor.clearInterval(interval); };
-  }, [now])
+
 
   useEffect(() => {
-    if (user) { setStep(2) 
-
+    if (user) { 
+      Meteor.call('user.getdata', ((e, r) => {
+        if(e) return
+        console.log(r)
+        setUserdata(r)
+      }))
+      setStep(2) 
     }
-    
     else { setStep(0) }
   }, [user])
 
@@ -74,9 +75,31 @@ export const User = (props) => {
           just login now btch</div>
         : null}
 
-      {step == 2 ? <div>
-        Welcome to your home broda
-      </div> : null}
+      {step == 2 ? 
+        <section>
+          <h1>Welcome to your home broda {user?.username},</h1>
+
+          <div className='user-data-input'>
+            <label>username</label>
+            <div>{user?.username}</div>
+          </div>
+
+          <div className='user-data-input'>
+            <label>email</label>
+            <div>{user?.email[0].address}</div>
+          </div>
+
+          <div className='user-data-input'>
+            <label>twitterid</label>
+            <div className="contentEditable" contentEditable suppressContentEditableWarning spellCheck="false" onBlur={(e) => { 
+              Meteor.call('user.update', "app.conf.twitter.twitterid", e.target.innerText) }}>
+              { userdata?.app?.conf?.twitter?.twitterid }
+            </div>
+        </div>
+
+        </section>
+        
+       : null}
 
       {step == 8 ? <div>grandmasterfalsh</div>: null}
     </>

@@ -92,7 +92,7 @@ export const LoginForm = (props) => {
             {user ? <div className="logocover"></div> : ''}
             <img src="/favicon.ico" width={50} alt="logo" />
           </div>
-          {user?.username}
+          <Link to="/user">{user?.username}</Link>
           <div className="login-container">
             {user ?
 

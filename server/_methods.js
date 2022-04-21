@@ -1,8 +1,9 @@
 import { Twitterconf, mailconf } from './conf.js';
 import { TwitterCollection, RemindCollection, UsersAppDB, TransitionCollection } from '../src/api/Collection.js';
 import { TwitterApi } from 'twitter-api-v2';
-import { serialize } from 'v8';
-import { MobileTimePicker } from '@mui/lab';
+var convert = require('xml-js');
+
+
 
 Meteor.methods({
   async 'user.create'(credentials) {
@@ -12,19 +13,19 @@ Meteor.methods({
         throw new Meteor.Error(403, 'Username must have at least 2 characters');
       }
     });
-    
+
     if (Accounts.findUserByUsername(credentials.username)) {
       throw new Meteor.Error(403, 'Username already exists');
     }
     // all test ok, let's create
-      let userId = await Accounts.createUser({
-        username: credentials.username,
-        password: credentials.password,
-        email: credentials.email,
-      })
-          
-      if(userId) {
-    //syncronise user and userappdb
+    let userId = await Accounts.createUser({
+      username: credentials.username,
+      password: credentials.password,
+      email: credentials.email,
+    })
+
+    if (userId) {
+      //syncronise user and userappdb
       await UsersAppDB.insert({
         userId: userId,
         username: credentials.username,
@@ -37,16 +38,16 @@ Meteor.methods({
       }, ((e, r) => {
         Meteor.users.update({ _id: userId }, { $set: { 'userappdb': r } })
       }))
-        return true
-      }
-    
+      return true
+    }
+
     return null
 
   },
   async 'user.get.db'() {
     if (Meteor.userId()) {
-     
-      return  UsersAppDB.findOne( {"userId": Meteor.userId() } ).fetch()
+
+      return UsersAppDB.findOne({ "userId": Meteor.userId() }).fetch()
     }
     else {
       throw new Meteor.Error('user.not.exists', 'user has not an assigned db')
@@ -55,17 +56,18 @@ Meteor.methods({
 
   async 'user.isLogged'() {
     //server function
-    if (Meteor.user()) { 
+    if (Meteor.user()) {
       const user = Meteor.user()
       const data = {
         _id: user._id,
         email: user.emails,
-        username: user.username
+        username: user.username,
+        userappdb: user.userappdb,
       }
       return data
-     }
-     return null
-    },
+    }
+    return null
+  },
 
 
   async getTwitter(id) {
@@ -229,28 +231,94 @@ Meteor.methods({
     }
   },
 
+  async 'twitter.fetch'(tweets, options) {
+    // new Meteor.Collection.ObjectID()
+    return await UsersAppDB.rawCollection().distinct("app.twitter", { "username": "daniel" })
+  },
+
+  async 'twitter.find'(username) {
+    let currentTweets = await UsersAppDB.rawCollection().distinct("app.twitter", { "username": username })
+    let currentConf = await UsersAppDB.rawCollection().distinct("app.conf", { "username": username })
+
+    const url = `https://rsshub.app/twitter/user/${currentConf[0].twitter.twitterid}/readable=1%26authorNameBold=1%26showAuthorInTitle=1%26showAuthorInDesc=1%26showQuotedAuthorAvatarInDesc=1%26showAuthorAvatarInDesc=1%26showEmojiForRetweetAndReply=1%26showRetweetTextInTitle=0%26addLinkForPics=1%26showTimestampInDescription=1%26showQuotedInTitle=1%26heightOfPics=150`
+    Meteor.call('fetch', url, async (e, r) => {
+      if (e) return
+      let xmlres = JSON.parse(convert.xml2json(r, { compact: true, spaces: 4 }));
+      let remoteTweets = xmlres.rss.channel.item
+      remoteTweets.map(async (tweet) => {
+        tweet.id = tweet.guid._text.split("/")[5]
+        tweet._id = new Meteor.Collection.ObjectID()._str
+        if (!currentTweets.some(currentTweet => currentTweet.id === tweet.id)) {
+          // new tweet found
+          tweet.visible = true
+          let update = await UsersAppDB.update(
+            { "userId": Meteor.userId() },
+            { $push: { "app.twitter": tweet } })
+        }
+      })
+    })
+
+    return currentTweets
+  },
+
+  async 'twitter.update'(tweet, options) {
+    if(Meteor.userId()){
+    for (let key in options) {
+      tweet[key] = options[key]
+    }
+    let update = await UsersAppDB.update(
+      { "userId": Meteor.userId(), "app.twitter.id": tweet.id },
+      { $set: { "app.twitter.$": tweet } })
+
+    return await UsersAppDB.rawCollection().distinct("app.twitter", { "username": "daniel" })
+  }
+  },
+
+  async 'user.update'(field, newvalue) {
+    if(Meteor.userId()) {
+    const authorizedRequests = ["app.conf.twitter.twitterid"]
+    if (!authorizedRequests.includes(field)) {
+      throw new Meteor.Error("unauthorized - your ip has been logged and your activity has been flagged as malicious")
+    }
+
+    await UsersAppDB.update(
+      { "userId": Meteor.userId()},
+      { $set: { [field]: newvalue } })
+    }   
+    else {
+      throw new Meteor.Error("unauthorized - your ip has been logged and your activity has been flagged as malicious")
+    }
+  },
+  
+  async 'user.getdata'() {
+    let user = await UsersAppDB.findOne({ "userId": Meteor.userId() })
+    return user
+  },
+
   async 'remind.update'(event, change, pass) {
-      let currentE = event
-      currentE[Object.entries(change)[0][0]] = Object.entries(change)[0][1]
+    let currentE = event
 
-
+    for (let key in change) {
+      currentE[key] = change[key]
+    }
+    // currentE[Object.entries(change)[0][0]] = Object.entries(change)[0][1]
     if (Meteor.userId()) {
-      await UsersAppDB.update( { "userId": Meteor.userId(), "app.remind._id": event._id }, 
-      {
-        $set: { "app.remind.$": currentE  },
-      }
+      await UsersAppDB.update({ "userId": Meteor.userId(), "app.remind._id": event._id },
+        {
+          $set: { "app.remind.$": currentE },
+        }
       )
     }
-    if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555") { 
-      await UsersAppDB.update( { "app.remind._id": event._id }, 
-      {
-        $set: { "app.remind.$": currentE  },
-      }
+    if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555") {
+      await UsersAppDB.update({ "app.remind._id": event._id },
+        {
+          $set: { "app.remind.$": currentE },
+        }
       )
-    
+
     }
 
-    
+
     else {
       throw new Meteor.Error('not logged in')
     }
@@ -260,10 +328,10 @@ Meteor.methods({
   async 'remind.remove'(id) {
     if (Meteor.userId()) {
       await UsersAppDB.update(
-        { "userId": Meteor.userId() } ,
+        { "userId": Meteor.userId() },
         { $pull: { 'app.remind': { _id: id } } }
       )
-    
+
     }
     else {
       throw new Meteor.Error('unauthorized, you need to be logged in')
@@ -271,21 +339,20 @@ Meteor.methods({
   },
 
   async 'remind.find'(pass, username) {
-    if(username) {
-        let Data = await UsersAppDB.rawCollection().distinct("app.remind", {"username": username})
-        return Data
+    if (username) {
+      let Data = await UsersAppDB.rawCollection().distinct("app.remind", { "username": username })
+      return Data
     }
-    if (Meteor.user() ) {
-    let user = Meteor.user() 
-    let Data = await UsersAppDB.rawCollection().distinct("app.remind", {"userId": Meteor.userId()})
-    // console.log(Data)
-    return Data
+    if (Meteor.user()) {
+      let user = Meteor.user()
+      let Data = await UsersAppDB.rawCollection().distinct("app.remind", { "userId": Meteor.userId() })
+      return Data
     }
-    if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555"){
-     return  await UsersAppDB.rawCollection().distinct("app.remind", {})
+    if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555") {
+      return await UsersAppDB.rawCollection().distinct("app.remind", {})
     }
     return await RemindCollection.rawCollection().aggregate([{ $limit: 10 }]).toArray()
-    
+
   },
 
   async 'remind.new'() {
@@ -294,17 +361,17 @@ Meteor.methods({
     if (Meteor.userId()) {
       await TransitionCollection.insert({ name: "Eventa #", begin: new Date(Date.now() + 1000 * 60 * 360), end: new Date(Date.now() + 1000 * 60 * 360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false }, (e, r) => {
         // console.log(TransitionCollection.findOne({"_id": r}) )
-        UsersAppDB.update({"userId" : Meteor.userId() }, 
-        {
-            $addToSet: { "app.remind": TransitionCollection.findOne({"_id": r}) }
-            
+        UsersAppDB.update({ "userId": Meteor.userId() },
+          {
+            $addToSet: { "app.remind": TransitionCollection.findOne({ "_id": r }) }
+
           }, (e, r) => {
             console.log(e, r)
-        })
+          })
       })
 
-     
-   
+
+
     }
     else {
       throw new Meteor.Error('unauthorized, you need to be logged in')

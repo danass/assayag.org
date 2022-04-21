@@ -10,12 +10,12 @@ export const Home = () => {
   const globalState = Global({ pageName: "Home", description: "{Home} => Daniel Assayag is an Artist and Project Leader in Education. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]." })
 
   useEffect(() => {
-    let player = new Twitch.Player("twitch-embed", {
-      channel: "danassadon",
-      width: "50%",
-      height: "400px"
-    });
-    player.addEventListener(Twitch.Player.READY, initiate)
+    // let player = new Twitch.Player("twitch-embed", {
+    //   channel: "danassadon",
+    //   width: "50%",
+    //   height: "400px"
+    // });
+    // player.addEventListener(Twitch.Player.READY, initiate)
 
     function initiate() {
       player.addEventListener(Twitch.Player.ONLINE, handleOnline);
@@ -58,11 +58,9 @@ export const Home = () => {
       <TSocial />
       </section>
 
-      <section id="twitch" className="main-container-content">
-  
-        Twitch
+      {/* <section id="twitch" className="main-container-content">
         <div id="twitch-embed"></div>
-      </section>
+      </section> */}
    
    
     </div>
