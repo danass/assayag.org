@@ -33,6 +33,7 @@ export const Rain = (props) => {
       setraindbCanvas(r)
       }))
   }, [])
+
   async function saveScreenshot() {
 
     setallCanvas([...allcanvas, 
@@ -167,7 +168,7 @@ export const Rain = (props) => {
           <div className="rain-frontispice">RAIN-LIBRARY</div>
           <div><Link to="/user">{raindbCanvas?.length}</Link> / 10</div>
           {allcanvas.map((canvas, i) => {
-            let visible = raindbCanvas.some(currentCanvas => currentCanvas._id === canvas.canvasId)
+            let visible = raindbCanvas?.some(currentCanvas => currentCanvas._id === canvas.canvasId)
             
             return <div key={canvas.canvasId} className={"rain-book"} id={canvas.canvasId}>
               <a href={canvas.canvas} download={`rain-${new Date().getDate()}-${new Date().getHours()}-${new Date().getMinutes()}-${allcanvas.length}`}>
