@@ -11,7 +11,7 @@ export const Home = () => {
   const globalState = Global({ pageName: "Home", description: "{Home} => Daniel Assayag is an Artist and Project Leader in Education. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]." })
 
   useEffect(() => {
-    Meteor.call('rain.save', null, null, null, ((e, r) => {
+    Meteor.call('rain.save', null, null, 'daniel', ((e, r) => {
       if(e) return
       setrainData(r)
     }))
