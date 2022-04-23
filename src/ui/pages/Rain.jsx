@@ -1,9 +1,12 @@
 import React, { useState, useEffect, createContext   } from "react";
+import { Link } from 'react-router-dom';
 import html2canvas from "html2canvas";
 import { Fonts, ColorPicker } from "../Modules"
 import { Global, Uuid, isMobile } from "../Membrane";
-import { Zoom, ToggleButton, Slider, Button } from '@mui/material';
+import {  ToggleButton, Button } from '@mui/material';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 
 
 export const RaindropsRender = ({ drop }) => {
@@ -22,24 +25,25 @@ export const Rain = (props) => {
   const [crop, setCrop] = useState(true);
   const [reverse, setReverse] = useState(false);
   const [allcanvas, setallCanvas] = useState([]);
+  const [raindbCanvas, setraindbCanvas] = useState([]);
 
   useEffect(() => {
-  }, [reverse])
-
+    Meteor.call('rain.save', null, null, null, ((e, r) => {
+      if(e) return
+      setraindbCanvas(r)
+      }))
+  }, [])
   async function saveScreenshot() {
 
-    setallCanvas([await html2canvas(
-        crop? document.getElementById('rainfall'):  document.getElementById("rain"),
+    setallCanvas([...allcanvas, 
+      {canvasId: new Meteor.Collection.ObjectID()._str, canvas: 
+      await html2canvas(crop? document.getElementById('rainfall'):  document.getElementById("rain"),
         {scale: 1, backgroundColor:null}
-      ).then(canvas => canvas.toDataURL("image/png"))
-    , ...allcanvas]);
+      ).then(canvas => canvas.toDataURL("image/png")) }
+   ]);
   }
 
-  const updateRain = (e, setreverse) => {
-    if (setreverse) {
-      setReverse(!reverse);
-      // reverse = !reverse;
-    }
+  const updateRain = (e, reversing) => {
 
     setPluie(pluie => {
       let pluieArray = pluie
@@ -50,8 +54,12 @@ export const Rain = (props) => {
         )
       });
 
+      if (reversing) {
+        setReverse(!reverse);
+        rain = rain.reverse();
+      }
+
       if (reverse) {
-        console.log("sa, ", reverse)
         rain = rain.reverse();
       }
       
@@ -155,12 +163,26 @@ export const Rain = (props) => {
         </div>
 
         <div id="rain-library">
+        
           <div className="rain-frontispice">RAIN-LIBRARY</div>
+          <div><Link to="/user">{raindbCanvas?.length}</Link> / 10</div>
           {allcanvas.map((canvas, i) => {
-            return <div key={i} className={"rain-book"}>
-              <a href={canvas} download={`rain-${new Date().getDate()}-${new Date().getHours()}-${new Date().getMinutes()}-${allcanvas.length}`}>
-                <img key={`img-${i}`} src={canvas} />
+            let visible = raindbCanvas.some(currentCanvas => currentCanvas._id === canvas.canvasId)
+            
+            return <div key={canvas.canvasId} className={"rain-book"} id={canvas.canvasId}>
+              <a href={canvas.canvas} download={`rain-${new Date().getDate()}-${new Date().getHours()}-${new Date().getMinutes()}-${allcanvas.length}`}>
+                <img key={`img-${i}`} src={canvas.canvas} />
                 </a>
+                {Meteor.userId()? <ToggleButton value="saved" selected={visible} className="rain-button" onClick={() => {
+                  Meteor.call('rain.save', canvas, visible, (err, res) => {
+                    if(err) return console.error(err);
+                    setraindbCanvas(res)
+                  })
+                  
+                }}>{!visible?<LibraryAddIcon />:
+                <LibraryAddCheckIcon />}
+                </ToggleButton>: null}
+                
                 </div>
           })
           }

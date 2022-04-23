@@ -232,7 +232,6 @@ Meteor.methods({
   },
 
   async 'twitter.fetch'(tweets, options) {
-    // new Meteor.Collection.ObjectID()
     return await UsersAppDB.rawCollection().distinct("app.twitter", { "username": "daniel" })
   },
 
@@ -262,34 +261,72 @@ Meteor.methods({
   },
 
   async 'twitter.update'(tweet, options) {
-    if(Meteor.userId()){
-    for (let key in options) {
-      tweet[key] = options[key]
-    }
-    let update = await UsersAppDB.update(
-      { "userId": Meteor.userId(), "app.twitter.id": tweet.id },
-      { $set: { "app.twitter.$": tweet } })
+    if (Meteor.userId()) {
+      for (let key in options) {
+        tweet[key] = options[key]
+      }
+      let update = await UsersAppDB.update(
+        { "userId": Meteor.userId(), "app.twitter.id": tweet.id },
+        { $set: { "app.twitter.$": tweet } })
 
-    return await UsersAppDB.rawCollection().distinct("app.twitter", { "username": "daniel" })
-  }
+      return await UsersAppDB.rawCollection().distinct("app.twitter", { "username": "daniel" })
+    }
   },
+  async 'rain.save'(canvas, visible, username) {
 
-  async 'user.update'(field, newvalue) {
-    if(Meteor.userId()) {
-    const authorizedRequests = ["app.conf.twitter.twitterid"]
-    if (!authorizedRequests.includes(field)) {
-      throw new Meteor.Error("unauthorized - your ip has been logged and your activity has been flagged as malicious")
+    let rainuserdata = await UsersAppDB.rawCollection().distinct("app.rain", { "userId": Meteor.userId() })
+
+    if (canvas) {
+      let rain = {
+        canvas: canvas.canvas,
+        date: new Date(),
+        rating: 0,
+        _id: canvas.canvasId? canvas.canvasId : canvas._id
+      }
+
+      if (visible) {  
+        let update = await UsersAppDB.update(
+          { "userId": Meteor.userId() },
+          { $pull: { 'app.rain': { _id: rain._id } } }, true, true) // removeing canvas 
+      }
+
+      else {
+        if (rainuserdata.length >= 10) { throw new Meteor.Error('too many rain', 'too many rain') }
+        let update = await UsersAppDB.update(
+          {
+            "userId": Meteor.userId(),
+            "app.rain._id": { $nin: [rain._id] } //  if exists => idle
+          },
+          {
+            $addToSet: { 'app.rain': rain },
+          }
+        )
+      }
+
     }
+    if (Meteor.userId()) {
+      return await UsersAppDB.rawCollection().distinct("app.rain", { "userId": Meteor.userId() })
+    }
+    if (username) {
+      return await UsersAppDB.rawCollection().distinct("app.rain", { "username": username })
+    }
+  },
+  async 'user.update'(field, newvalue) {
+    if (Meteor.userId()) {
+      const authorizedRequests = ["app.conf.twitter.twitterid"]
+      if (!authorizedRequests.includes(field)) {
+        throw new Meteor.Error("unauthorized - your ip has been logged and your activity has been flagged as malicious")
+      }
 
-    await UsersAppDB.update(
-      { "userId": Meteor.userId()},
-      { $set: { [field]: newvalue } })
-    }   
+      await UsersAppDB.update(
+        { "userId": Meteor.userId() },
+        { $set: { [field]: newvalue } })
+    }
     else {
       throw new Meteor.Error("unauthorized - your ip has been logged and your activity has been flagged as malicious")
     }
   },
-  
+
   async 'user.getdata'() {
     let user = await UsersAppDB.findOne({ "userId": Meteor.userId() })
     return user

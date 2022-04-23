@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Loading } from './Animations';
+import { Checkbox }  from '@mui/material';
 
 export const TSocial = () => {
 const [data, setData] = useState([]);    
@@ -31,14 +32,13 @@ const Box = ({tweet}) => {
     <div className="tsocial-mirror-entry">
         {Meteor.user() ? 
         <div className='t-social-edit'>
-          <input type="checkbox" checked={tweet.visible} onChange={(e)=> {
+          <Checkbox type="checkbox" checked={tweet.visible} onChange={(e)=> {
               Meteor.call("twitter.update", tweet, {visible: !tweet.visible}, (e, r) => {
                   setData(r)
                   })
                   }}/>
         </div> : null}
     <div className='asocial-entry-header-container-nomedia'>
-    {/* <div className="asocial-source">{tweet.source}</div> */}
     <div className="asocial-date"><time>{new Date(tweet.pubDate._text).toString()}</time></div>
     <div className="tsocial-text" dangerouslySetInnerHTML={{ __html: clean(tweet.description._cdata) }}>
     </div>

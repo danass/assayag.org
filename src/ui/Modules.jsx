@@ -5,6 +5,7 @@ export const Fonts = (props) => {
   const [fonts, setFonts] = useState([]);
   const [obfuscatedFont, setObfuscatedFont] = useState('');
   const [message, setMessage] = useState(null);
+  const [params, setParams] = useState({FontSize: "12"})
 
   const fontCheck = new Set([
     // Windows 10
@@ -66,7 +67,7 @@ export const Fonts = (props) => {
         
         <div className="rc-sliders">
         <Typography gutterBottom>LineHeight</Typography>
-        <Slider size="small" aria-label="Small" type="number" min={0.01} defaultValue={1.0} step={0.1} max={2.8} valueLabelDisplay="auto" id="font-lineheight-input"  onChange={
+        <Slider size="small" aria-label="Small" type="number" min={0.01} defaultValue={1.00} step={0.01} max={2.80} valueLabelDisplay="auto" id="font-lineheight-input"  onChange={
             (e) => { document.getElementById('rainfall').style.lineHeight = e.target.value }} />
         </div>
 
@@ -75,8 +76,19 @@ export const Fonts = (props) => {
         <Slider size="small" aria-label="Small" type="number" min={12} defaultValue={50} step={0.1} max={120} valueLabelDisplay="auto"  id="font-size-input"  onChange={
             (e) => {
               document.getElementById('rainfall').style.fontSize = e.target.value  + 'px' 
+              setParams({...params, FontSize: e.target.value})
             }} />
         </div>
+
+        <div className="rc-sliders">
+        <Typography gutterBottom>LetterSpacing</Typography>
+        <Slider size="small" aria-label="Small" type="number" min={-params.FontSize/2.5} defaultValue={0} step={0.1} max={70} valueLabelDisplay="auto"  id="font-size-input"  onChange={
+            (e) => {
+              document.getElementById('rainfall').style.letterSpacing = e.target.value  + 'px' 
+            }} />
+        </div>
+
+
         <div className="rc-sliders" id="font-matrix-container">
           <div id="font-matrix-form">
           <Typography gutterBottom>3D Rotation</Typography>

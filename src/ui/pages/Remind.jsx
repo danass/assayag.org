@@ -26,9 +26,6 @@ export const Remind = (props) => {
 
 
   const { username } = useParams();
-  useEffect(() => {
-
-  }, [])
 
 
 

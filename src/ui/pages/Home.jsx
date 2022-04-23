@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Global } from '../Membrane'
 import '../static/twitch'
 import Twitch from '../static/twitch';
@@ -7,7 +7,15 @@ import { TSocial } from '/src/ui/Tsocial'
 
 
 export const Home = () => {
+  const [rainData, setrainData] = useState(null)
   const globalState = Global({ pageName: "Home", description: "{Home} => Daniel Assayag is an Artist and Project Leader in Education. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]." })
+
+  useEffect(() => {
+    Meteor.call('rain.save', null, null, null, ((e, r) => {
+      if(e) return
+      setrainData(r)
+    }))
+  }, [])
 
   useEffect(() => {
     // let player = new Twitch.Player("twitch-embed", {
@@ -54,12 +62,24 @@ export const Home = () => {
 
       </div>
 
+      <section  className={"p-5 flex items-center flex-col main-container-content p-1 "} >
+        {rainData?.map((r, i) => {
+          return (
+            <div key={i} className={"p-2"}>
+              <img src={r.canvas} />
+            </div>
+          )
+        })}
+      </section>
+
       <section className={"main-container-content"}>
       <TSocial />
       </section>
 
+
+
       {/* <section id="twitch" className="main-container-content">
-        <div id="twitch-embed"></div>
+        <div id="twitch-embed"></div> 
       </section> */}
    
    

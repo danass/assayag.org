@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
+import { ToggleButton } from '@mui/material';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 
 export const Register = (props) => {
   return (
@@ -43,6 +45,7 @@ export const User = (props) => {
   const [step, setStep] = useState(0)
   const [user, setUser] = useState(props.user)
   const [userdata, setUserdata] = useState(null)
+  const [rainData, setrainData] = useState(null)
 
   useEffect(() => {
     setUser(props.user)
@@ -54,9 +57,14 @@ export const User = (props) => {
     if (user) { 
       Meteor.call('user.getdata', ((e, r) => {
         if(e) return
-        console.log(r)
         setUserdata(r)
       }))
+
+      Meteor.call('rain.save', null, null, null, ((e, r) => {
+        if(e) return
+        setrainData(r)
+        }))
+
       setStep(2) 
     }
     else { setStep(0) }
@@ -75,7 +83,7 @@ export const User = (props) => {
           just login now btch</div>
         : null}
 
-      {step == 2 ? 
+      {step == 2 ? <>
         <section>
           <h1>Welcome to your home broda {user?.username},</h1>
 
@@ -96,9 +104,39 @@ export const User = (props) => {
               { userdata?.app?.conf?.twitter?.twitterid }
             </div>
         </div>
-
         </section>
-        
+
+          
+        <section>
+        <div id="rain-library-public">
+            <div className="rain-frontispice">HALL-OF-FAME</div>
+            <div>{rainData?.length} / 10</div>
+          {userdata?.app?.rain.map((canvas) => {
+            
+            let visible = rainData?.some(currentCanvas => currentCanvas._id === canvas._id)
+            console.log(visible, canvas._id)
+            return (
+              <div key={canvas._id} id={canvas._id} className="rain-book">
+                <img src={canvas.canvas} />
+                <ToggleButton selected={visible} value="saved" className="rain-button" onClick={() => {
+                  Meteor.call('rain.save', canvas, visible, null, (err, res) => {
+                    if(err) return console.error(err);
+                    setrainData(res)
+                  })
+                  
+                }}>{visible?<LibraryAddCheckIcon />:
+                <LibraryAddIcon />}
+                </ToggleButton>
+              </div>
+            )
+            
+          }) }
+          </div>
+        </section>
+       
+
+        </>
+
        : null}
 
       {step == 8 ? <div>grandmasterfalsh</div>: null}

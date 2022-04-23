@@ -52,6 +52,20 @@ div#rain-library >* {
     flex: 0 0 10vw;
   }
   
+#rain-library-public >*{
+    flex: 0 0 20vw;
+  }
+#rain-library-public {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 100px;
+    background: #f0f0f0;
+    border-radius: 300px;
+    padding: 120px;
+    flex-wrap: wrap;
+    position:relative;
+}
 
 #rain-library {
     display: flex;
