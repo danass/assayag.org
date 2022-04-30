@@ -1,0 +1,8 @@
+.TableCellMsg {
+  white-space: break-spaces;
+  background: white;
+}
+
+.TableCellDelete svg {
+  cursor: pointer;
+}

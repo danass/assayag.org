@@ -136,6 +136,7 @@ export const MenuItems = () => {
     <Link to="/asocial"><div onClick={goTop}>Asocial</div></Link>
     <Link to="/rain"><div onClick={goTop}>Rain</div></Link>
     <Link to="/remind"><div onClick={goTop}>Re:mind</div></Link>
+    {/* <Link to="/fauxprophet"><div onClick={goTop}>Fauxprophet</div></Link> */}
     </nav>
   </>
   )

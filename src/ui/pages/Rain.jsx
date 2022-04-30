@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import html2canvas from "html2canvas";
 import { Fonts, ColorPicker } from "../Modules"
 import { Global, Uuid, isMobile } from "../Membrane";
-import {  ToggleButton, Button } from '@mui/material';
+import { ToggleButton, Button } from '@mui/material';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
-
+import Draggable from 'react-draggable'; // The default
 
 export const RaindropsRender = ({ drop }) => {
   return <div onClick={() => {
@@ -19,10 +19,10 @@ export const Rain = (props) => {
 
   let globalState = Global({ pageName: "{Make it Rain}", description: "{Make it Rain} => Interactive graphical text creation tool. Text memory appears as you write, drawing patterns of letters while playing with the process of time layers." })
 
-  const [Tdiv, setTdiv] = useState(<div>Make it rain</div>);
+  const [Tdiv, setTdiv] = useState(<div className="drop-parent">Make it rain</div>);
   const [colors, setColors] = useState([getRandomColor(), getRandomColor()])
   const [pluie, setPluie] = useState([]);
-  const [crop, setCrop] = useState(true);
+  const [crop, setCrop] = useState(false);
   const [reverse, setReverse] = useState(false);
   const [allcanvas, setallCanvas] = useState([]);
   const [raindbCanvas, setraindbCanvas] = useState([]);
@@ -32,10 +32,9 @@ export const Rain = (props) => {
       if(e) return
       setraindbCanvas(r)
       }))
-  }, [])
+  }, [props])
 
   async function saveScreenshot() {
-
     setallCanvas([...allcanvas, 
       {canvasId: new Meteor.Collection.ObjectID()._str, canvas: 
       await html2canvas(crop? document.getElementById('rainfall'):  document.getElementById("rain"),
@@ -71,7 +70,7 @@ export const Rain = (props) => {
   }
 
   function getRandomColor() {
-    var letters = '0123456789ABCDEF';
+    var letters = ' 23456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
@@ -146,13 +145,17 @@ export const Rain = (props) => {
 
               <Button variant="text" className="rain-button" onClick={() => {
                   setPluie([])
-                  setTdiv(<div>Make it rain</div>);
+                  setTdiv(<div className="drop-parent">Make it rain</div>);
                 }}>clear</Button>
             </div>
 
+            
+
             <Fonts saveScreenshot={saveScreenshot} crop={crop} setCrop={setCrop}/>
           </div>
+        
           </ClickAwayListener>
+
 
           <div id="rain">
 
@@ -162,11 +165,12 @@ export const Rain = (props) => {
 
 
         </div>
+        
 
         <div id="rain-library">
         
           <div className="rain-frontispice">RAIN-LIBRARY</div>
-          <div><Link to="/user">{raindbCanvas?.length}</Link> / 10</div>
+          {Meteor.user()?<div><Link to="/user">{raindbCanvas?.length}</Link> / 10</div> : null}
           {allcanvas.map((canvas, i) => {
             let visible = raindbCanvas?.some(currentCanvas => currentCanvas._id === canvas.canvasId)
             

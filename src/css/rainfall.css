@@ -17,7 +17,6 @@ img {
     margin: 0 auto;
     /* box-shadow: 0 4px 8px rgba(118,118,120,0.2); */
     font: 300 1rem/1.2 Inter;
-
 }
 
 #rain {
@@ -34,12 +33,12 @@ img {
 
 .drop-parent:hover {
     font-weight: bold;
-    transition: .15s ease-out;
-    cursor: grabbing;
+    /* transition: .15s ease-out; */
+    cursor:not-allowed;
   }
   
 .drop-parent {
-    transition: 0.25s ease-out;
+    /* transition: 0.25s ease-out; */
     white-space: pre;
 }
 
@@ -113,7 +112,7 @@ div#rain-library >* {
 #rain-controls {
     padding: 15px;
     margin: 15px;
-    transition: .4s ease-out;
+    /* transition: .4s ease-out; */
     border-radius: 6px;
     box-shadow: 0 4px 8px rgb(118 118 120 / 20%);
     position: absolute;

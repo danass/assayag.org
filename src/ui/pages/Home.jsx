@@ -12,6 +12,7 @@ export const Home = () => {
 
   useEffect(() => {
     Meteor.call('rain.save', null, null, 'daniel', ((e, r) => {
+      
       if(e) return
       setrainData(r)
     }))

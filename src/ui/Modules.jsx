@@ -30,7 +30,7 @@ export const Fonts = (props) => {
         }
       }
       else {
-        ['Inter', 'Arial', "Yours fonts are hidden"].map(font => {
+        ['Inter'].map(font => {
           fontAvailable.add(font);
         })
       }
@@ -48,12 +48,15 @@ export const Fonts = (props) => {
       <div className='rain-controls-wrapper'>
 
         <div id="font-form">
+
+
+          {fonts.length > 1?
           <select id="font-selector" defaultValue={'Inter'} onChange={
             (e) => {
               document.getElementById('rainfall').style.fontFamily = document.getElementById('font-selector').value
             }} >
             {fonts.map(font => <option key={font}>{font}</option>)}
-          </select>
+          </select>: null }
         </div>
 
         <div className="rc-sliders">
@@ -67,7 +70,7 @@ export const Fonts = (props) => {
         
         <div className="rc-sliders">
         <Typography gutterBottom>LineHeight</Typography>
-        <Slider size="small" aria-label="Small" type="number" min={0.01} defaultValue={1.00} step={0.01} max={2.80} valueLabelDisplay="auto" id="font-lineheight-input"  onChange={
+        <Slider size="small" aria-label="Small" type="number" min={0.00} defaultValue={1.00} step={0.01} max={2.80} valueLabelDisplay="auto" id="font-lineheight-input"  onChange={
             (e) => { document.getElementById('rainfall').style.lineHeight = e.target.value }} />
         </div>
 
@@ -82,11 +85,18 @@ export const Fonts = (props) => {
 
         <div className="rc-sliders">
         <Typography gutterBottom>LetterSpacing</Typography>
-        <Slider size="small" aria-label="Small" type="number" min={-params.FontSize/2.5} defaultValue={0} step={0.1} max={70} valueLabelDisplay="auto"  id="font-size-input"  onChange={
+        <Slider size="small" aria-label="Small" type="number" min={-params.FontSize/2} defaultValue={0} step={0.1} max={70} valueLabelDisplay="auto"  id="font-size-input"  onChange={
             (e) => {
               document.getElementById('rainfall').style.letterSpacing = e.target.value  + 'px' 
             }} />
         </div>
+
+        <div className='rc-sliders'> 
+          <Typography gutterBottom>Opacity</Typography>
+            <Slider size='small' type='number' min={0} max={1} step={0.01} defaultValue={1} valueLabelDisplay="auto" onChange={(e, v) => {
+            Array.from(document.getElementsByClassName('drop-parent')).map((d)=> {d.style.opacity = e.target.value})
+          }} />
+          </div>
 
 
         <div className="rc-sliders" id="font-matrix-container">

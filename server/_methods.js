@@ -1,11 +1,52 @@
 import { Twitterconf, mailconf } from './conf.js';
-import { TwitterCollection, RemindCollection, UsersAppDB, TransitionCollection } from '../src/api/Collection.js';
+import { MailsCollection, TwitterCollection, UsersAppDB, TransitionCollection } from '../src/api/Collection.js';
 import { TwitterApi } from 'twitter-api-v2';
-var convert = require('xml-js');
-
-
+const convert = require('xml-js');
+const { ImapFlow } = require('imapflow');
+import parseMime from 'emailjs-mime-parser'
 
 Meteor.methods({
+  async 'fauxprophet.save'(messageindex, messageid, username) {
+    const client = new ImapFlow({
+      host: 'assayag.org',
+      port: 993,
+      secure: true,
+      auth: {
+          user: 'jesus@fauxprophet.com',
+          pass: ''
+      }
+  });
+  
+  const main = async () => {
+
+      await client.connect();
+      let lock = await client.getMailboxLock('INBOX');
+
+      try {
+        if (messageindex) {
+            await client.messageDelete(messageindex);
+            let deleted = await MailsCollection.remove({ _id: messageid });
+        }
+        
+          for await (let message of client.fetch('1:*', { envelope: true, source: true, bodyStructure: true })) {
+              await MailsCollection.upsert({_id: message.id}, {$set: { 
+                _id: message.id,
+                headers: message.envelope,
+                source: parseMime(message.source.toString()),
+                bodyStructure: message.bodyStructure,
+              }});
+          }
+      } finally {
+          lock.release();
+      }
+      client.logout();
+  };
+   
+  main().catch(err => { console.log(err)});
+  return  MailsCollection.find({}).fetch();
+  },
+
+
   async 'user.create'(credentials) {
     // Validate username, sending a specific error message on failure.
     Accounts.validateNewUser((credentials) => {
@@ -71,6 +112,7 @@ Meteor.methods({
 
 
   async getTwitter(id) {
+
     const twitterClient = new TwitterApi({
       appKey: Twitterconf.CONSUMER_KEY,
       appSecret: Twitterconf.CONSUMER_SECRET,
@@ -313,7 +355,7 @@ Meteor.methods({
   },
   async 'user.update'(field, newvalue) {
     if (Meteor.userId()) {
-      const authorizedRequests = ["app.conf.twitter.twitterid"]
+      const authorizedRequests = ["app.conf.twitter.twitterid", "app.conf.telegram.telegramid"]
       if (!authorizedRequests.includes(field)) {
         throw new Meteor.Error("unauthorized - your ip has been logged and your activity has been flagged as malicious")
       }
@@ -377,8 +419,7 @@ Meteor.methods({
 
   async 'remind.find'(pass, username) {
     if (username) {
-      let Data = await UsersAppDB.rawCollection().distinct("app.remind", { "username": username })
-      return Data
+      return await UsersAppDB.rawCollection().distinct("app.remind", { "username": username })
     }
     if (Meteor.user()) {
       let user = Meteor.user()
@@ -388,7 +429,7 @@ Meteor.methods({
     if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555") {
       return await UsersAppDB.rawCollection().distinct("app.remind", {})
     }
-    return await RemindCollection.rawCollection().aggregate([{ $limit: 10 }]).toArray()
+    return await UsersAppDB.rawCollection().distinct("app.remind", { "username": "daniel" })
 
   },
 

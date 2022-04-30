@@ -103,6 +103,16 @@ export const User = (props) => {
               Meteor.call('user.update', "app.conf.twitter.twitterid", e.target.innerText) }}>
               { userdata?.app?.conf?.twitter?.twitterid }
             </div>
+            </div>
+
+            <div className='user-data-input'>
+            <label>telegramid</label>
+            <div className="contentEditable" contentEditable suppressContentEditableWarning spellCheck="false" onBlur={(e) => { 
+              Meteor.call('user.update', "app.conf.telegram.telegramid", e.target.innerText) }}>
+              { userdata?.app?.conf?.telegram?.telegramid }
+           
+            </div>
+
         </div>
         </section>
 

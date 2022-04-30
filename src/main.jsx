@@ -10,7 +10,7 @@ import { Membrane } from '/src/ui/Membrane'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Terms } from '/src/ui/static/Terms'
 import { Privacy } from '/src/ui/static/Privacy'
-import { Test } from '/src/ui/Test'
+import { Fauxprophet } from '/src/ui/pages/Fauxprophet'
 import { User } from '/src/ui/User'
 
 export const App = () => {
@@ -24,7 +24,7 @@ export const App = () => {
       <Route path="/remind" element={<Membrane><Remind /></Membrane>} />
       <Route path="/remind/:username" element={<Membrane><Remind /></Membrane>} />
       <Route path='/mail' element={ <Membrane><Contact /></Membrane>  } />
-      <Route path='/test' element={ <Membrane><Test /></Membrane>  } />
+      <Route path='/fauxprophet' element={ <Membrane><Fauxprophet /></Membrane>  } />
       <Route path='/user' element={<Membrane ><User /></Membrane>  } />
       <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>
       <Route path='/terms-of-use' element={ <Membrane><Terms /></Membrane>  } />

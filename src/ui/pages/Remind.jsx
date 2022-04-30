@@ -23,11 +23,7 @@ export const Remind = (props) => {
   const [eSel, seteSel] = useState(0)
   const [user, setUser] = useState(null);
 
-
-
   const { username } = useParams();
-
-
 
   useEffect(() => {
     setUser(props.user)
