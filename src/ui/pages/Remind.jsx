@@ -4,11 +4,10 @@ import { useParams } from "react-router-dom";
 const humanizeDuration = require("humanize-duration");
 import { Loading } from '../Animations';
 
-import { DateTimePicker } from '@mui/lab';
+import { DateTimePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import TextField from '@mui/material/TextField';
-import { Tooltip, Zoom, ToggleButton, Button, LinearProgress } from '@mui/material';
+
+import { TextField, Tooltip, Zoom, ToggleButton, Button, LinearProgress } from '@mui/material';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import ClearIcon from '@mui/icons-material/Clear';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -103,14 +102,14 @@ export const Remind = (props) => {
 
           <div onClick={() => {
             seteSel(0)
-            document.querySelector('#remind-selectors').scrollIntoView({ behavior: "smooth" })
+            // document.querySelector('#remind-selectors').scrollIntoView({ behavior: "smooth" })
 
           }} className={`remind-selector ${eSel == 0 ? "remind-selected" : ""}`}>{user && !username ? <div>All <i>(edit)</i></div> : <div>All</div>}  </div>
 
           { events.filter(e => toNow(e.end) <= 0 && e.private).length > 0 ?
           <div onClick={() => {
             seteSel(1)
-            document.querySelector('#remind-selectors').scrollIntoView({ behavior: "smooth" })
+            // document.querySelector('#remind-selectors').scrollIntoView({ behavior: "smooth" })
           }} className={`remind-selector ${eSel == 1 ? "remind-selected" : ""}`}>Present </div>
           : null}
 

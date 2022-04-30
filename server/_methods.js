@@ -6,7 +6,11 @@ const { ImapFlow } = require('imapflow');
 import parseMime from 'emailjs-mime-parser'
 
 Meteor.methods({
-  async 'fauxprophet.save'(messageindex, messageid, username) {
+  async 'fauxprophet.save'(messageindex, messageid, username, refresh) {
+    let currentMails = await MailsCollection.find({}).fetch();
+    console.log(currentMails == true);
+    if (currentMails && !refresh) { return currentMails }
+    
     const client = new ImapFlow({
       host: 'assayag.org',
       port: 993,
@@ -18,16 +22,16 @@ Meteor.methods({
   });
   
   const main = async () => {
-
       await client.connect();
       let lock = await client.getMailboxLock('INBOX');
 
       try {
         if (messageindex) {
-            await client.messageDelete(messageindex);
+          console.log(messageindex, messageid);
             let deleted = await MailsCollection.remove({ _id: messageid });
+            await client.messageDelete(messageindex);
         }
-        
+        else {
           for await (let message of client.fetch('1:*', { envelope: true, source: true, bodyStructure: true })) {
               await MailsCollection.upsert({_id: message.id}, {$set: { 
                 _id: message.id,
@@ -35,15 +39,18 @@ Meteor.methods({
                 source: parseMime(message.source.toString()),
                 bodyStructure: message.bodyStructure,
               }});
+            }
           }
       } finally {
           lock.release();
       }
       client.logout();
+
+      let mails = await MailsCollection.find({}).fetch();
+      return mails
   };
    
-  main().catch(err => { console.log(err)});
-  return  MailsCollection.find({}).fetch();
+  return main().catch(err => { console.log(err)});
   },
 
 

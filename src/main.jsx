@@ -25,6 +25,7 @@ export const App = () => {
       <Route path="/remind/:username" element={<Membrane><Remind /></Membrane>} />
       <Route path='/mail' element={ <Membrane><Contact /></Membrane>  } />
       <Route path='/fauxprophet' element={ <Membrane><Fauxprophet /></Membrane>  } />
+      <Route path='/fauxprophet/:usernameurl' element={<Membrane><Fauxprophet /></Membrane>  } />
       <Route path='/user' element={<Membrane ><User /></Membrane>  } />
       <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>
       <Route path='/terms-of-use' element={ <Membrane><Terms /></Membrane>  } />

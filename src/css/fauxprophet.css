@@ -6,3 +6,6 @@
 .TableCellDelete svg {
   cursor: pointer;
 }
+.TableCellPointer {
+  cursor: pointer;
+}
