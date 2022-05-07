@@ -8,7 +8,6 @@ import parseMime from 'emailjs-mime-parser'
 Meteor.methods({
   async 'fauxprophet.save'(messageindex, messageid, username, refresh) {
     let currentMails = await MailsCollection.find({}).fetch();
-    console.log(currentMails == true);
     if (currentMails && !refresh) { return currentMails }
     
     const client = new ImapFlow({
@@ -17,7 +16,7 @@ Meteor.methods({
       secure: true,
       auth: {
           user: 'jesus@fauxprophet.com',
-          pass: ''
+          pass: 'test'
       }
   });
   
@@ -27,7 +26,6 @@ Meteor.methods({
 
       try {
         if (messageindex) {
-          console.log(messageindex, messageid);
             let deleted = await MailsCollection.remove({ _id: messageid });
             await client.messageDelete(messageindex);
         }
@@ -52,6 +50,90 @@ Meteor.methods({
    
   return main().catch(err => { console.log(err)});
   },
+
+  async 'rss.urls.save'(url, id=null, username=null) {
+    if(!Meteor.userId()) { throw new Meteor.Error('not-authorized'); }
+    let rss = { url: url, _id: new Meteor.Collection.ObjectID()._str }
+    if (id) { let deleted = await UsersAppDB.update( { "userId": Meteor.userId() }, { $pull: { 'app.rss': { _id: id } } } ) }
+    if(url) { let add = await UsersAppDB.update( { "userId": Meteor.userId(), "app.rss.url": { $nin: [rss.url] } }, { $addToSet: { 'app.rss': rss }, } ); }
+    let urls = await UsersAppDB.rawCollection().distinct("app.rss", { "userId": Meteor.userId() });
+    return urls
+  },
+async 'rss.load'(url) {
+  if(!Meteor.userId()) { throw new Meteor.Error('not-authorized'); }
+  Meteor.call('fetch', url.url, async (e, r) => {
+    if (e) return console.error(e)
+    let xmltojson = JSON.parse(convert.xml2json(r, { compact: true, spaces: 4 }));
+    let items = xmltojson.rss.channel.item;
+    let currentFeed = await UsersAppDB.rawCollection().aggregate([
+      { $match: { "userId": Meteor.userId()} },
+      { $unwind: '$app.rss' },
+      { $replaceRoot: { newRoot: '$app.rss' } },
+      { $match: { 'url': url.url } },
+       { $unwind: '$feed' },
+      { $replaceRoot: { newRoot: '$feed' } },
+      // { $match: { 'feed.guid._text': guid } },
+      // { $set: { 'feed.visibility': !visibility } },
+    ]).toArray()
+    if(!currentFeed.length) {
+      let add = await UsersAppDB.update(
+        { "userId": Meteor.userId(), "app.rss.url": url.url},
+        { $set: { 'app.rss.$.feed': xmltojson.rss.channel.item } },
+        )
+    }
+    else {
+     // update array but keep existing feed items
+     // check if each item is already in the feed
+      // if not, add it
+      
+      let currentItems = currentFeed;
+      let newItems = items;
+      let newItemsIds = newItems.map(item => item.guid._text);
+      let currentItemsIds = currentItems.map(item => item.guid._text);
+      let diff = newItemsIds.filter(item => !currentItemsIds.includes(item));
+      let add = await UsersAppDB.update(
+        { "userId": Meteor.userId(), "app.rss.url": url.url},
+        { $set: { 'app.rss.$.feed': [...currentItems, ...diff.map(item => items.find(i => i.guid._text === item))] } },
+        )
+    }     
+  })
+},
+async 'rss.feed.visibility'(url, guid, visibility) {
+  if(!Meteor.userId()) { throw new Meteor.Error('not-authorized'); }
+let aggregate = await UsersAppDB.update({
+  "userId": Meteor.userId() , 'app.rss.url': url},
+  {
+     $set: {
+          'app.rss.$.feed.$[feed].visibility': !visibility
+         } 
+  }, 
+  {
+    arrayFilters: [{
+      "feed.guid._text": guid,
+    }]
+  }
+)
+
+},
+
+async 'rss.public'(user="daniel") {
+  if(!Meteor.userId()) { throw new Meteor.Error('not-authorized'); }
+  // get all rss feeds where visibility is true
+  // return array of feeds
+  let feeds = await UsersAppDB.rawCollection().aggregate([
+    { $match: { "username": user} },
+    { $unwind: '$app.rss' },
+    { $replaceRoot: { newRoot: '$app.rss' } },
+    { $unwind: '$feed' },
+    { $match: { 'feed.visibility': true } },
+    { $replaceRoot: { newRoot: '$feed' } },
+  ]).toArray()
+  console.log(feeds.length)
+  return feeds
+
+
+},
+
 
 
   async 'user.create'(credentials) {
@@ -82,6 +164,8 @@ Meteor.methods({
           fauxprophetmail: [],
           rain: [],
           asocials: [],
+          twitter: [],
+          rss: [],
         }
       }, ((e, r) => {
         Meteor.users.update({ _id: userId }, { $set: { 'userappdb': r } })
@@ -94,7 +178,6 @@ Meteor.methods({
   },
   async 'user.get.db'() {
     if (Meteor.userId()) {
-
       return UsersAppDB.findOne({ "userId": Meteor.userId() }).fetch()
     }
     else {
@@ -140,7 +223,6 @@ Meteor.methods({
     }
 
     if (id) {
-      console.log("hey")
       return await getTweet(id)
     }
 
@@ -148,6 +230,7 @@ Meteor.methods({
       return getDb()
     }
   },
+
   async mail(from, msg, accuse) {
     "use strict";
     const nodemailer = require("nodemailer");
@@ -321,6 +404,12 @@ Meteor.methods({
       return await UsersAppDB.rawCollection().distinct("app.twitter", { "username": "daniel" })
     }
   },
+  async 'twitter.delete'(tweet) {
+    if(!Meteor.userId()) { throw new Meteor.Error('not-authorized'); }
+    if (tweet) { let deleted = await UsersAppDB.update( { "userId": Meteor.userId() }, { $pull: { 'app.twitter': { _id: tweet._id } } } ) }
+    const result = await UsersAppDB.rawCollection().distinct("app.twitter", { "userId": Meteor.userId() })
+    return result
+  },
   async 'rain.save'(canvas, visible, username) {
 
     let rainuserdata = await UsersAppDB.rawCollection().distinct("app.rain", { "userId": Meteor.userId() })
@@ -444,7 +533,7 @@ Meteor.methods({
 
     // update the database
     if (Meteor.userId()) {
-      await TransitionCollection.insert({ name: "Eventa #", begin: new Date(Date.now() + 1000 * 60 * 360), end: new Date(Date.now() + 1000 * 60 * 360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false }, (e, r) => {
+      await TransitionCollection.insert({ name: "Event #", begin: new Date(Date.now() + 1000 * 60 * 360), end: new Date(Date.now() + 1000 * 60 * 360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false }, (e, r) => {
         // console.log(TransitionCollection.findOne({"_id": r}) )
         UsersAppDB.update({ "userId": Meteor.userId() },
           {
@@ -465,18 +554,14 @@ Meteor.methods({
 
 
   fetch(url, telegram) {
-    // using child exec on local machine with wget
-
     return new Promise((resolve, reject) => {
-
       const exec = require("child_process").exec;
       exec(`wget -qO- ${url}`, (err, stdout, stderr) => {
         if (err) {
           reject(err);
-          console.log("fuck")
           return null
         }
-
+        
         resolve(stdout);
 
       });
@@ -484,5 +569,6 @@ Meteor.methods({
     )
   },
 
+  
 
 })
