@@ -106,10 +106,10 @@ transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1.3s;
 
 #main-container-header-instructions {
   background: #afa2c3;
-  border-bottom: 1px solid white;
   color: white;
   padding: 47px;
   margin-bottom: 80px;
+  box-shadow: 0 4px 8px rgb(118 118 120 / 20%);
 }
 
 div#main-container-header-instructions ul {
@@ -121,10 +121,9 @@ div#main-container-header-instructions ul {
 .main-container-block {
   background: #37205a;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgb(118 118 120 / 5%);
   padding: 20px;
-  border-bottom: 1px solid #dfdfdf;
   color: #fffbf6;
+  box-shadow: 0 4px 8px rgb(118 118 120 / 20%);
 }
 
 .main-container-block ul {
@@ -145,6 +144,7 @@ div#main-container-header-instructions ul {
   text-transform: capitalize;
   background: #e1ddf1;
   width: min-content;
+  box-shadow: 0 4px 8px rgb(118 118 120 / 20%);
 }
 
 

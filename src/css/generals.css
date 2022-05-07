@@ -11,3 +11,12 @@
     cursor: pointer;
     background: #ebdcff;
 }
+
+.class-button-link {
+    background: #afa2c3;
+    color: #37205a;
+    transition: ease-out 0.15s;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 15px;
+}

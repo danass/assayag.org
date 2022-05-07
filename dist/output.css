@@ -480,10 +480,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
-.m-auto {
-  margin: auto;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -495,6 +491,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex {
   display: flex;
+}
+
+.table {
+  display: table;
 }
 
 .contents {
@@ -529,16 +529,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 1px;
 }
 
+.p-5 {
+  padding: 1.25rem;
+}
+
 .p-1 {
   padding: 0.25rem;
 }
 
 .p-2 {
   padding: 0.5rem;
-}
-
-.p-5 {
-  padding: 1.25rem;
 }
 
 .pt-10 {

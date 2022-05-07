@@ -12,6 +12,7 @@ import { Terms } from '/src/ui/static/Terms'
 import { Privacy } from '/src/ui/static/Privacy'
 import { Fauxprophet } from '/src/ui/pages/Fauxprophet'
 import { User } from '/src/ui/User'
+import { Rss } from '/src/ui/Rss'
 
 export const App = () => {
 
@@ -27,6 +28,7 @@ export const App = () => {
       <Route path='/fauxprophet' element={ <Membrane><Fauxprophet /></Membrane>  } />
       <Route path='/fauxprophet/:usernameurl' element={<Membrane><Fauxprophet /></Membrane>  } />
       <Route path='/user' element={<Membrane ><User /></Membrane>  } />
+      <Route path='/rss' element={<Membrane ><Rss /></Membrane>  } />
       <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>
       <Route path='/terms-of-use' element={ <Membrane><Terms /></Membrane>  } />
       <Route path='/privacy' element={ <Membrane><Privacy /></Membrane>  } />

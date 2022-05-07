@@ -3,20 +3,30 @@ import { Global } from '../Membrane'
 import '../static/twitch'
 import Twitch from '../static/twitch';
 import { TSocial } from '/src/ui/Tsocial'
+import { Link } from 'react-router-dom';
 
 
 
-export const Home = () => {
+export const Home = (props) => {
   const [rainData, setrainData] = useState(null)
+  const [rsspublicfeed, setrsspublicfeed] = useState(null)
   const globalState = Global({ pageName: "Home", description: "{Home} => Daniel Assayag is an Artist and Project Leader in Education. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]." })
 
   useEffect(() => {
     Meteor.call('rain.save', null, null, 'daniel', ((e, r) => {
-      
       if(e) return
       setrainData(r)
     }))
+  }, [props.user])
+
+  useEffect(() => {
+    Meteor.call('rss.public', (e, r) => {
+      if(e) return console.erro(e)
+      setrsspublicfeed(r)
+    }
+    )
   }, [])
+
 
   useEffect(() => {
     // let player = new Twitch.Player("twitch-embed", {
@@ -44,7 +54,6 @@ export const Home = () => {
       player.addEventListener(Twitch.Player.ONLINE, handleOnline);
       // player.setMuted(true);
     }
-
   }, [])
 
 
@@ -60,8 +69,32 @@ export const Home = () => {
             </ul><ul>Que la ptite souris soit avec vous.
             </ul>
           </div>
+          {!props.user? 
+        <div className="main-container-block" style={{ background: "rgb(113 0 255)" }}>
+          <ul><li>
+            Are you <b><Link to="/user" style={{color: "#9a90b3"}}>registered</Link></b> yet?</li>
+            <li>By <b><Link to="/user" style={{color: "#9a90b3"}}>creating a new account</Link></b>, you can save your creations and setup your own reminders.</li>
+            </ul>
+          </div>
+          : null }
 
       </div>
+
+      <section id={"rss-publicfeed"}>
+        {rsspublicfeed?.map((r, i) => {
+          console.log(r)
+          return (
+            <article key={i}  onClick={
+              () => {
+                window.open(r.link?._text, "_blank")
+            }}>
+              <h3><b>{r.title?._cdata? r.title?._cdata: r.title?._text }</b></h3>
+
+              {<img src={r['media:content']?._attributes?.url?r['media:content']?._attributes?.url :r['photo:imgsrc']?._text } ></img>}
+            </article>
+          )
+        })}
+      </section>
 
       <section  className={"p-5 flex items-center flex-col main-container-content p-1 "} >
         {rainData?.map((r, i) => {
@@ -74,9 +107,8 @@ export const Home = () => {
       </section>
 
       <section className={"main-container-content"}>
-      <TSocial />
+      <TSocial user={props.user}/>
       </section>
-
 
 
       {/* <section id="twitch" className="main-container-content">

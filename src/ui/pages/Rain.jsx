@@ -70,7 +70,7 @@ export const Rain = (props) => {
   }
 
   function getRandomColor() {
-    var letters = ' 23456789ABCDEF';
+    var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
@@ -170,7 +170,7 @@ export const Rain = (props) => {
         <div id="rain-library">
         
           <div className="rain-frontispice">RAIN-LIBRARY</div>
-          {Meteor.user()?<div><Link to="/user">{raindbCanvas?.length}</Link> / 10</div> : null}
+          {Meteor.user()?<div><Link to="/user"><b className="class-button-link">{raindbCanvas?.length}</b></Link> / 10</div> : null}
           {allcanvas.map((canvas, i) => {
             let visible = raindbCanvas?.some(currentCanvas => currentCanvas._id === canvas.canvasId)
             
