@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 export const Rss = (props) => {
 
@@ -57,9 +59,9 @@ fetchfeed = () => {
         }} >Add</span>
       </form>
 
-
+      <div id={"rss-urls"}>
       {urls.map((url, i) => {
-        return <div key={`${url._id}-${i}`}>
+        return <div className={"rss-url"} key={`${url._id}-${i}`}>
           <span>{url.url}</span>
           <span className={"class-button-link"} onClick={()=> {
             Meteor.call('rss.urls.save', null, url._id, null, (e, r) => {
@@ -70,6 +72,7 @@ fetchfeed = () => {
 
         </div>
       })}
+      </div>
       </section>
 
       <section>
@@ -83,8 +86,8 @@ fetchfeed = () => {
                 return new Date(b.pubDate._text) - new Date(a.pubDate._text)
               }).map((article, i) => {
                 return (
-                  <div key={`${i}-item-${url._id}`}>
-                    <h2><a href={article?.link?._text}>{article?.title?._cdata? article?.title?._cdata : article?.title?._text }</a></h2>
+                  <div className={"rss-article"} key={`${i}-item-${url._id}`}>
+                    <h2><a target="_blank" href={article?.link?._text}>{article?.title?._cdata? article?.title?._cdata : article?.title?._text }</a></h2>
                     <Visible url={url.url} guid={article?.guid?._text} visibility={article?.visibility} />
                   </div>
                 )
@@ -111,11 +114,10 @@ const [visible, setVisible] = useState(visibility)
       <span className={'class-button-link'} onClick={() => {
         Meteor.call('rss.feed.visibility', url, guid, visible, (err, res) => {
           if(err) { return console.log(err) }
-          console.log("zl", visible, !visible)
           setVisible(!visible)
         })
       }
-      }>{visible?"visible": "not visible"}</span>
+      }>{visible?<VisibilityIcon  />:<VisibilityOffIcon color={"disabled"} />}</span>
 
     
     </>

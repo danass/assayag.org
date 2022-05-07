@@ -1,3 +1,61 @@
+/* private */
+/* urls */
+div#rss-urls span {
+  margin: 8px;
+}
+#rss-form .class-button-link  {
+  margin: 10px;
+}
+
+#rss-urls span.class-button-link {
+font-size: small;
+padding: 3px 6px;
+
+}
+
+
+#rss-urls {
+  padding: 20px;
+}
+/* articles */
+.rss-article span.class-button-link {
+  padding: 0px 5px!important;
+  margin: 2px!important;
+  font-size: small!important;
+    min-width: fit-content!important;
+    height: fit-content!important;
+
+    font-weight: 300;
+
+}
+article.rss-feed h1 {
+  background: #ececec;
+  padding: 18px;
+  margin: 0px 30px 20px 30px;
+}
+
+.rss-article {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #ebddff;
+  margin: 5px;
+  padding: 2px 2px 2px 10px;
+  border-radius: 30px;
+  
+}
+
+
+.rss-article a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+/* public */
+
+
 .rss-feed {
   padding: 10px;
 

@@ -88,8 +88,8 @@ async 'rss.load'(url) {
       
       let currentItems = currentFeed;
       let newItems = items;
-      let newItemsIds = newItems.map(item => item.guid._text);
-      let currentItemsIds = currentItems.map(item => item.guid._text);
+      let newItemsIds = newItems.map(item => item.guid?._text);
+      let currentItemsIds = currentItems.map(item => item.guid?._text);
       let diff = newItemsIds.filter(item => !currentItemsIds.includes(item));
       let add = await UsersAppDB.update(
         { "userId": Meteor.userId(), "app.rss.url": url.url},
