@@ -64,7 +64,7 @@ article.rss-feed h1 {
 #rss-publicfeed {
   display: flex;
   flex-wrap: wrap;
-
+  justify-content: center;
 }
 
 #rss-publicfeed article {
@@ -76,7 +76,8 @@ article.rss-feed h1 {
   min-width: 22vw;
   margin: 10px;
   width: 31%;
-    word-break: break-word;
+  word-break: break-word;
+  
 
 }
 

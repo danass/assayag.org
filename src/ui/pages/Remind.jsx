@@ -12,6 +12,7 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import ClearIcon from '@mui/icons-material/Clear';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import Inventory2RoundedIcon from '@mui/icons-material/Inventory2Rounded';
 // create a function that store in memory the end date of each event and use it create a countdown that updates every second without refreshing the page (useEffect, useState, Promise, without using useTracker)
 
 export const Remind = (props) => {
@@ -67,16 +68,6 @@ export const Remind = (props) => {
     color = parseInt(color)
     return scale(main + color, 0, 310, 0, 255)
   }
-
-
-  // function hexToRgb(hex) {
-  //     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  //     return result ? {
-  //       r: parseInt(result[1], 16),
-  //       g: parseInt(result[2], 16),
-  //       b: parseInt(result[3], 16)
-  //     } : null;
-  //   }    
 
   return (
     <>
@@ -150,10 +141,10 @@ export const Remind = (props) => {
         }) // private
           .sort((a, b) => {
             // console.log(new Date(a.end) - new Date(b.end)  )
-            return Math.abs(new Date(a.end) - new Date(b.end))  })
+            return new Date(a.end) - new Date(b.end)  })
           .map((event, i) => {
             return <section className="event-container" style={{
-              backgroundColor: toNow(event.end) <= 0 ? `rgba( ${logToColorDomInt(event.end, colors[0])} , ${logToColorDomInt(event.end, colors[1])}, ${logToColorDomInt(event.end, colors[2])} , 1)` : 'rgba(0,0,0,0.9)',
+              backgroundColor: toNow(event.end) <= 0 ? `rgba( ${logToColorDomInt(event.end, colors[0])} , ${logToColorDomInt(event.end, colors[1])}, ${logToColorDomInt(event.end, colors[2])} , 1)` : 'rgb(2, 1, 34)',
               color: toNow(event.end) <= 0 ? `black` : '#e1a0ff'
             }} key={event._id}>
 
@@ -165,7 +156,8 @@ export const Remind = (props) => {
                     className="event-name" contentEditable={user ? true : false} suppressContentEditableWarning><b>{event.name}</b></div>
 
                   <div className="event-remain">
-                    { toNow(event.end) <= 0 ? 
+                    {event.archived? <time>{humanizeDuration(event.end - event.archivedTime)}</time>: 
+                     toNow(event.end) <= 0 ? 
                     <time>{humanizeDuration(toNow(event.end))}</time>
                      : eSel == 0 ? event.end == "" ? "Select a date.." : "it's been " + humanizeDuration(toNow(event.end)) : "it's been " + humanizeDuration(toNow(event.end))}</div>
                  
@@ -182,20 +174,31 @@ export const Remind = (props) => {
                       </div> : <div className="date-skeleton" />}
 
                     <div className="event-choices-buttons-wrapper">
+                      { toNow(event.end) <= 0? 
                       <div className="event-choice">
                         <ToggleButton className="choice-black"
                         disabled={user ? false : true} value="check" selected={event.telegram} onClick={() => {
                           Meteor.call('remind.update', event, { telegram: !event.telegram })
                         }}>
-                          <TelegramIcon />
+                          { event.telegram? <TelegramIcon sx={{ color: toNow(event.end) <= 0? "#2d1252": "#e3c2ff"  }} />: <TelegramIcon sx={{ color: "#d8bbff7d" }} /> }
                         </ToggleButton>
                       </div>
+                      : null}
 
                       <div className="event-choice">
                         <ToggleButton disabled={user ? false : true} value="check" selected={event.private} onClick={() => {
                           Meteor.call('remind.update', event, { private: !event.private })
                         }}>
-                          {event.private ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                          {event.private ? <VisibilityIcon sx={{ color: toNow(event.end) <= 0? "#2d1252": "#e3c2ff" }} /> : <VisibilityOffIcon sx={{ color: "#d8bbff7d" }} />}
+                        </ToggleButton>
+                      </div>
+
+
+                      <div className="event-choice">
+                        <ToggleButton disabled={user ? false : true} value="check" selected={event.archived} onClick={() => {
+                          Meteor.call('remind.update', event, { archivedTime: new Date(Date.now()), archived: !event.archived })
+                        }}>
+                          {event.archived ? <Inventory2RoundedIcon  sx={{color: toNow(event.end) <= 0? "#2d1252": "#e3c2ff"  }} /> : <Inventory2RoundedIcon  sx={{ color: "#d8bbff7d" }} />}
                         </ToggleButton>
                       </div>
                     </div>
