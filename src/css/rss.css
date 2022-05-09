@@ -68,7 +68,7 @@ article.rss-feed h1 {
 }
 
 #rss-publicfeed article {
-  background: white;
+  background: #efefef;
   color: #151515;
   border-radius: 3px;
   cursor: pointer;
@@ -77,9 +77,25 @@ article.rss-feed h1 {
   margin: 10px;
   width: 31%;
   word-break: break-word;
-  
-
+  border-radius: 3px;
 }
+
+ #rss-publicfeed article b {
+  font-size: 1.2em;
+ }
+
+ #rss-publicfeed article h5 {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+
+#rss-publicfeed article h4 {
+  text-align: justify;
+  font-size: 1em;
+  padding: 20px;
+  line-height: 1.8;
+}
+
 
 #rss-publicfeed img {
   padding: 18px 3px;

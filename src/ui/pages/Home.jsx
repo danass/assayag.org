@@ -21,7 +21,7 @@ export const Home = (props) => {
 
   useEffect(() => {
     Meteor.call('rss.public', (e, r) => {
-      if(e) return console.erro(e)
+      if(e) return console.error(e)
       setrsspublicfeed(r)
     }
     )
@@ -82,15 +82,18 @@ export const Home = (props) => {
 
       <section id={"rss-publicfeed"}>
         {rsspublicfeed?.map((r, i) => {
-          console.log(r)
+          const imgtest = new Image();
+          imgtest.src = r['media:content']?._attributes?.url?r['media:content']?._attributes?.url :r['photo:imgsrc']?._text 
           return (
             <article key={i}  onClick={
               () => {
                 window.open(r.link?._text, "_blank")
             }}>
-              <h3><b>{r.title?._cdata? r.title?._cdata: r.title?._text }</b></h3>
+              <h3><b className={"articlerss-title"}>{r.title?._cdata? r.title?._cdata: r.title?._text }</b></h3>
+              <h5>{r.pubDate?._text }</h5>
+              <h4 dangerouslySetInnerHTML={{ __html: r.description._cdata}}></h4>
+              {<img src={imgtest.width >= 100? r['media:content']?._attributes?.url?r['media:content']?._attributes?.url:null : imgtest.width >= 100? r['photo:imgsrc']?._text : null } ></img>}
 
-              {<img src={r['media:content']?._attributes?.url?r['media:content']?._attributes?.url :r['photo:imgsrc']?._text } ></img>}
             </article>
           )
         })}
