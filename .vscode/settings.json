@@ -1,8 +1,7 @@
 {
   "search.exclude": {
-    "": true,
-    "**/bower_components": false,
-    "**/node_modules": false
+    ".meteor": true,
+    "**/bower_components": false
   },
   "search.useIgnoreFiles": false
 }

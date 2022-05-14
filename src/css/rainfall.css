@@ -1,10 +1,21 @@
-img {
-    display: inline!important;
+/* public */
+#rain-publicfeed {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+    margin: 110px;
 }
+
+#rain-publicfeed div {
+    padding: 50px; 
+}
+/* // personal */
 
 .rain-container {
     min-height: 120vh;
-
 }
 
 #rainfall {

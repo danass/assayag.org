@@ -85,9 +85,10 @@ fetchfeed = () => {
               {url.feed?.sort((a, b) => {
                 return new Date(b.pubDate._text) - new Date(a.pubDate._text)
               }).map((article, i) => {
+                let title = article?.title?._cdata? article?.title?._cdata : article?.title?._text
                 return (
                   <div className={"rss-article"} key={`${i}-item-${url._id}`}>
-                    <h2><a target="_blank" href={article?.link?._text}>{article?.title?._cdata? article?.title?._cdata : article?.title?._text }</a></h2>
+                    <h2><a target="_blank" href={article?.link?._text}>{title}</a></h2>
                     <Visible url={url.url} guid={article?.guid?._text} visibility={article?.visibility} />
                   </div>
                 )

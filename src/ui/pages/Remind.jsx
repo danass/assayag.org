@@ -93,21 +93,21 @@ export const Remind = (props) => {
 
           <div onClick={() => {
             seteSel(0)
-            // document.querySelector('#remind-selectors').scrollIntoView({ behavior: "smooth" })
-
           }} className={`remind-selector ${eSel == 0 ? "remind-selected" : ""}`}>{user && !username ? <div>All <i>(edit)</i></div> : <div>All</div>}  </div>
 
           { events.filter(e => toNow(e.end) <= 0 && e.private).length > 0 ?
           <div onClick={() => {
             seteSel(1)
-            // document.querySelector('#remind-selectors').scrollIntoView({ behavior: "smooth" })
           }} className={`remind-selector ${eSel == 1 ? "remind-selected" : ""}`}>Present </div>
           : null}
 
           { events.filter(e => toNow(e.end) >= 0 && e.private).length > 0  ? 
           <div onClick={() => { seteSel(2) }} className={`remind-selector ${eSel == 2 ? "remind-selected" : ""}`}>Past</div>
           : null}
-          {/* {user && !username ? <div onClick={() => { seteSel(3) }} className={`remind-selector ${eSel == 3 ? "remind-selected" : ""}`}>Private</div> : null} */}
+
+          { events.filter(e => e.archived).length > 0  ? 
+          <div onClick={() => { seteSel(4) }} className={`remind-selector ${eSel == 4 ? "remind-selected" : ""}`}>Archived</div>
+          : null}
 
           {eSel == 0 ?
             <div className="remind-selector event-create">
@@ -138,6 +138,7 @@ export const Remind = (props) => {
           if (eSel == 1) { return event.private && toNow(event.end) <= 0 } // present  (public)
           if (eSel == 2) { return event.private && toNow(event.end) >= 0 } // past (public)
           if (eSel == 3) { return !event.private && user } // private
+          if (eSel == 4) { return event.archived && user }
         }) // private
           .sort((a, b) => {
             // console.log(new Date(a.end) - new Date(b.end)  )

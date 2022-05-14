@@ -4,6 +4,7 @@ import '../static/twitch'
 import Twitch from '../static/twitch';
 import { TSocial } from '/src/ui/Tsocial'
 import { Link } from 'react-router-dom';
+import { Loading } from '../Animations';
 
 
 
@@ -80,10 +81,16 @@ export const Home = (props) => {
 
       </div>
 
-      <section id={"rss-publicfeed"}>
+      {rsspublicfeed? <section id={"rss-publicfeed"}>
         {rsspublicfeed?.map((r, i) => {
           const imgtest = new Image();
           imgtest.src = r['media:content']?._attributes?.url?r['media:content']?._attributes?.url :r['photo:imgsrc']?._text 
+          let rssimg = imgtest.width >= 100? r['media:content']?._attributes?.url?r['media:content']?._attributes?.url:null : imgtest.width >= 100? r['photo:imgsrc']?._text : null 
+          let desc = r.description._cdata
+          // if desc contains "Article URL: "
+          if(desc.includes("Article URL: ")){
+            desc = ""
+          }
           return (
             <article key={i}  onClick={
               () => {
@@ -91,15 +98,17 @@ export const Home = (props) => {
             }}>
               <h3><b className={"articlerss-title"}>{r.title?._cdata? r.title?._cdata: r.title?._text }</b></h3>
               <h5>{r.pubDate?._text }</h5>
-              <h4 dangerouslySetInnerHTML={{ __html: r.description._cdata}}></h4>
-              {<img src={imgtest.width >= 100? r['media:content']?._attributes?.url?r['media:content']?._attributes?.url:null : imgtest.width >= 100? r['photo:imgsrc']?._text : null } ></img>}
+              <h4 dangerouslySetInnerHTML={{ __html: desc}}></h4>
+              {<img src={rssimg}></img> }
 
             </article>
           )
         })}
       </section>
+      :<Loading/>}
+      
 
-      <section  className={"p-5 flex items-center flex-col main-container-content p-1 "} >
+      <section id ="rain-publicfeed" className={"p-5 flex items-center flex-col main-container-content p-1 "} >
         {rainData?.map((r, i) => {
           return (
             <div key={i} className={"p-2"}>
