@@ -88,7 +88,7 @@ export const Home = (props) => {
           let rssimg = imgtest.width >= 100? r['media:content']?._attributes?.url?r['media:content']?._attributes?.url:null : imgtest.width >= 100? r['photo:imgsrc']?._text : null 
           let desc = r.description._cdata
           // if desc contains "Article URL: "
-          if(desc.includes("Article URL: ")){
+          if(desc?.includes("Article URL: ")){
             desc = ""
           }
           return (
