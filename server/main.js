@@ -10,13 +10,3 @@ Meteor.startup(async () => {
   });
 
 });
-
-
-// const insertTask = (Collection, taskText) => {
-//   Collection.insert({ text: taskText, createdAt: new Date() });
-// }
-// if(TasksCollection.find().count() === 0) {
-// ["Faire l'examen",
-// "Faire l'amour",
-// "Faire la vie",
-// ].forEach(insertTask.bind(null, TasksCollection))

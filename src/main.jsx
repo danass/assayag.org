@@ -13,6 +13,7 @@ import { Privacy } from '/src/ui/static/Privacy'
 import { Fauxprophet } from '/src/ui/pages/Fauxprophet'
 import { User } from '/src/ui/User'
 import { Rss } from '/src/ui/Rss'
+import { Api } from '/src/ui/Api'
 
 export const App = () => {
 
@@ -32,6 +33,7 @@ export const App = () => {
       <Route path='*' element={ <Membrane><Handle404 /></Membrane> }/>
       <Route path='/terms-of-use' element={ <Membrane><Terms /></Membrane>  } />
       <Route path='/privacy' element={ <Membrane><Privacy /></Membrane>  } />
+      <Route path='/api' element={ <Api />  } />
 
     </Routes>
     </BrowserRouter>

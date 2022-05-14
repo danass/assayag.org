@@ -117,7 +117,8 @@ let aggregate = await UsersAppDB.update({
 },
 
 async 'rss.public'(user="daniel") {
-  if(!Meteor.userId()) { throw new Meteor.Error('not-authorized'); }
+
+  if(!Meteor.userId() && user != "daniel") { throw new Meteor.Error('not-authorized'); }
   // get all rss feeds where visibility is true
   // return array of feeds
   let feeds = await UsersAppDB.rawCollection().aggregate([
@@ -128,7 +129,7 @@ async 'rss.public'(user="daniel") {
     { $match: { 'feed.visibility': true } },
     { $replaceRoot: { newRoot: '$feed' } },
   ]).toArray()
-  console.log(feeds.length)
+
   return feeds
 
 

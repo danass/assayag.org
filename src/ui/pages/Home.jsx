@@ -23,6 +23,7 @@ export const Home = (props) => {
   useEffect(() => {
     Meteor.call('rss.public', (e, r) => {
       if(e) return console.error(e)
+      console.log(r)
       setrsspublicfeed(r)
     }
     )
