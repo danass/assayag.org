@@ -83,7 +83,9 @@ export const Home = (props) => {
       </div>
 
       {rsspublicfeed? <section id={"rss-publicfeed"}>
-        {rsspublicfeed?.map((r, i) => {
+        {rsspublicfeed?.sort((a, b) => {
+          return new Date(b.pubDate?._text) - new Date(a.pubDate?._text)
+          }).map((r, i) => {
           const imgtest = new Image();
           imgtest.src = r['media:content']?._attributes?.url?r['media:content']?._attributes?.url :r['photo:imgsrc']?._text 
           let rssimg = imgtest.width >= 100? r['media:content']?._attributes?.url?r['media:content']?._attributes?.url:null : imgtest.width >= 100? r['photo:imgsrc']?._text : null 
