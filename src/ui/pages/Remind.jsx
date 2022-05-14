@@ -134,7 +134,7 @@ export const Remind = (props) => {
 
       {events ?
         events.filter((event) => {
-          if (eSel == 0) { return true && user || true && event.private } // everything (including private) || everything (only public)
+          if (eSel == 0) { return user || true && event.private  } // everything (including private) || everything (only public)
           if (eSel == 1) { return event.private && toNow(event.end) <= 0 } // present  (public)
           if (eSel == 2) { return event.private && toNow(event.end) >= 0 } // past (public)
           if (eSel == 3) { return !event.private && user } // private

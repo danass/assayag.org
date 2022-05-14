@@ -80,9 +80,28 @@ article.rss-feed h1 {
   border-radius: 3px;
 }
 
-@media screen and (orientation:portrait) {
+/* @media screen and (orientation:portrait) and (max-width: 100px) {
   #rss-publicfeed article {
     width: 100%!important;
+  }
+} */
+
+@media screen and (min-width: 0px) {
+  #rss-publicfeed article {
+    width: 100%!important;
+
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  #rss-publicfeed article {
+    width: 47%!important;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  #rss-publicfeed article {
+    width: 31%!important;
   }
 }
 
