@@ -141,8 +141,18 @@ export const Remind = (props) => {
           if (eSel == 4) { return event.archived && user }
         }) // private
           .sort((a, b) => {
-            // console.log(new Date(a.end) - new Date(b.end)  )
-            return new Date(a.end) - new Date(b.end)  })
+            let aEndToNow = new Date(a.end) - now
+            let bEndToNow = new Date(b.end) - now
+            if (aEndToNow < 0 && bEndToNow < 0) {
+             return  bEndToNow - aEndToNow
+            } else if (aEndToNow < 0 && bEndToNow > 0) {
+              return 1
+            } else if (aEndToNow > 0 && bEndToNow < 0) {
+              return -1
+            } else {
+              return  aEndToNow - bEndToNow
+            }
+           })
           .map((event, i) => {
             return <section className="event-container" style={{
               backgroundColor: toNow(event.end) <= 0 ? `rgba( ${logToColorDomInt(event.end, colors[0])} , ${logToColorDomInt(event.end, colors[1])}, ${logToColorDomInt(event.end, colors[2])} , 1)` : 'rgb(2, 1, 34)',
