@@ -23,7 +23,6 @@ export const Home = (props) => {
   useEffect(() => {
     Meteor.call('rss.public', (e, r) => {
       if(e) return console.error(e)
-      console.log(r)
       setrsspublicfeed(r)
     }
     )
@@ -120,17 +119,6 @@ export const Home = (props) => {
           )
         })}
       </section>
-
-      <section className={"main-container-content"}>
-      <TSocial user={props.user}/>
-      </section>
-
-
-      {/* <section id="twitch" className="main-container-content">
-        <div id="twitch-embed"></div> 
-      </section> */}
-   
-   
     </div>
 
   )

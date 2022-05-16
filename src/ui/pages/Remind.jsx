@@ -118,10 +118,7 @@ export const Remind = (props) => {
                     setTimeout(() => {
                       setError("")
                     }, 1000);
-                  } else {
-                    document.querySelectorAll('.event-container')[document.querySelectorAll('.event-container').length - 1].scrollIntoView({ behavior: "smooth" })
-                    // scrollIntoView("#me mbrane .event-container:last-child")
-                  }
+                  } 
                 }))
               }}>
                 {user && !username ? <Tooltip TransitionComponent={Zoom} title={error ? error : ""}><b className='div-purple-slim'>+ new event</b></Tooltip> : null}
@@ -134,7 +131,7 @@ export const Remind = (props) => {
 
       {events ?
         events.filter((event) => {
-          if (eSel == 0) { return user || true && event.private  } // everything (including private) || everything (only public)
+          if (eSel == 0) { return user &&  !event.archived || true && event.private  } // everything (including private) || everything (only public)
           if (eSel == 1) { return event.private && toNow(event.end) <= 0 } // present  (public)
           if (eSel == 2) { return event.private && toNow(event.end) >= 0 } // past (public)
           if (eSel == 3) { return !event.private && user } // private
@@ -253,9 +250,7 @@ export const Remind = (props) => {
                 setTimeout(() => {
                   setError("")
                 }, 1200);
-              } else {
-                // document.querySelectorAll('.event-container')[0].scrollIntoView({ behavior: "smooth" })
-              }
+              } 
             }))
           }}>
 
