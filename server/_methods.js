@@ -1,11 +1,15 @@
 import { Twitterconf, mailconf } from './conf.js';
-import { MailsCollection, TwitterCollection, UsersAppDB, TransitionCollection } from '../src/api/Collection.js';
+import { MailsCollection, TwitterCollection, UsersAppDB, TransitionCollection,   WebActivity } from '../src/api/Collection.js';
 import { TwitterApi } from 'twitter-api-v2';
 const convert = require('xml-js');
 const { ImapFlow } = require('imapflow');
 import parseMime from 'emailjs-mime-parser'
 
 Meteor.methods({
+  async 'webactivity.save'() {
+    let data = await WebActivity.find({}).fetch().filter(r=> r.url)
+    return data
+  },
   async 'fauxprophet.save'(messageindex, messageid, username, refresh) {
     let currentMails = await MailsCollection.find({}).fetch();
     if (currentMails && !refresh) { return currentMails }
@@ -187,6 +191,7 @@ async 'rss.public'(user="daniel") {
   },
 
   async 'user.isLogged'() {
+    
     //server function
     if (Meteor.user()) {
       const user = Meteor.user()
@@ -316,8 +321,6 @@ async 'rss.public'(user="daniel") {
         let deleteTweet = await TwitterCollection.remove({ "_id": doc._id });
         console.log("deleted:", deleteTweet ? true : false)
       })
-
-      // console.log(arg)
     } catch (e) {
       console.log(e)
     }
@@ -535,25 +538,18 @@ async 'rss.public'(user="daniel") {
     // update the database
     if (Meteor.userId()) {
       await TransitionCollection.insert({ name: "Event #", begin: new Date(Date.now() + 1000 * 60 * 360), end: new Date(Date.now() + 1000 * 60 * 360), description: "", link: "", remaining: "", status: "", telegram: false, telegramSent: false }, (e, r) => {
-        // console.log(TransitionCollection.findOne({"_id": r}) )
         UsersAppDB.update({ "userId": Meteor.userId() },
           {
             $addToSet: { "app.remind": TransitionCollection.findOne({ "_id": r }) }
-
           }, (e, r) => {
             console.log(e, r)
           })
       })
-
-
-
     }
     else {
       throw new Meteor.Error('unauthorized, you need to be logged in')
     }
   },
-
-
   fetch(url, telegram) {
     return new Promise((resolve, reject) => {
       const exec = require("child_process").exec;
@@ -562,9 +558,7 @@ async 'rss.public'(user="daniel") {
           reject(err);
           return null
         }
-        
         resolve(stdout);
-
       });
     }
     )

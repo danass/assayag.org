@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Global } from '../Membrane'
-import '../static/twitch'
-import Twitch from '../static/twitch';
 import { TSocial } from '/src/ui/Tsocial'
 import { Link } from 'react-router-dom';
 import { Loading } from '../Animations';
-
-
+import { Addictions } from '../Api';
 
 export const Home = (props) => {
   const [rainData, setrainData] = useState(null)
@@ -26,35 +23,6 @@ export const Home = (props) => {
       setrsspublicfeed(r)
     }
     )
-  }, [])
-
-
-  useEffect(() => {
-    // let player = new Twitch.Player("twitch-embed", {
-    //   channel: "danassadon",
-    //   width: "50%",
-    //   height: "400px"
-    // });
-    // player.addEventListener(Twitch.Player.READY, initiate)
-
-    function initiate() {
-      player.addEventListener(Twitch.Player.ONLINE, handleOnline);
-      player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-      player.removeEventListener(Twitch.Player.READY, initiate);
-    }
-    function handleOnline() {
-      document.getElementById("twitch").classList.remove('hide-twitch');
-      player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
-      player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-      // player.setMuted(false);
-    }
-
-    function handleOffline() {
-      document.getElementById("twitch").classList.add('hide-twitch');
-      player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
-      player.addEventListener(Twitch.Player.ONLINE, handleOnline);
-      // player.setMuted(true);
-    }
   }, [])
 
 
@@ -78,9 +46,12 @@ export const Home = (props) => {
             </ul>
           </div>
           : null }
-
       </div>
 
+      <section  className={"section-std"}>
+      <h1>Internet compulsory addictions</h1>
+        <Addictions />
+      </section>
       {rsspublicfeed? <section id={"rss-publicfeed"}>
         {rsspublicfeed?.sort((a, b) => {
           return new Date(b.pubDate?._text) - new Date(a.pubDate?._text)

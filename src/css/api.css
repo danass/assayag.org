@@ -1,0 +1,52 @@
+.svg {
+  /* transform: scale(4); */
+  height: 55px;
+width: 60px;
+}
+
+.svg-container {
+  display:flex;
+}
+
+.svg-container :hover .svg-hidden, .svg-container.hover .svg-hidden { 
+  display: block;
+ }
+
+ .svg-container :hover {
+  background-color: #fdfdfd;
+}
+
+.svg-disabled {
+  opacity: 0.1;
+  filter: saturate(0);
+}
+
+.svg-hidden {
+  display: none;
+  position: absolute;
+  padding: 12px;
+  min-width: max-content;
+  line-height: 1.4em;
+  border-radius: 0px 5px 5px 14px;
+  box-shadow: 3px 3px 8px 0px #0000000d;
+}
+
+
+.svg-permanent {
+  display: block!important;
+}
+
+
+.activity {
+  position: relative;
+}
+
+section.section-std {
+  margin: 10px calc(50% - 180px);
+  padding: 0px 0px 164px 0px;
+}
+
+.section-std h1 {
+  font-size: 1.5em;
+  color: #6b12f4;
+}

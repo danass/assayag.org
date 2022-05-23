@@ -6,4 +6,4 @@ export const RemindCollection = new Mongo.Collection('remind');
 export const UsersAppDB = new Mongo.Collection('userappdb');
 export const TransitionCollection = new Mongo.Collection('transition')
 export const MailsCollection = new Mongo.Collection('mails')
-
+export const WebActivity = new Mongo.Collection('webactivity')
