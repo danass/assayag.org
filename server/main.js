@@ -39,8 +39,9 @@ Meteor.startup(async () => {
     return data;
     });
    
-  // Trim webactivity array, remove old entries that are older than 24 hours using the date field
-  // WebActivity.rawCollection().createIndex({ date: 1 }, { expireAfterSeconds: 86400 });
+  // Trim webactivity array, remove old entries that are older than 16 hours using the date field
+  WebActivity.rawCollection().createIndex({ date: 1 }, { expireAfterSeconds: 86400 });
+
 
 
 });

@@ -455,7 +455,7 @@ async 'rss.public'(user="daniel") {
   },
   async 'user.update'(field, newvalue) {
     if (Meteor.userId()) {
-      const authorizedRequests = ["app.conf.twitter.twitterid", "app.conf.telegram.telegramid"]
+      const authorizedRequests = ["app.conf.twitter.twitterid", "app.conf.telegram.telegramid", "app.conf.icar.token"]
       if (!authorizedRequests.includes(field)) {
         throw new Meteor.Error("unauthorized - your ip has been logged and your activity has been flagged as malicious")
       }

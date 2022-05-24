@@ -110,9 +110,17 @@ export const User = (props) => {
             <div className="contentEditable" contentEditable suppressContentEditableWarning spellCheck="false" onBlur={(e) => { 
               Meteor.call('user.update', "app.conf.telegram.telegramid", e.target.innerText) }}>
               { userdata?.app?.conf?.telegram?.telegramid }
-           
             </div>
+            </div>
+            
 
+            <div className='user-data-input'>
+            <label>compulsory addiction api token</label>
+            <div className="contentEditable" contentEditable suppressContentEditableWarning spellCheck="false" onBlur={(e) => { 
+              Meteor.call('user.update', "app.conf.icar.token", e.target.innerText) }}>
+              { userdata?.app?.conf?.icar?.token }
+            </div>
+         
         </div>
         </section>
 
