@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useContext } from "react"
 import { UserContext } from './userContext';
 import { useParams } from "react-router-dom";
+// import loading 
+import { Loading } from './Animations';
 
 
 export const Blog = () => {
@@ -16,6 +18,7 @@ export const Blog = () => {
           console.log(err)
           return err }
         setImportedFiles(res)
+
         })
         }
         }, [id])
@@ -32,34 +35,34 @@ export const Blog = () => {
 
         <button onClick={() => { // Meteor.call() 
         let slugname = document.getElementById('collection-name').value.replace(/\s/g, '-') 
-        let images = [...importedFiles].map(async (file, i) => {
+        let images = [...importedFiles].map((file, i) => {
           var reader = new FileReader();
 
           fetch(URL.createObjectURL(file)).then(res => res.blob()).then(blob => {
             reader.readAsDataURL(blob);
-             reader.onload = async () => {
-              let data = reader.result;
+             reader.onload =  () => {
+              let data =  reader.result;
               let image = {
-                name: file.name,
                 data: data,
+                name: file.name,
                 type: file.type,
-                size: file.size,
-                url: URL.createObjectURL(file)
+                size: file.size
               }
-              setImages(images => [...images, image])
-              return image
+
+              Meteor.call('blog.save', slugname, image, (err, res) => {
+                if (err) { 
+                  console.log(err) 
+                  return err }
+                console.log("done")
+              })
             }
+
           }
           )
 
         })
-        console.log(iimages)
-        Meteor.call('blog.save', slugname, iimages, (err, res) => {
-          if (err) { 
-            console.log(err) 
-            return err }
-          console.log("done", res)
-        })
+
+
           console.log(slugname) } }> Add Collection </button>
 
       <form> <input type="file" multiple onChange={(e) => { setImportedFiles(e.target.files) } } />
@@ -68,10 +71,17 @@ export const Blog = () => {
       </form>
       </>
       : <>
-      {importedFiles?.images?.map(o => {
-        return <img src={o.data} alt={o.name} />
+      {importedFiles?.length > 0 ? 
+      importedFiles?.sort((a,b) =>{
+        // 
+        console.log(a.image.name.toString() - b.image.name.toString());
+        //sort by name ascending (string comparison) 
+         return a.image.name.localeCompare(b.image.name)
+        }).map(o => {
+        return <><img src={o.image.data}  />{o.image.name}</>
 
-      })}
+      })
+      : <Loading />}
       </>
        }
 

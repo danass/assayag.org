@@ -564,28 +564,25 @@ async 'rss.public'(user="daniel") {
     )
   },
 
-  'blog.save' (slugname, images) {
+  'blog.save' (slugname, image) {
     if (Meteor.userId()) {
+// create a new document with the slugname as the parentType
       let blog = {
-        _id: slugname,
-        images: images,
+        name: slugname,
+        image: image,
         date: new Date(),
-        rating: 0,
+        username: Meteor.user().username,
       }
-      let update = Blog.update(
-        // create new blog entry using slug as _id and images 
-        { "_id": slugname },
-        { $set: blog },
-        { upsert: true }
-      )
+      let blogId = Blog.insert(blog)
     }
     else {
       throw new Meteor.Error('unauthorized, you need to be logged in')
     }
   },
   'blog.get'(slug) {
-    return Blog.findOne({ "_id": slug })
-    
+    // find all documents with the "name" == slug
+    return Blog.find({ name: slug }).fetch() 
+
   }
 
 })
