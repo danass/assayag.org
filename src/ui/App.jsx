@@ -12,6 +12,7 @@ import { Fauxprophet } from '/src/ui/pages/Fauxprophet'
 import { User } from '/src/ui/User'
 import { Rss } from '/src/ui/Rss'
 import { Api } from '/src/ui/Api'
+import { Blog } from '/src/ui/Blog'
 
  const App = (props, context) => {
   return(
@@ -23,6 +24,8 @@ import { Api } from '/src/ui/Api'
       <Route path="/remind/" element={<Membrane><Remind /></Membrane>} />
       <Route path="/remind/:username/" element={<Membrane><Remind /></Membrane>} />
       <Route path='/mail/' element={ <Membrane><Contact /></Membrane>  } />
+      <Route path='/blog/' element={ <Membrane><Blog /></Membrane>  } />
+      <Route path='/blog/:id' element={ <Membrane><Blog /></Membrane>  } />
       <Route path='/fauxprophet/' element={ <Membrane><Fauxprophet /></Membrane>  } />
       <Route path='/fauxprophet/:usernameurl/' element={<Membrane><Fauxprophet /></Membrane>  } />
       <Route path='/user/' element={<Membrane ><User /></Membrane>} />

@@ -1,5 +1,5 @@
 import { Twitterconf, mailconf } from './conf.js';
-import { MailsCollection, TwitterCollection, UsersAppDB, TransitionCollection,   WebActivity } from '../src/api/Collection.js';
+import { MailsCollection, TwitterCollection, UsersAppDB, TransitionCollection,   WebActivity, Blog } from '../src/api/Collection.js';
 import { TwitterApi } from 'twitter-api-v2';
 const convert = require('xml-js');
 const { ImapFlow } = require('imapflow');
@@ -564,6 +564,28 @@ async 'rss.public'(user="daniel") {
     )
   },
 
-  
+  'blog.save' (slugname, images) {
+    if (Meteor.userId()) {
+      let blog = {
+        _id: slugname,
+        images: images,
+        date: new Date(),
+        rating: 0,
+      }
+      let update = Blog.update(
+        // create new blog entry using slug as _id and images 
+        { "_id": slugname },
+        { $set: blog },
+        { upsert: true }
+      )
+    }
+    else {
+      throw new Meteor.Error('unauthorized, you need to be logged in')
+    }
+  },
+  'blog.get'(slug) {
+    return Blog.findOne({ "_id": slug })
+    
+  }
 
 })
