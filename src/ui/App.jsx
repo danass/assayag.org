@@ -13,6 +13,8 @@ import { User } from '/src/ui/User'
 import { Rss } from '/src/ui/Rss'
 import { Api } from '/src/ui/Api'
 import { Blog } from '/src/ui/Blog'
+import { Gps } from '/src/ui/Gps'
+import { France } from '/src/ui/France'
 
  const App = (props, context) => {
   return(
@@ -24,6 +26,7 @@ import { Blog } from '/src/ui/Blog'
       <Route path="/remind/" element={<Membrane><Remind /></Membrane>} />
       <Route path="/remind/:username/" element={<Membrane><Remind /></Membrane>} />
       <Route path='/mail/' element={ <Membrane><Contact /></Membrane>  } />
+      <Route path="/france/" element={<Membrane><France /></Membrane>} />
       <Route path='/blog/' element={ <Membrane><Blog /></Membrane>  } />
       <Route path='/blog/:id' element={ <Membrane><Blog /></Membrane>  } />
       <Route path='/fauxprophet/' element={ <Membrane><Fauxprophet /></Membrane>  } />
@@ -34,6 +37,7 @@ import { Blog } from '/src/ui/Blog'
       <Route path='/terms-of-use/' element={ <Membrane><Terms /></Membrane>} />
       <Route path='/privacy/' element={<Membrane><Privacy /></Membrane>} />
       <Route path='/api/' component={<Api fuck={"fuck"} />} element={<Api />} />
+      <Route path='/gps' element={<Gps />} />
       </Routes>
     </Router>
   ) 

@@ -36,7 +36,6 @@ export const Addictions = (props) => {
     })
   }
   useEffect(() => {
-
     const handle2 = WebActivity.find().observeChanges({
       added: (_id) => {
         callwebactivity()

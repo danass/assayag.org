@@ -33,7 +33,7 @@ export const Blog = () => {
         <>
       <form><input id="collection-name" type="text" name="name" /> </form>
 
-        <button onClick={() => { // Meteor.call() 
+        <button onClick={() => {
         let slugname = document.getElementById('collection-name').value.replace(/\s/g, '-') 
         let images = [...importedFiles].map((file, i) => {
           var reader = new FileReader();
@@ -50,42 +50,32 @@ export const Blog = () => {
               }
 
               Meteor.call('blog.save', slugname, image, (err, res) => {
-                if (err) { 
+                if (err) {
                   console.log(err) 
                   return err }
                 console.log("done")
               })
             }
-
-          }
-          )
+          })
 
         })
+         } }>Add Collection</button>
 
-
-          console.log(slugname) } }> Add Collection </button>
-
-      <form> <input type="file" multiple onChange={(e) => { setImportedFiles(e.target.files) } } />
+      <form><input type="file" multiple onChange={(e) => { setImportedFiles(e.target.files) } } />
        {importedFiles && importedFiles.length > 0 && ( <ul> {[...importedFiles].map((file, i) => ( <li key={i}> {file.name} <img src={URL.createObjectURL(file)} alt={file.name} /> </li> ))} </ul> )}
-
       </form>
       </>
       : <>
       {importedFiles?.length > 0 ? 
-      importedFiles?.sort((a,b) =>{
-        // 
-        console.log(a.image.name.toString() - b.image.name.toString());
-        //sort by name ascending (string comparison) 
+      importedFiles?.sort((a,b) => {
+        //sort by name ascending (string comparison)
          return a.image.name.localeCompare(b.image.name)
         }).map(o => {
         return <><img src={o.image.data}  />{o.image.name}</>
-
       })
       : <Loading />}
       </>
        }
-
-
     </main>
   )
 
