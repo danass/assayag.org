@@ -482,20 +482,21 @@ async 'rss.public'(user="daniel") {
     }
     // currentE[Object.entries(change)[0][0]] = Object.entries(change)[0][1]
     if (Meteor.userId()) {
+      if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555") {
+        await UsersAppDB.update({ "app.remind._id": event._id },
+          {
+            $set: { "app.remind.$": currentE },
+          }
+        )
+  
+      }
       await UsersAppDB.update({ "userId": Meteor.userId(), "app.remind._id": event._id },
         {
           $set: { "app.remind.$": currentE },
         }
       )
     }
-    if (pass == "admin4 5(R+Dvfg44rfZEFEZ11111é $$$D cC(5555") {
-      await UsersAppDB.update({ "app.remind._id": event._id },
-        {
-          $set: { "app.remind.$": currentE },
-        }
-      )
-
-    }
+    
 
 
     else {

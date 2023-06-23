@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 
 const humanizeDuration = require("humanize-duration");
 import { Loading } from '../Animations';
-
-import { DateTimePicker, LocalizationProvider } from '@mui/lab';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import { TextField, Tooltip, Zoom, ToggleButton, Button, LinearProgress } from '@mui/material';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -174,7 +173,8 @@ export const Remind = (props) => {
                     {eSel == 0 || event.end == "" || toNow(event.end) <= 0 ?
                       <div className={`"event-enddate" ${toNow(event.end) <= 0 ? "" : "event-ended"}`}>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <DateTimePicker disabled={user ? false : true} renderInput={(props) => <TextField  {...props} />}
+                          <DateTimePicker disabled={user ? false : true}
+                            components={{textField: TextField}}
                             label="DateTimePicker" value={event.end} onChange={(newValue) => {
                               Meteor.call('remind.update', event, { end: newValue })
                             }} />

@@ -9,11 +9,13 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
+    "@babel/runtime": "^7.22.5",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@mui/icons-material": "^5.8.4",
+    "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.95",
     "@mui/material": "^5.10.1",
+    "@mui/x-date-pickers": "^6.9.0",
     "bcrypt": "^5.0.1",
     "buffer": "^5.7.1",
     "date-fns": "^2.29.2",
@@ -26,7 +28,7 @@
     "install": "^0.13.0",
     "meteor-node-stubs": "^1.2.5",
     "mongodb": "^4.9.0",
-    "nodemailer": "^6.7.8",
+    "nodemailer": "^6.9.3",
     "npdev-react-loadable-babel": "^1.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
