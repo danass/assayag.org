@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Global, isMobile } from '../Membrane'
 import { Loading } from '../Animations';
 
@@ -92,11 +92,10 @@ export const TweetRender = ({ tweet, i }) => {
   </div>;
 };
 
-export const Asocial = () => {
+export const Asocial = (props) => {
+  const showHome = props.home !== false;
 
   Global({ pageName: "A-Social Networks", description: "{A-Social Networks} () => A Mirror of my Pityful Social Life seen through Tiktok, Youtube, Twitter.. An A-Social networks navigator. (2022) {Paris-Casablanca}. [Experimentations, Daily Artivities, Retrospective]. " })
-
-
   const [userOptions, setuserOptions] = useState({
     params: { maxRand: 1, listSize: isMobile()? 1: 3 },
     insta: { clicked: false, size: 0, maxRand: 1, sources: ["http://instagram.com"] },
@@ -163,8 +162,15 @@ export const Asocial = () => {
     if (e.target.nodeName == 'A') {
       return
     }
+    if (forMoreclicked == false) {
+    setforMoreClicked(true);
+    }
+
     fetchData(userOptions, 'click', Math.floor(Math.random() * maxRand) + 1)
     // document.querySelector('#main-container-content').scrollIntoView({ behavior: "smooth" })
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   }
 
   const handleChange = async (e) => {
@@ -173,12 +179,31 @@ export const Asocial = () => {
   }
 
   const [tweet, setTweet] = useState([{ text: "data is coming..", id: 666 }])
+
   useEffect(() => {
     fetchData(userOptions)
+    const storageClicked = localStorage.getItem('forMoreClicked');
+
+    if(storageClicked !== null) {
+      setforMoreClicked(JSON.parse(storageClicked));
+    }
   }, [])
 
+  // Part where we deal with "Click for more" behaviour + above (useeffect)
+
+  const [forMoreclicked, setforMoreClicked] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('forMoreClicked', JSON.stringify(forMoreclicked));
+  }, [forMoreclicked]);
+
+  // Part where we handle scroll to proper div when tweets are reloaded
+  const containerRef = useRef(null);
+
+
   return (
-    <div id="main-container">
+    <div id={!showHome? "main-prev": "main-container"}>
+      {showHome?
       <div id="main-container-header">
         <div id="main-container-header-title">
           <h1>Asocial Networks Mirror</h1>
@@ -196,14 +221,15 @@ export const Asocial = () => {
         </ul>
       </div>
       </div>
+      : null }
 
-      <div className="main-container-wrapper asocial-content-wrapper">
+      <div className="main-container-wrapper asocial-content-wrapper" ref={containerRef}>
         <div id="main-container-selectors">
           <div id="main-container-header-navigation">
             <div className="flex-row-wrapper-align-right">
               <div className="selector-checkbox selector-input"><label>index</label><input className="main-container-header-navigation-input" tabIndex={1} type="number" min="0" value={randomIndex} onChange={(e) => handleChange(e)}></input></div>
-              <div className="selector-checkbox selector-input"><label>number</label><input className="main-container-header-navigation-input" type="number" min="1" max="15" value={userOptions.params.listSize} onChange={(e) => {
-                setuserOptions({ ...userOptions, params: { ...userOptions.params, listSize: e.target.value == 0 ? 1 : e.target.value } })
+              <div className="selector-checkbox selector-input"><label>number</label><input className="main-container-header-navigation-input" type="number" min="1" max="15" value={userOptions.params?.listSize} onChange={(e) => {
+                setuserOptions({ ...userOptions, params: { ...userOptions?.params, listSize: e.target.value == 0 ? 1 : e.target.value } })
               }}></input>
               </div>
              
@@ -216,7 +242,7 @@ export const Asocial = () => {
               </div>
         </div>
 
-        <div id="main-container-content" className="css-greydient" tabIndex={0} onClick={(e) => handleClick(e)} >
+        <div  id="main-container-content" className={`css-greydient ${forMoreclicked ? 'forMoreClicked' : ''}`} tabIndex={0} onClick={(e) => handleClick(e)} >
           {tweet.map((tweet_, i) => {
 
             return (

@@ -1,0 +1,7 @@
+{
+  "meteor": {
+    "env": {
+      "DISABLE_WEBSOCKET_HMR": "1"
+    }
+  }
+}

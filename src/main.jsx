@@ -7,8 +7,3 @@ import  App  from './ui/App.jsx';
     <App />,
     document.getElementById("membrane")
   );
-
-
-
-// const rootElement = document.getElementById('membrane')
-// ReactDOM.hydrate(<App />, rootElement);

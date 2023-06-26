@@ -8,12 +8,12 @@ import { Remind } from '/src/ui/pages/Remind'
 import { Membrane } from '/src/ui/Membrane'
 import { Terms } from '/src/ui/static/Terms'
 import { Privacy } from '/src/ui/static/Privacy'
-import { Fauxprophet } from '/src/ui/pages/Fauxprophet'
+// import { Fauxprophet } from '/src/ui/pages/Fauxprophet'
 import { User } from '/src/ui/User'
 import { Rss } from '/src/ui/Rss'
 import { Api } from '/src/ui/Api'
 import { Blog } from '/src/ui/Blog'
-import { Gps } from '/src/ui/Gps'
+// import { Gps } from '/src/ui/Gps'
 import { France } from '/src/ui/France'
 
  const App = (props, context) => {
@@ -29,15 +29,15 @@ import { France } from '/src/ui/France'
       <Route path="/france/" element={<Membrane><France /></Membrane>} />
       <Route path='/blog/' element={ <Membrane><Blog /></Membrane>  } />
       <Route path='/blog/:id' element={ <Membrane><Blog /></Membrane>  } />
-      <Route path='/fauxprophet/' element={ <Membrane><Fauxprophet /></Membrane>  } />
-      <Route path='/fauxprophet/:usernameurl/' element={<Membrane><Fauxprophet /></Membrane>  } />
+      {/* <Route path='/fauxprophet/' element={ <Membrane><Fauxprophet /></Membrane>  } />
+      <Route path='/fauxprophet/:usernameurl/' element={<Membrane><Fauxprophet /></Membrane>  } /> */}
       <Route path='/user/' element={<Membrane ><User /></Membrane>} />
       <Route path='/rss/' element={<Membrane ><Rss /></Membrane>} />
       <Route path='*' element={<Membrane><Handle404 /></Membrane>}/>
       <Route path='/terms-of-use/' element={ <Membrane><Terms /></Membrane>} />
       <Route path='/privacy/' element={<Membrane><Privacy /></Membrane>} />
       <Route path='/api/' component={<Api fuck={"fuck"} />} element={<Api />} />
-      <Route path='/gps' element={<Gps />} />
+      {/* <Route path='/gps' element={<Gps />} /> */}
       </Routes>
     </Router>
   ) 

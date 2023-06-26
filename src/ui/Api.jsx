@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Loading } from '/src/ui/Animations';
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import { WebActivity } from '../api/Collection'
 const humanizeDuration = require("humanize-duration");
 

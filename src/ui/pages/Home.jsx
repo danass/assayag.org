@@ -4,6 +4,7 @@ import { TSocial } from '/src/ui/Tsocial'
 import { Link } from 'react-router-dom';
 import { Loading } from '../Animations';
 import { Addictions } from '../Api';
+import { Asocial } from './Asocial'
 
 export const Home = (props) => {
   const [rainData, setrainData] = useState(null)
@@ -48,11 +49,12 @@ export const Home = (props) => {
           : null }
       </div>
 
-      <section  className={"section-std"}>
+      <Asocial home={false}/>
+      {/* <section  className={"section-std"}>
       <h1>Internet compulsory addictions</h1>
         <Addictions />
-      </section>
-      {rsspublicfeed? <section id={"rss-publicfeed"}>
+      </section> */}
+      {/* {rsspublicfeed? <section id={"rss-publicfeed"}>
         {rsspublicfeed?.sort((a, b) => {
           return new Date(b.pubDate?._text) - new Date(a.pubDate?._text)
           }).map((r, i) => {
@@ -78,7 +80,7 @@ export const Home = (props) => {
           )
         })}
       </section>
-      :<Loading/>}
+      :<Loading/>} */}
       
 
       <section id ="rain-publicfeed" className={"p-5 flex items-center flex-col main-container-content p-1 "} >
