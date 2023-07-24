@@ -2,7 +2,7 @@
   "name": "assayag",
   "private": true,
   "scripts": {
-    "start": "meteor run --port=6666",
+    "start": "meteor run --port=9999",
     "startl": "meteor run --port=7777",
     "up": "meteor update",
     "test": "meteor test --once --driver-package meteortesting:mocha",
