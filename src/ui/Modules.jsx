@@ -119,8 +119,8 @@ export const Fonts = (props) => {
 
             <ToggleButton value={true} aria-label="Crop" onClick={() => {
               props.setCrop(!props.crop)
-              document.getElementById('rain').style.overflow = props.crop ? 'hidden' : 'visible'
-            }}>{props.crop? "Crop": "Full image"}</ToggleButton>
+              document.getElementById('rain').style.overflow = props.crop ? 'visible' : 'hidden'
+            }}>{props.crop? "Full image": "Crop"}</ToggleButton>
         
         <Tooltip TransitionComponent={Zoom} title={message ? message : ""}>
             <ToggleButton value={true} aria-label="Screenshot" onClick={() => {

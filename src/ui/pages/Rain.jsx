@@ -36,8 +36,11 @@ export const Rain = (props) => {
   async function saveScreenshot() {
     setallCanvas([...allcanvas, 
       {canvasId: new Meteor.Collection.ObjectID()._str, canvas: 
-      await html2canvas(crop? document.getElementById('rainfall'):  document.getElementById("rain"),
-        {scale: 1, backgroundColor:null}
+      await html2canvas(crop? document.getElementById('rain'):  document.getElementById("rainfall"),
+        {
+          scale: 1, 
+          backgroundColor:null
+        }
       ).then(canvas => canvas.toDataURL("image/png")) }
    ]);
   }
@@ -156,7 +159,7 @@ export const Rain = (props) => {
           </ClickAwayListener>
 
 
-          <div id="rain">
+          <div id="rain" style={{background:"transparent"}}>
 
           <div id="rainfall" style={{ backgroundColor: colors[0], color: colors[1], fontWeight: 500, fontSize: 35}}  >
             {Tdiv}
@@ -169,7 +172,8 @@ export const Rain = (props) => {
         <div id="rain-library">
         
           <div className="rain-frontispice">RAIN-LIBRARY</div>
-          {Meteor.user()?<div><Link to="/user"><b className="class-button-link">{raindbCanvas?.length}</b></Link> / 10</div> : null}
+
+          {Meteor.user()?<div><Link to="/user"><b className="class-button-link">{raindbCanvas?.length}</b></Link> / 10</div> : <div><Link to="/user"><b>Create an account</b></Link> to save yours designs </div>}
           {allcanvas.map((canvas, i) => {
             let visible = raindbCanvas?.some(currentCanvas => currentCanvas._id === canvas.canvasId)
             

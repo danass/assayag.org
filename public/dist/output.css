@@ -14,7 +14,7 @@
   /* 1 */
   border-width: 0;
   /* 2 */
-  border-style: solid;
+  border-style: solid ;
   /* 2 */
   border-color: #e5e7eb;
   /* 2 */
@@ -391,14 +391,13 @@ Make sure disabled buttons don't get the pointer cursor.
    This can trigger a poorly considered lint error in some tools but is included by design.
 */
 
-img,
+
 svg,
 video,
 canvas,
 audio,
 iframe,
-embed,
-object {
+embed {
   display: block;
   /* 1 */
   vertical-align: middle;
