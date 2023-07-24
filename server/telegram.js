@@ -25,6 +25,7 @@ function toNow(date) {
 }
 function TelegramIt(message) {
     return new Promise((resolve, reject) => {
+        console.log("wesh")
       let url = `https://api.telegram.org/${Telegramconf.botkey}/sendMessage?chat_id=${Telegramconf.channelid}&text=${message}`
       console.log(url)
       const exec = require("child_process").exec;
@@ -49,19 +50,22 @@ function TelegramIt(message) {
     }
 
 function triggerTelegram(event) {
+    console.log(event)
     if(event.telegram) {
     let restant = toNow(event.end) // time in ms
     if (restant < 0) { 
         restant = Math.abs(restant)
-
-        let ten_ago = restant > (1000 * 60 * 9) && restant < (1000 * 60 * 10)
+        console.log(restant, (1000 *  1).toString(), (1000 *  10))
+        let ten_ago = restant > (1000 * 1) && restant < (1000 * 10)
+        
         if (!event.telegramSent) {
             if (ten_ago) {
+                console.log("done")
                 TelegramIt(event.name)
                 updateEvent(event, { telegramSent: true })
                 Meteor.setTimeout(() => {
                     updateEvent(event, { telegramSent: false });
-                }, 1000 * 60 * 1);
+                }, 1000 *  5);
             }
         }
 
