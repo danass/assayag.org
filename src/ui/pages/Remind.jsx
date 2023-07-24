@@ -174,7 +174,7 @@ export const Remind = (props) => {
                       <div className={`"event-enddate" ${toNow(event.end) <= 0 ? "" : "event-ended"}`}>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DateTimePicker disabled={user ? false : true}
-                            components={{textField: TextField}}
+                            
                             label="DateTimePicker" value={event.end} onChange={(newValue) => {
                               Meteor.call('remind.update', event, { end: newValue })
                             }} />
