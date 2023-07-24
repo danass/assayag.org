@@ -7,7 +7,6 @@ import { ToggleButton, Button } from '@mui/material';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
-import Draggable from 'react-draggable'; // The default
 
 export const RaindropsRender = ({ drop }) => {
   return <div onClick={() => {

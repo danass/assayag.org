@@ -50,7 +50,7 @@ function TelegramIt(message) {
     }
 
 function triggerTelegram(event) {
-    console.log(event)
+    
     if(event.telegram) {
     let restant = toNow(event.end) // time in ms
     if (restant < 0) { 
