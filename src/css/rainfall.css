@@ -99,19 +99,36 @@ div#rain-library >* {
 }
 
 
+.MuiTypography-root {
+    font-size: small;
+    color: black;
+}
 
 #rain-controls button {
-    color: white;
+    color: #3a4a7a;
     font-weight: 400;
-    background-color: #030303;
-    padding:0px  5px;
-    margin: 2px;  
+    background-color: #9c9ab9;
+    padding: 0px 15px;
+    margin: 3px 4px 2px 0px;
+}
+
+#rain-controls button:hover {
+    color: #13192b;
+    font-weight: 600;
 }
 
 .rain-pickers {
     display: flex;
     align-items: center;
 }
+.MuiTypography-gutterBottom {
+    font-size: 10px;
+    color: #0f1428;
+    font-weight: bold;
+}
+
+
+
 
 .rain-pickers input {
     margin: 5px 5px 5px 0px;
@@ -141,9 +158,8 @@ div#rain-library >* {
 }
 
 #font-form, #rain-input-mkir {
-    padding: 0px 5px;
     color: black;
-  
+    margin: 10px 0px 10px 0px;
 }
 
 #rain-input-mkir {

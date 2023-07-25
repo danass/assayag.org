@@ -60,7 +60,7 @@ export const Fonts = (props) => {
         </div>
 
         <div className="rc-sliders">
-        <Typography gutterBottom>FontWeight</Typography>
+        <Typography className="typography" gutterBottom>FontWeight</Typography>
         <Slider size="small" aria-label="Small" type="number" min={100} defaultValue={400} step={1} max={900} valueLabelDisplay="auto"  id="font-weight-selector" onChange={
             (e) => { 
               document.getElementById('rainfall').style.fontWeight = e.target.value
@@ -69,13 +69,13 @@ export const Fonts = (props) => {
         </div>
         
         <div className="rc-sliders">
-        <Typography gutterBottom>LineHeight</Typography>
+        <Typography className="typography" gutterBottom>LineHeight</Typography>
         <Slider size="small" aria-label="Small" type="number" min={0.00} defaultValue={1.00} step={0.01} max={2.80} valueLabelDisplay="auto" id="font-lineheight-input"  onChange={
             (e) => { document.getElementById('rainfall').style.lineHeight = e.target.value }} />
         </div>
 
         <div className="rc-sliders">
-        <Typography gutterBottom>FontSize</Typography>
+        <Typography className="typography"  gutterBottom>FontSize</Typography>
         <Slider size="small" aria-label="Small" type="number" min={12} defaultValue={50} step={0.1} max={120} valueLabelDisplay="auto"  id="font-size-input"  onChange={
             (e) => {
               document.getElementById('rainfall').style.fontSize = e.target.value  + 'px' 
@@ -84,7 +84,7 @@ export const Fonts = (props) => {
         </div>
 
         <div className="rc-sliders">
-        <Typography gutterBottom>LetterSpacing</Typography>
+        <Typography className="typography" gutterBottom>LetterSpacing</Typography>
         <Slider size="small" aria-label="Small" type="number" min={-params.FontSize/2} defaultValue={0} step={0.1} max={70} valueLabelDisplay="auto"  id="font-size-input"  onChange={
             (e) => {
               document.getElementById('rainfall').style.letterSpacing = e.target.value  + 'px' 
@@ -92,7 +92,7 @@ export const Fonts = (props) => {
         </div>
 
         <div className='rc-sliders'> 
-          <Typography gutterBottom>Opacity</Typography>
+          <Typography className="typography"  gutterBottom>Opacity</Typography>
             <Slider size='small' type='number' min={0} max={1} step={0.01} defaultValue={1} valueLabelDisplay="auto" onChange={(e, v) => {
             Array.from(document.getElementsByClassName('drop-parent')).map((d)=> {d.style.opacity = e.target.value})
           }} />
@@ -101,7 +101,7 @@ export const Fonts = (props) => {
 
         <div className="rc-sliders" id="font-matrix-container">
           <div id="font-matrix-form">
-          <Typography gutterBottom>3D Rotation</Typography>
+          <Typography className="typography"  gutterBottom>3D Rotation</Typography>
           <Slider size="small" aria-label="Small" type="number" id="font-matrix-input-a" defaultValue={1}  step={Math.PI/24} max={Math.PI*2} min={-Math.PI*2} onChange={
               (e) => { document.getElementById('rainfall').style.transform = `matrix(${e.target.value}, ${document.querySelector('#font-matrix-input-b span input').value}, ${document.querySelector('#font-matrix-input-c span input').value}, ${document.querySelector('#font-matrix-input-d span input').value}, 0, 0)` }} />
 
@@ -115,7 +115,7 @@ export const Fonts = (props) => {
               (e) => { document.getElementById('rainfall').style.transform = `matrix(${document.querySelector('#font-matrix-input-a span input').value}, ${document.querySelector('#font-matrix-input-b span input').value}, ${document.querySelector('#font-matrix-input-c span input').value}, ${e.target.value}, 0, 0)` }} />
         
               </div>
-            <Typography gutterBottom>Crop/Full</Typography>
+            <Typography className="typography"  gutterBottom>Crop/Full</Typography>
 
             <ToggleButton value={true} aria-label="Crop" onClick={() => {
               props.setCrop(!props.crop)
