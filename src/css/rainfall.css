@@ -18,8 +18,11 @@
     min-height: 120vh;
 }
 
+div#rain #rainfall {
+    padding: 0px 17px 20px 10px;
+}
+
 #rainfall {
-    padding: 30px;
     width: fit-content;
     max-width: 100%;
     display: flex;
@@ -34,6 +37,7 @@
     background: white;
     padding: 10px;
     overflow: hidden;
+    margin: 0 auto;
 }
 
 
@@ -122,9 +126,10 @@ div#rain-library >* {
     align-items: center;
 }
 .MuiTypography-gutterBottom {
-    font-size: 10px;
+
     color: #0f1428;
-    font-weight: bold;
+    font-size: 10px!important;
+    font-weight: bold!important;
 }
 
 

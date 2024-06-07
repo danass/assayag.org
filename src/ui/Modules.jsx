@@ -98,6 +98,18 @@ export const Fonts = (props) => {
           }} />
           </div>
 
+          <div className='rc-sliders'> 
+          <Typography className="typography"  gutterBottom>CanvasWidth</Typography>
+            <Slider size='small' type='number' min={1} max={2000} step={1} defaultValue={100} valueLabelDisplay="auto" onChange={(e, v) => {
+           document.getElementById('rain').style.width = e.target.value + "px"
+          }} />
+          </div>
+          <div className='rc-sliders'> 
+          <Typography className="typography"  gutterBottom>CanvasHeight</Typography>
+            <Slider size='small' type='number' min={1} max={2000} step={1} defaultValue={100} valueLabelDisplay="auto" onChange={(e, v) => {
+           document.getElementById('rain').style.height = e.target.value + "px"
+          }} />
+          </div>
 
         <div className="rc-sliders" id="font-matrix-container">
           <div id="font-matrix-form">
