@@ -1,0 +1,88 @@
+<html>
+<head>
+</head>
+<body>
+
+<label for="label">Label:</label>
+<input type="text" id="label"  autocomplete="off">
+<button id="add-position-btn">Add</button>
+<br>
+<button id="export-btn">Export</button>
+
+<script type="text/javascript">
+// add new GPS position and label
+navigator.permissions.query({name:'geolocation'}).then(function(result) {
+  if (result.state === 'granted') {
+    console.log('Location access granted.');
+  } else if (result.state === 'prompt') {
+    console.log('Location access prompt.');
+    // You can show a dialog here to ask the user for permission
+  } else if (result.state === 'denied') {
+    console.log('Location access denied.');
+    // You can show a message here to inform the user that location access is required for the app to work properly
+  }
+});
+
+if (!navigator.geolocation) {
+  console.log('Location services not available.');
+  // You can show a message here to inform the user that location services are required for the app to work properly
+}
+
+
+var positions = [];
+var labels = [];
+function addPosition() {
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      // handle successful position retrieval
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      var currentPosition = {lat: latitude, lng: longitude};
+      var label = document.getElementById("label").value;
+      positions.push(currentPosition);
+      labels.push(label);
+      document.getElementById("label").value = "";
+      renderTable();
+    },
+    function(error) {
+      // handle position retrieval error
+      console.error(error);
+    }
+  );
+}
+
+// export all GPS positions and labels as CSV file
+function exportPositions() {
+  var csvContent = "data:text/csv;charset=utf-8,";
+  csvContent += "Latitude,Longitude,Label\n";
+  positions.forEach(function(position, index) {
+    csvContent += position.lat + "," + position.lng + "," + labels[index] + "\n";
+  });
+  var encodedUri = encodeURI(csvContent);
+  var link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "positions.csv");
+  document.body.appendChild(link);
+  link.click();
+}
+
+// render table of all added GPS positions and labels
+function renderTable() {
+  var tableHtml = "<table><tr><th>Latitude</th><th>Longitude</th><th>Label</th></tr>";
+  positions.forEach(function(position, index) {
+    tableHtml += "<tr><td>" + position.lat + "</td><td>" + position.lng + "</td><td>" + labels[index] + "</td></tr>";
+  });
+  tableHtml += "</table>";
+  document.getElementById("positions-table").innerHTML = tableHtml;
+}
+
+// attach event listeners to buttons
+document.getElementById("add-position-btn").addEventListener("click", addPosition);
+document.getElementById("export-btn").addEventListener("click", exportPositions);
+</script>
+
+<div id="positions-table"></div>
+
+</body>
+</html>
+
