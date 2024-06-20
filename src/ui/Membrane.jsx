@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { Tooltip, Zoom } from '@mui/material';
 
 
 export const Membrane = (props) => {
   
-  const [user, setUser] = useState(null);  
+  const [user, setUser] = useState('');  
 
   return (<>
     <Menu setUser={setUser} />
@@ -20,7 +20,7 @@ export const Membrane = (props) => {
 export const Menu = (props) => {
   document.querySelector('html').setAttribute('lang', 'en')
 
-  const [user, setUser] = useState(null);  
+  const [user, setUser] = useState('');  
 
   useEffect(()=> {
     props.setUser(user)
@@ -35,39 +35,37 @@ export const Menu = (props) => {
     </header>
   )
 }
-
 export const LoginForm = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState('');
   const [errorLoginMessage, setError] = useState('');
 
-  useEffect(()=> {
-    Meteor.call('user.isLogged', ((e,r) => {
-      if(r) {
-        setUser(r) // set context user
-        props.setUser(r) // set props for parent
+  useEffect(() => {
+    Meteor.call('user.isLogged', (e, r) => {
+      if (r) {
+        setUser(r); // set context user
+        props.setUser(r); // set props for parent
       }
-      if(e) console.log(e)
-    }))
-  },[])
-
+      if (e) console.log(e);
+    });
+  }, []);
 
   const submit = e => {
     e.preventDefault();
     Meteor.loginWithPassword(username, password, (e, r) => {
       if (e) {
-          setError(e.message);
-          props.setUser(null)
-      }
-      else {
-        Meteor.call('user.isLogged', ((e,r) => {
-          if(r){
-          props.setUser(r)
-          setUser(r)
-          setError('');
+        setError(e.message);
+        props.setUser('');
+	setUser('');
+      } else {
+        Meteor.call('user.isLogged', (e, r) => {
+          if (r) {
+            props.setUser(r);
+            setUser(r);
+            setError('');
           }
-        }))
+        });
       }
     });
   };
@@ -84,24 +82,21 @@ export const LoginForm = (props) => {
 
   return (
     <>
-
       <ClickAwayListener onClickAway={clickAwayMenu}>
-        
         <div className={"popup-menu-container transparent-bg"}>
-          <div className="logo" onClick={dropMenuChanges} >
+          <div className="logo" onClick={dropMenuChanges}>
             {user ? <div className="logocover"></div> : ''}
             <img src="/favicon.ico" width={50} alt="logo" />
           </div>
-          <Link to="/user">{user?.username}</Link>
+          {user && <Link to="/user">{user.username}</Link>}
           <div className="login-container">
             {user ?
-
               <div className="login login-logged">
                 <div>
                   <button onClick={() => {
                     Meteor.logout();
                     setUser(null);
-                    props.setUser(null)
+                    props.setUser(null);
                   }}>Logout</button>
                 </div>
               </div> : ''}
@@ -121,6 +116,7 @@ export const LoginForm = (props) => {
     </>
   );
 };
+
 
 function goTop() {
   // when document is document.ready
