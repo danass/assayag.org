@@ -4,9 +4,9 @@ import html2canvas from "html2canvas";
 import { Fonts, ColorPicker } from "../Modules"
 import { Global, Uuid, isMobile } from "../Membrane";
 import { ToggleButton, Button } from '@mui/material';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
-import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
-import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import { LibraryAddIcon } from '@mui/icons-material/LibraryAdd';
+import { LibraryAddCheckIcon } from '@mui/icons-material/LibraryAddCheck';
 
 export const RaindropsRender = ({ drop }) => {
   return <div onClick={() => {
